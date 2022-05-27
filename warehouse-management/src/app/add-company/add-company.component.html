@@ -1,0 +1,91 @@
+<div class="input-group">
+    <div class="form-outline">
+        <input type="search" [(ngModel)]="search" class="form-control mt-5 search" placeholder="Enter Your Data" />
+    </div>
+    <div>
+        <button (click)="getcompany()" class="btn btn-danger mt-5 get">Existing Data</button>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="card  mx-auto">
+        <div class="card-header text-center text-light">
+            <h1 class="text">Add Company</h1>
+        </div>
+        <div class="card-body ">
+            <form [formGroup]="addcompany">
+                <div class="form-group my-3 ">
+                    <label for="Company" class="text-light">Company Name :</label>
+                    <input type="text" formControlName="company" class="form-control" placeholder="Enter Company Name">
+                    <span class="text-danger"
+                        *ngIf="addcompany.controls['company'].touched && addcompany.hasError('required','company')">
+                        *Company Name is required</span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="company_id" class="text-light">Company Id :</label>
+                    <input type="text" formControlName="company_id" class="form-control" placeholder="Enter Company Id">
+                    <span class="text-danger"
+                        *ngIf="addcompany.controls['company_id'].touched && addcompany.hasError('required','company_id')">*Company
+                        Id is required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="email" class="text-light">Company Email :</label>
+                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Company Email">
+                    <span class="text-danger"
+                        *ngIf="addcompany.controls['email'].touched && addcompany.hasError('required','email')">*Company
+                        Email is required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="text" class="text-light">Company Website :</label>
+                    <input type="text" formControlName="website" class="form-control"
+                        placeholder="Enter Company website">
+                    <span class="text-danger"
+                        *ngIf="addcompany.controls['website'].touched && addcompany.hasError('required','website')">*Company
+                        website is required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="Location" class="text-light">Location :</label>
+                    <input type="text" formControlName="location" class="form-control"
+                        placeholder="Enter Company Location">
+                    <span class="text-light"
+                        *ngIf="addcompany.controls['location'].touched && addcompany.hasError('required','location')">*Location
+                        is required </span>
+                </div>
+                <div class="button text-center">
+
+                    <button (click)="add(this.addcompany.value)" class="btn btn-danger px-4 py-2 my-4"
+                        [disabled]="!addcompany.valid">Submit</button>
+                    <button (click)="updatecompany(this.addcompany.value)"
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <table class="table bg-dark">
+            <thead class="text-light">
+                <tr *ngIf="show">
+                    <th scope="col">Company Name</th>
+                    <th scope="col">Company Id</th>
+                    <th scope="col">Company Email</th>
+                    <th scope="col">Location</th>
+                </tr>
+            </thead>
+            <tbody class="text-light">
+                <tr *ngFor="let obj of object |filter:search">
+                    <td scope="row">{{obj.company}}</td>
+                    <td scope="row">{{obj.company_id}}</td>
+                    <td scope="row">{{obj.email}}</td>
+                    <td scope="row">{{obj.location}}</td>
+                    <td scope="row"><button class="btn btn-danger" (click)="editcompany(obj)"
+                            type="button">Edit</button>
+                    </td>
+                    <td scope="row"><button class="btn btn-danger" (click)="delcompany(obj,obj)">Delete</button></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

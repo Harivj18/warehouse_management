@@ -1,0 +1,108 @@
+<div class="input-group">
+    <div class="form-outline">
+        <input type="search" [(ngModel)]="search" class="form-control mt-5 search" placeholder="Enter Your Data" />
+    </div>
+    <div>
+        <button (click)="getuser()" class="btn btn-danger mt-5 get">Existing Data</button>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="card  mx-auto">
+        <div class="card-header text-center text-light">
+            <h1 class="text">Add Administrator</h1>
+        </div>
+        <div class="card-body ">
+            <form [formGroup]="adduser">
+                <div class="form-group my-3 ">
+                    <label for="username" class="text-light">Username :</label>
+                    <input type="text" formControlName="username" class="form-control" placeholder="Enter Username">
+                    <span class="text-danger"
+                        *ngIf="adduser.controls['username'].touched && adduser.hasError('required','username')">
+                        *Username is required</span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="first_Name" class="text-light">First Name :</label>
+                    <input type="text" formControlName="first_name" class="form-control" placeholder="Enter First Name">
+                    <span class="text-danger"
+                        *ngIf="adduser.controls['first_name'].touched && adduser.hasError('required','first_name')">*First
+                        Name is required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="last_Name" class="text-light">Last Name :</label>
+                    <input type="text" formControlName="last_name" class="form-control" placeholder="Enter Last Name">
+                    <span class="text-danger"
+                        *ngIf="adduser.controls['last_name'].touched && adduser.hasError('required','last_name')">*Last
+                        Name is required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="contact" class="text-light">Contact No :</label>
+                    <input type="contact" formControlName="contact" class="form-control"
+                        placeholder="Enter Your Email ">
+                    <span class="text-danger"
+                        *ngIf="adduser.controls['contact'].touched && adduser.hasError('required','contact')">*Contact
+                        is
+                        required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="email" class="text-light">Email :</label>
+                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Your Email ">
+                    <span class="text-danger"
+                        *ngIf="adduser.controls['email'].touched && adduser.hasError('required','email')">*Email is
+                        required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="password" class="text-light">Password :</label>
+                    <input type="password" formControlName="password" class="form-control"
+                        placeholder="Enter Your Password" minlength="8" maxlength="15">
+                    <span class="text-danger"
+                        *ngIf="adduser.controls['password'].dirty && adduser.hasError('required','password')">*Password
+                        is
+                        required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="confirm_password" class="text-light">Confirm Password :</label>
+                    <input type="password" formControlName="confirm_password" class="form-control"
+                        placeholder="Confirm Password" minlength="8" maxlength="15">
+                    <span class="text-danger"
+                        *ngIf="adduser.controls['confirm_password'].dirty && adduser.hasError('required','confirm_password')">*Confirm
+                        is
+                        required </span>
+                </div>
+                <div class="button text-center">
+                    <button type="submit" class="btn btn-danger px-4 py-2 my-4" (click)="addform(this.adduser.value)"
+                        [disabled]="!adduser.valid">Sign
+                        Up</button>
+                    <button (click)="updateForm(this.adduser.value)"
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <table class="table bg-dark">
+            <thead class="text-light">
+                <tr *ngIf="show">
+                    <th scope="col">Username</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact No</th>
+                </tr>
+            </thead>
+            <tbody class="text-light">
+                <tr *ngFor="let obj of object |filter:search">
+                    <td scope="row">{{obj.username}}</td>
+                    <td scope="row">{{obj.first_name}}</td>
+                    <td scope="row">{{obj.last_name}}</td>
+                    <td scope="row">{{obj.email}}</td>
+                    <td scope="row">{{obj.contact}}</td>
+                    <td scope="row"><button class="btn btn-danger" (click)="edituser(obj)" type="button">Edit</button>
+                    </td>
+                    <td scope="row"><button class="btn btn-danger" (click)="deluser(obj,obj)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

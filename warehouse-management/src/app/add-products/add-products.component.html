@@ -1,0 +1,115 @@
+<div class="input-group">
+    <div class="form-outline">
+        <input type="search" [(ngModel)]="search" class="form-control mt-5 search" placeholder="Enter Your Data" />
+    </div>
+    <div>
+        <button (click)="getproduct()" class="btn btn-danger mt-5 get">Existing Data</button>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="card  mx-auto">
+        <div class="card-header text-center text-light">
+            <h1 class="text">Add Products </h1>
+        </div>
+        <div class="card-body ">
+            <form [formGroup]="addproduct">
+                <div class="form-group my-3 ">
+                    <label for="Company" class="text-light">Company Name :</label>
+                    <select formControlName="company">
+                        <option value="none">Select Company</option>
+                        <option *ngFor="let obj of objcompany">{{obj.company}}</option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="addproduct.controls['company'].touched && addproduct.hasError('required','company')">
+                        *Company Name is required</span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="category" class="text-light">Category :</label>
+                    <select formControlName="category" (change)="select($event)">
+                        <option *ngFor="let i of info">{{i.category}}</option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="addproduct.controls['category'].touched && addproduct.hasError('required','category')">*Category
+                        is required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="product_id" class="text-light">Product Id :</label>
+                    <input type="text" formControlName="product_id" class="form-control" placeholder="Enter Product Id">
+                    <span class="text-danger"
+                        *ngIf="addproduct.controls['product_id'].touched && addproduct.hasError('required','product_id')">*Product
+                        Id is required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="brand" class="text-light">Product Name :</label>
+                    <input type="text" formControlName="brand" class="form-control" placeholder="Enter Product Name">
+                    <span class="text-danger"
+                        *ngIf="addproduct.controls['brand'].touched && addproduct.hasError('required','brand')">*Product
+                        Name is required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="quantity" class="text-light">Quantity :</label>
+                    <input type="quantity" formControlName="quantity" class="form-control"
+                        placeholder="Product Quantity ">
+                    <span class="text-danger"
+                        *ngIf="addproduct.controls['quantity'].touched && addproduct.hasError('required','quantity')">*Quantity
+                        is
+                        required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="price" class="text-light">Price :</label>
+                    <input type="number" formControlName="price" class="form-control" placeholder="Product Price"
+                        formControlName="price">
+                    <span class="text-danger"
+                        *ngIf="addproduct.controls['price'].dirty && addproduct.hasError('required','price')">*Product
+                        Price is required </span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="manufacture" class="text-light">Manufacturing Date :</label>
+                    <input type="date" formControlName="manufacture" class="form-control">
+                    <span class="text-danger"
+                        *ngIf="addproduct.controls['manufacture'].dirty && addproduct.hasError('required','manufacture')">*MFD
+                        is
+                        required </span>
+                </div>
+                <div class="button text-center">
+                    <button type="submit" class="btn btn-danger px-4 py-2 my-4" (click)="add(this.addproduct.value)"
+                        [disabled]="!addproduct.valid">Sign
+                        Up</button>
+                    <button (click)="updateproduct(this.addproduct.value)"
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <table class="table bg-dark">
+            <thead class="text-light">
+                <tr *ngIf="show">
+                    <th scope="col">Company Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Product Id</th>
+                    <th scope="col">Product Brand</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Manufacture</th>
+                </tr>
+            </thead>
+            <tbody class="text-light">
+                <tr *ngFor="let obj1 of object |filter:search">
+                    <td scope="row">{{obj1.company}}</td>
+                    <td scope="row">{{obj1.category}}</td>
+                    <td scope="row">{{obj1.product_id}}</td>
+                    <td scope="row">{{obj1.brand}}</td>
+                    <td scope="row">{{obj1.quantity}}</td>
+                    <td scope="row">{{obj1.price}}</td>
+                    <td scope="row">{{obj1.manufacture}}</td>
+                    <td scope="row"><button class="btn btn-danger" (click)="editproduct(obj1)"
+                            type="button">Edit</button>
+                    </td>
+                    <td scope="row"><button class="btn btn-danger" (click)="delproduct(obj1,obj1)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

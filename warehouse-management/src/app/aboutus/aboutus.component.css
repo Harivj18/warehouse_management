@@ -1,0 +1,30 @@
+.h4 {
+  margin-top: 5rem;
+  font-size: 1.5rem;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 3.5rem;
+}
+
+.images {
+  margin-top: 3rem;
+  margin-left: 10rem;
+  margin-bottom: 3rem;
+}
+
+img {
+  width: 70%;
+}
+
+.partners {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  background-color: cadetblue;
+}

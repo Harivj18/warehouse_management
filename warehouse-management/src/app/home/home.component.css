@@ -1,0 +1,98 @@
+.warehouse {
+  margin-top: 5rem;
+  margin-left: 17rem;
+}
+
+.warehouse img {
+  width: 650px;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.heading {
+  margin-top: 5rem;
+}
+
+p {
+  line-height: 2;
+  font-size: larger;
+  color: rgb(143, 143, 143);
+}
+
+button {
+  background-color: rgb(235, 235, 21);
+  color: white;
+  border: yellow;
+  padding: 15px 25px;
+  border-radius: 7px 7px;
+  margin-left: 30rem;
+}
+
+button:hover {
+  background-color: rgb(52, 252, 142);
+  color: white;
+  border: rgb(52, 252, 142);
+  padding: 15px 25px;
+  border-radius: 7px 7px;
+  margin-left: 30rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+}
+
+.headings {
+  margin-left: 0.7rem;
+  margin-bottom: 3rem;
+  line-height: 3rem;
+}
+
+h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-top: 4rem;
+}
+
+.points {
+  margin-top: 4rem;
+  margin-left: 5rem;
+  font-size: 1rem;
+}
+
+.buttons {
+  background-color: rgb(52, 252, 142);
+  color: white;
+  border: rgb(131, 235, 46);
+  padding: 18px 17px;
+  border-radius: 7px 7px;
+  margin-top: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+.buttons:hover {
+  background-color: white;
+  color: rgb(52, 252, 142);
+  border-style: inset rgb(52, 252, 142);
+  /* border:; */
+}
+
+.images img {
+  margin-top: 5rem;
+  margin-left: 12rem;
+  width: 65%;
+}
+
+.features {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(180, 248, 233);
+}
+
+.logos {
+  width: 60px;
+}

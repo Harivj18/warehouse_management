@@ -1,0 +1,12 @@
+.card {
+  background: #56ccf2;
+  background: linear-gradient(to right, #56ccf2, #2f80ed);
+  border: none;
+  width: 450px;
+  margin-bottom: 1.5rem;
+}
+
+.form-group,
+.btn {
+  margin-top: 1rem;
+}

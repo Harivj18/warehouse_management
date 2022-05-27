@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo test no specified"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harivj18/warehouse_management.git"
+  },
+  "keywords": [
+    "node",
+    "index.js"
+  ],
+  "author": "Hariharan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Harivj18/warehouse_management/issues"
+  },
+  "homepage": "https://github.com/Harivj18/warehouse_management#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "logger": "0.0.1",
+    "nano": "^10.0.0",
+    "nodemailer": "^6.7.5",
+    "winston": "^3.7.2"
+  }
+}
