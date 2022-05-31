@@ -11,7 +11,6 @@
   background: #43cea2;
   background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
   background: linear-gradient(to right, #185a9d, #43cea2);
-
   width: 450px;
   margin-bottom: 1.5rem;
   box-shadow: 5px 8px;
@@ -43,4 +42,21 @@ h1 {
 
 span {
   font-size: 16px;
+}
+
+tr,
+td {
+  padding: 12px 15px;
+}
+
+thead tr {
+  background-color: white;
+}
+
+tr:nth-of-type(even) {
+  background-color: white;
+}
+
+tr:nth-of-type(odd) {
+  background-color: aliceblue;
 }

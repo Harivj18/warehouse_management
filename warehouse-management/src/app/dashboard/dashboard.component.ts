@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiCallService } from '../api-call.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
   objectcompany:any =[];
   objectpro:any =[];
   
-  constructor(private api:ApiCallService) { }
+  constructor(private api:ApiCallService,private router:Router) { }
 
   ngOnInit(): void {
     this.getuser();
@@ -29,23 +30,18 @@ export class DashboardComponent implements OnInit {
     this.getproduct();
     this.getcompany();
   }
+
   // FOR DASHBOARD ADMIN USER
   getuser(){
     this.show=!this.show;
     this.api.getUser().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
-      console.log(this.alldata);
       for(const i of this.alldata){
-            console.log(i);
             this.object.push(i);
            if(this.object){
              this.count = this.count+1;
-            console.log('Admin Total count:',this.count); 
            }    
-            console.log('Fetched successfuly in add component');
       }
     },rej=>{
       console.log('Error',rej);      
@@ -56,17 +52,12 @@ export class DashboardComponent implements OnInit {
   getsupplier(){
     this.show=!this.show;
     this.api.getsupplier().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
       for(const i in this.alldata){
-            console.log(i);
             this.objectsup.push(i);
-            console.log('Fetched successfuly in add component');
             if(this.objectsup){
               this.count1 = this.count1+1;
-             console.log('Supplier Total count:',this.count1);            
             }
       }    
     },rej=>{
@@ -78,25 +69,13 @@ export class DashboardComponent implements OnInit {
   getcompany(){
     this.show=!this.show;
     this.api.getcompany().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
       for(const i of this.alldata){
-        // if(Object.prototype.hasOwnProperty.call(this.alldata,i)){
-          // const elt = this.alldata[i];
-          // console.log(elt.id);
-          // this.api.getcompanyId(elt.id).subscribe(res=>{
-          //   console.log(res);
             this.objectcompany.push(i);
-            console.log('Fetched successfuly in add component');
-            console.log(this.objectcompany);
             if(this.objectcompany){
               this.count3 = this.count3+1;
-             console.log('Company Total count:',this.count3);             
             }
-          
-        // }
       }    
     },rej=>{
       console.log('Error',rej);      
@@ -106,22 +85,33 @@ export class DashboardComponent implements OnInit {
   // FOR PRODUCT DASHBOARD
 getproduct(){
     this.api.getproduct().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
-      console.log(this.alldata);
       for(const i of this.alldata){
-            console.log(i);
             this.objectpro.push(i);
-            console.log('Fetched successfuly in add component');
             if(this.objectpro){
               this.count2 = this.count2+1;
-             console.log('Product Total count:',this.count2);             
             }
         }
     },rej=>{
       console.log('Error',rej);    
     })
+  }
+
+  // FOR NAVIGATING TO ADMIN DASHBOARD
+  admin(){
+    this.router.navigate(['/menus/viewadmin'])
+  }
+  // FOR NAVIGATING TO COMPANY DASHBOARD
+  company(){
+    this.router.navigate(['/menus/viewcompany'])
+  }
+  // FOR NAVIGATING TO PRODUCTS DASHBOARD
+  products(){
+    this.router.navigate(['/menus/viewproducts'])
+  }
+  // FOR NAVIGATING TO SUPPLIERS DASHBOARD
+  suppliers(){
+    this.router.navigate(['/menus/viewsuppliers'])
   }
 }

@@ -7,95 +7,88 @@ import { HttpClient,HttpClientModule } from '@angular/common/http';
 export class ApiCallService {
 
   constructor(private http:HttpClient) { }
-
+  // FOR SIGNUP
   admindata(formobject:any){
     return this.http.post('http://localhost:8000/postuser/',formobject);
   }
-  
+  // FOR ADDING ADMIN
   adduser(formobject:any){
     return this.http.post('http://localhost:8000/addUser/',formobject);
   }
-
+  // FOR FETCHING ADMIN
   getUser(){
     return this.http.get('http://localhost:8000/getUser/');
   }
-
-  getUserId(id:any){
-    return this.http.get(`http://localhost:8000/getUserId/${id}`);
-  }
-
+  // FOR DELETING ADMIN 
   remove(id:any,id1:any){
     return this.http.delete(`http://localhost:8000/delete/${id}/${id1}`);
   }
-
+  // FOR UPDATING DATA
   changedata(value:any){
     return this.http.put('http://localhost:8000/putquery/',value);
   }
-
+  // FOR ADDING COMPANY
   addcompany(formobject:any){
     return this.http.post('http://localhost:8000/addcompany/',formobject)
   }
-
+  // FOR FETCHING COMPANY
   getcompany(){
     return this.http.get('http://localhost:8000/getcompany/');
   }
-
-  getcompanyId(id:any){
-    return this.http.get(`http://localhost:8000/getcompanyId/${id}`);
-  }
-
+  // FOR DELETING
   removecompany(id:any,id1:any){
     return this.http.delete(`http://localhost:8000/delcompany/${id}/${id1}`)
   }
 
+  // FOR UPDATING COMPANY
   changecompany(formobject:any){
     return this.http.put('http://localhost:8000/updatecompany/',formobject)
   }
-   // product
+   // FOR ADDING PRODUCTS
    addproduct(formobject:any){
     return this.http.post('http://localhost:8000/addproduct/',formobject)
   }
-
+   // FOR FETCHING PRODUCTS
   getproduct(){
     return this.http.get('http://localhost:8000/getproduct/');
   }
-
+  // FOR DELETING PRODUCTS
   removeproduct(id:any,id1:any){
     return this.http.delete(`http://localhost:8000/delproduct/${id}/${id1}`)
   }
-
+  // FOR UPDATING PRODUCTS
   changeproduct(formobject:any){
     return this.http.put('http://localhost:8000/updateproduct/',formobject)
   }
 
-    // supplier apis
+  // FOR ADDING SUPPLIERS
     addsupplier(formobject:any){
       return this.http.post('http://localhost:8000/addsupplier/',formobject);
     }
-  
+  // FOR FETCHING SUPPLIER
     getsupplier(){
       return this.http.get('http://localhost:8000/getsupplier/');
     }
-  
-    getsupplierId(id:any){
-      return this.http.get(`http://localhost:8000/getsupplierId/${id}`);
-    }
-  
+    // FOR DELETING SUPPLIER
     removesupplier(id:any,id1:any){
       return this.http.delete(`http://localhost:8000/delsupplier/${id}/${id1}`)
     }
-  
+    // FOR UPDATING SUPPLIER
     changesupplier(formobject:any){
       return this.http.put('http://localhost:8000/updatesupplier/',formobject)
     }
-    
+    //FOR CONTACT FORM
     contact(formobject:any){
       return this.http.post('http://localhost:8000/contact/',formobject)
     }
 
-    // get product category
+    // FOR GETTING PRODUCT CATEGORY
     getinfo(){
-      console.log('calling caalling');    
       return this.http.get('http://localhost:8000/getinfo/')
     }
+
+    // FOR GETTING ADMIN IN DASHBOARD
+    getadmin(){
+      return this.http.get('http://localhost:8000/getUser/');
+  }
 }

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="checkadmin" *ngIf="show">
+        <h1 class="text-center heading">ADMIN DATA</h1>
+        <table class="table bg-dark">
+            <thead class="text-light">
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact No</th>
+                </tr>
+            </thead>
+            <tbody class="text-light">
+                <tr *ngFor="let obj of object |filter:search">
+                    <td scope="row">{{obj.username}}</td>
+                    <td scope="row">{{obj.first_name}}</td>
+                    <td scope="row">{{obj.last_name}}</td>
+                    <td scope="row">{{obj.email}}</td>
+                    <td scope="row">{{obj.contact}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

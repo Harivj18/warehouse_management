@@ -11,7 +11,6 @@ export class ServiceapiService {
   constructor(private http:HttpClient) { }
   show:any=true;
   logindata(formobject:any){
-    console.log('api works');
     return this.http.post('http://localhost:8000/getquery/',formobject);
   }
 

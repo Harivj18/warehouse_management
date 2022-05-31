@@ -32,46 +32,25 @@ export class LoginComponent implements OnInit {
     }
   )
   }
-
+  // FOR LOGGING INTO PAGE
   login(formvalue:any){
     this.api.getUser().subscribe(data=>{
-      console.log('hello fetched');
-      
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
-      console.log(this.alldata);
-      for(const i of this.alldata){
-        console.log(i);
-        
+      for(const i of this.alldata){        
             this.object.push(i);
-            console.log('Fetched successfuly in add component');
-            console.log('iterate',i);
               if(i.username == formvalue.username && i.password == formvalue.password){
-                console.log('hello',i.username);
                 this.check = 1;
                 this.store = i;
               }
-            // for ( of this.object) {
-            //   console.log('inside for',iterator.username);
-            //   if(iterator.username == formvalue.username && i.password == formvalue.password){
-            //     console.log('hello',i.username);
-            //     this.check = 1;
-            //     this.store = i;
-            //   }
-            // }            
-            console.log(this.check);
           }
              
       setTimeout(()=>{
         if(this.check ==1){
-          console.log('getting');
           localStorage.setItem('login',JSON.stringify(this.store));
           this.loginform.reset();
           this.serve.show = false;
           this.route.navigate(['menus']);
-          console.log('hello menu');          
         }
         else{
           alert('Invalid Credentials');

@@ -1,0 +1,20 @@
+.container {
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.heading {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+table {
+  margin-top: 3rem;
+}
+
+tr,
+td {
+  padding: 12px 15px;
+}

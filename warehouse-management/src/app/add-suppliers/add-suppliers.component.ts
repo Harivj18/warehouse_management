@@ -18,6 +18,7 @@ export class AddSuppliersComponent implements OnInit {
   check=0;
   objectsupplier:any=[];
   objcompany:any=[];
+  idobj:any;
 
   constructor(private formbuilder:FormBuilder,private api:ApiCallService,public serve:ServiceapiService) {
    }
@@ -32,6 +33,7 @@ export class AddSuppliersComponent implements OnInit {
         'contact':['',Validators.required],
         'state':['',Validators.required],
         'city':['',Validators.required],
+        'particulars':[''],
         _id:[''],
         _rev:[''],
       }
@@ -41,29 +43,49 @@ export class AddSuppliersComponent implements OnInit {
 
   // FOR SUPPLIER FORM
   add(Formvalue:any){
-    this.api.addsupplier(Formvalue).subscribe(data=>{
-      console.log(data);
-      alert('Your Data added successfully');
-      location.reload();
-      this.serve.store=[];
-      this.getsupplier();
-      },rej=>{
-        console.log('Error',rej);
-      });
+    this.show=!this.show;
+    this.api.getcompany().subscribe(data=>{
+      this.alldata=data;
+      this.alldata=this.alldata.docs;
+      for(const i of this.alldata){
+        this.idobj = i;
+        if(i.company == Formvalue.company){
+          this.check=1;
+          var obj ={
+            company:Formvalue.company,
+            supplier:Formvalue.supplier,
+            supplier_id:Formvalue.supplier_id,
+            aadhar:Formvalue.aadhar,
+            email:Formvalue.email,
+            contact:Formvalue.contact,
+            manufacture:Formvalue.manufacture,
+            state:Formvalue.state,
+            city:Formvalue.city,
+            particulars:this.idobj._id
+          }
+          this.api.addsupplier(obj).subscribe(data=>{
+            alert('Your Data added successfully')
+            location.reload();
+            this.serve.store=[];
+            this.getsupplier();
+            },rej=>{
+              console.log('Error',rej);        
+            });
+        }
+      }
+    },rej=>{
+      console.log('Error',rej);      
+    })
    }
 
   // FOR GETTING SUPPLIER
   getsupplier(){
     this.show=!this.show;
     this.api.getsupplier().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
-      console.log(this.alldata);
       for(const i of this.alldata){
         this.object.push(i);
-        console.log(i);
       }
     },rej=>{
       console.log('Error',rej);
@@ -74,7 +96,7 @@ export class AddSuppliersComponent implements OnInit {
  delsupplier(data:any,data1:any){
   this.api.removesupplier(data._id,data1._rev).subscribe(res=>{
     location.reload();
-    alert('Your data was Deleted from the database');
+    alert('Your data was deleted from the database');
   },rej=>{
     console.log('Error',rej);
   })
@@ -96,27 +118,21 @@ export class AddSuppliersComponent implements OnInit {
 
 // FOR UPDATING SUPPLIER
    updateForm(formvalue:NgForm){
-    console.log(formvalue);
     this.api.changesupplier(formvalue).subscribe(res=>{
      alert("Your data was updated successfully!");
      location.reload()
     },rej=>{
       console.log('Error',rej);
-      
     })
     }
 
     // FOR COMPANY DROPDOWN
     companydrop(){
       this.api.getcompany().subscribe(data=>{
-        console.log(data);
-        console.log('Data was fetching');
         this.alldata=data;
         this.alldata=this.alldata.docs;
-        console.log(this.alldata);
         for(const i of this.alldata){
           this.objcompany.push(i);
-          console.log('hmm',this.objcompany);
         }
       },rej=>{
         console.log('Error',rej);
@@ -125,28 +141,21 @@ export class AddSuppliersComponent implements OnInit {
 
     suppliervalidation(formvalue:any){
       this.api.getsupplier().subscribe(data=>{
-        console.log(data);
-        console.log('Data was fetching');
         this.alldata=data;
         this.alldata=this.alldata.docs;
-        console.log(this.alldata);
         for(const i of this.alldata){
               this.objectsupplier.push(i);   
                 if(i.supplier_id == formvalue.supplier_id){
-                  console.log('hello',i.supplier_id);
                   this.check = 1;
                 }
-              console.log(this.check);
         }       
         setTimeout(()=>{
           if(this.check ==1){
-            console.log('getting');        
             alert('Supplier Id exists');
             location.reload();
-            console.log('hello menu');          
           }
           else{
-        this.add(formvalue)
+            this.add(formvalue)
           }
         },1000)
       },rej=>{

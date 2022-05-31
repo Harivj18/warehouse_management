@@ -20,7 +20,6 @@ app.use(
 );
 // FOR SIGNUP FORM
 app.post("/postuser", (request, response) => {
-  console.log(request);
   var object = {
     username: request.body.username,
     first_name: request.body.first_name,
@@ -40,12 +39,10 @@ app.post("/postuser", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was posted");
 });
 
 // ADD ADMIN
 app.post("/adduser", (request, response) => {
-  console.log(request);
   var object = {
     username: request.body.username,
     first_name: request.body.first_name,
@@ -65,13 +62,10 @@ app.post("/adduser", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was posted");
 });
 
 // GET ADMIN
 app.get("/getUser", (request, response) => {
-  console.log(request);
-  console.log("Fetching Begins");
   var data = {
     selector: {
       type: "adminuser",
@@ -86,7 +80,6 @@ app.get("/getUser", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was fetched succesfully");
 });
 
 // DELETING ADMIN DATA
@@ -100,7 +93,6 @@ app.delete("/delete/:id/:id1", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was deleted succesfully");
 });
 
 // UPDATING ADMIN DATA
@@ -126,12 +118,10 @@ app.put("/putquery", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was updated");
 });
 
 //TO ADD COMPANY
 app.post("/addcompany", (request, response) => {
-  console.log(request);
   var object = {
     company: request.body.company,
     company_id: request.body.company_id,
@@ -149,12 +139,10 @@ app.post("/addcompany", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was posted");
 });
 
 // TO GET COMPANY
 app.get("/getcompany", (request, response) => {
-  console.log(request);
   var data = {
     selector: {
       type: "Company",
@@ -169,12 +157,10 @@ app.get("/getcompany", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was fetched");
 });
 
 // TO DELETE COMPANY
 app.delete("/delcompany/:id/:id1", (request, response) => {
-  console.log(request);
   Companycontroller.delcompany(request.params.id, request.params.id1)
     .then((res) => {
       logger.warn("Your Data was deleted successfully!!");
@@ -184,7 +170,6 @@ app.delete("/delcompany/:id/:id1", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was deleted");
 });
 
 //TO UPDATE COMPANY
@@ -208,12 +193,10 @@ app.put("/updatecompany", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was updated");
 });
 
 //TO ADD PRODUCTS
 app.post("/addproduct", (request, response) => {
-  console.log(request);
   var object = {
     company: request.body.company,
     category: request.body.category,
@@ -222,6 +205,7 @@ app.post("/addproduct", (request, response) => {
     quantity: request.body.quantity,
     price: request.body.price,
     manufacture: request.body.manufacture,
+    particulars: request.body.particulars,
     type: "products",
   };
   Productcontroller.ProductForm(object)
@@ -233,12 +217,10 @@ app.post("/addproduct", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was posted");
 });
 
 // TO GET PRODUCT
 app.get("/getproduct", (request, response) => {
-  console.log(request);
   var data = {
     selector: {
       type: "products",
@@ -253,12 +235,10 @@ app.get("/getproduct", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was fetched");
 });
 
 // TO DELETE PRODUCT
 app.delete("/delproduct/:id/:id1", (request, response) => {
-  console.log(request);
   Productcontroller.delproduct(request.params.id, request.params.id1)
     .then((res) => {
       logger.warn("Your data was deleted succesfully");
@@ -268,7 +248,6 @@ app.delete("/delproduct/:id/:id1", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was deleted");
 });
 
 //TO UPDATE PRODUCT
@@ -294,7 +273,6 @@ app.put("/updateproduct", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was updated");
 });
 
 // TO ADD SUPPLIER
@@ -309,6 +287,7 @@ app.post("/addsupplier", (request, response) => {
     contact: request.body.contact,
     state: request.body.state,
     city: request.body.city,
+    particulars: request.body.particulars,
     type: "supplier",
   };
   SupplierController.SupplierForm(object2)
@@ -320,7 +299,6 @@ app.post("/addsupplier", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was posted");
 });
 
 // TO GET SUPPLIER
@@ -340,7 +318,6 @@ app.get("/getsupplier", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was fetched");
 });
 
 // TO DELETE SUPPLIER
@@ -355,7 +332,6 @@ app.delete("/delsupplier/:id/:id1", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was deleted");
 });
 
 //TO UPDATE SUPPLIER
@@ -382,24 +358,20 @@ app.put("/updatesupplier", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was updated");
 });
 
 // CONTACT FORM
 app.post("/contact", (request, response) => {
-  console.log(request);
   var mail = {
     username: request.body.username,
     email: request.body.email,
     msg: request.body.msg,
   };
   contactmail.getemail(request.body.email, request.body.msg);
-  console.log(mail);
 });
 
 // TO GET CATEGORY
 app.get("/getinfo", (request, response) => {
-  console.log(request);
   var data = {
     selector: {
       type: "product_category",
@@ -414,7 +386,6 @@ app.get("/getinfo", (request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response");
     });
-  console.log("Your data was fetched");
 });
 
 app.listen(port, (err) => {

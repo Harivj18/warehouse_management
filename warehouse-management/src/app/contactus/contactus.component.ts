@@ -17,10 +17,11 @@ export class ContactusComponent implements OnInit {
       msg:['',Validators.required]
     })
   }
+
+  // FOR SENDING MAIL
   mail(formvalue:any){
     this.api.contact(formvalue).subscribe(res=>{
       alert('Mail Sent Successfully!!!')
-      console.log(res);      
     },rej=>{
       console.log('Error',rej);   
     })

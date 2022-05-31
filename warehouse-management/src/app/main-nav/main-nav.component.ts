@@ -12,6 +12,8 @@ export class MainNavComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  // FOR LOGGING OUT FROM OUR PAGE
   logout(){
     this.serve.show =true;
     localStorage.removeItem('login');

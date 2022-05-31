@@ -44,3 +44,20 @@ h1 {
 span {
   font-size: 16px;
 }
+
+tr,
+td {
+  padding: 12px 15px;
+}
+
+thead tr {
+  background-color: white;
+}
+
+tr:nth-of-type(even) {
+  background-color: white;
+}
+
+tr:nth-of-type(odd) {
+  background-color: aliceblue;
+}

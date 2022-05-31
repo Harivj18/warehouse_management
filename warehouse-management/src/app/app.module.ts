@@ -20,7 +20,12 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { SignupComponent } from './signup/signup.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ViewDashboardComponent } from './view-dashboard/view-dashboard.component';
+import { ViewsuppliersComponent } from './viewsuppliers/viewsuppliers.component';
+import { ViewcompanyComponent } from './viewcompany/viewcompany.component';
+import { ViewproductsComponent } from './viewproducts/viewproducts.component';
+import { MyProfileComponent } from './my-profile/my-profile.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +39,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     DashboardComponent,
     LoginComponent,
     AboutusComponent,
-    SignupComponent
+    SignupComponent,
+    ViewDashboardComponent,
+    ViewsuppliersComponent,
+    ViewcompanyComponent,
+    ViewproductsComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

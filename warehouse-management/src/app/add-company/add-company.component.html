@@ -3,7 +3,7 @@
         <input type="search" [(ngModel)]="search" class="form-control mt-5 search" placeholder="Enter Your Data" />
     </div>
     <div>
-        <button (click)="getcompany()" class="btn btn-danger mt-5 get">Existing Data</button>
+        <button (click)="getcompany()" class="btn btn-danger mt-5 get">List of company</button>
     </div>
 </div>
 
@@ -16,14 +16,16 @@
             <form [formGroup]="addcompany">
                 <div class="form-group my-3 ">
                     <label for="Company" class="text-light">Company Name :</label>
-                    <input type="text" formControlName="company" class="form-control" placeholder="Enter Company Name">
+                    <input type="text" formControlName="company" class="form-control" placeholder="Enter Company Name"
+                        minlength="10">
                     <span class="text-danger"
                         *ngIf="addcompany.controls['company'].touched && addcompany.hasError('required','company')">
                         *Company Name is required</span>
                 </div>
                 <div class="form-group my-3">
                     <label for="company_id" class="text-light">Company Id :</label>
-                    <input type="text" formControlName="company_id" class="form-control" placeholder="Enter Company Id">
+                    <input type="text" formControlName="company_id" class="form-control" placeholder="Enter Company Id"
+                        minlength="5">
                     <span class="text-danger"
                         *ngIf="addcompany.controls['company_id'].touched && addcompany.hasError('required','company_id')">*Company
                         Id is required </span>
@@ -52,8 +54,7 @@
                         is required </span>
                 </div>
                 <div class="button text-center">
-
-                    <button (click)="add(this.addcompany.value)" class="btn btn-danger px-4 py-2 my-4"
+                    <button (click)="companycheck(this.addcompany.value)" class="btn btn-danger px-4 py-2 my-4"
                         [disabled]="!addcompany.valid">Submit</button>
                     <button (click)="updatecompany(this.addcompany.value)"
                         class="btn btn-warning text-light px-4 py-2 mx-4 my-4">Update</button>
@@ -62,17 +63,20 @@
         </div>
     </div>
 
-    <div>
-        <table class="table bg-dark">
-            <thead class="text-light">
-                <tr *ngIf="show">
+    <div *ngIf="show" class="showtable mt-5">
+        <h1 class="text-center">Company Data</h1>
+        <table class="table table-stripped mt-5">
+            <thead>
+                <tr>
                     <th scope="col">Company Name</th>
                     <th scope="col">Company Id</th>
                     <th scope="col">Company Email</th>
                     <th scope="col">Location</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody class="text-light">
+            <tbody>
                 <tr *ngFor="let obj of object |filter:search">
                     <td scope="row">{{obj.company}}</td>
                     <td scope="row">{{obj.company_id}}</td>

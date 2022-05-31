@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="checkcompany" *ngIf="show">
+        <h1 class="text-center heading">COMPANY DATA</h1>
+        <table class="table bg-dark">
+            <thead class="text-light">
+                <tr>
+                    <th scope="col">Company Name</th>
+                    <th scope="col">Company Id</th>
+                    <th scope="col">Company Email</th>
+                    <th scope="col">Location</th>
+                </tr>
+            </thead>
+            <tbody class="text-light">
+                <tr *ngFor="let obj of objcompany |filter:search">
+                    <td scope="row">{{obj.company}}</td>
+                    <td scope="row">{{obj.company_id}}</td>
+                    <td scope="row">{{obj.email}}</td>
+                    <td scope="row">{{obj.location}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

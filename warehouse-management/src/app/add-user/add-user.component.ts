@@ -36,34 +36,31 @@ export class AddUserComponent implements OnInit {
       }
     )
   }
+
   // FOR ADMIN FORM
   addform(Formvalue:any){
-   
       this.api.adduser(Formvalue).subscribe(data=>{
-        console.log(data);
         alert('Your Data added successfully')
         location.reload()
         },rej=>{
           console.log('Error',rej);        
         });
   }
-//   // FOR GETTING USER
+
+  // FOR GETTING USER
   getuser(){
     this.show=!this.show;
     this.api.getUser().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
-      console.log(this.alldata);
       for(const i of this.alldata){
             this.object.push(i);
-            console.log(i);
       }   
     },rej=>{
       console.log('Error',rej);      
     })
   }
+
   // FOR DELETING USER
  deluser(data:any,data1:any){
   this.api.remove(data._id,data1._rev).subscribe(res=>{
@@ -72,7 +69,8 @@ export class AddUserComponent implements OnInit {
   },rej=>{
     console.log('Error',rej);    
   })     
-   }
+}
+
    // FOR EDITING USER
    edituser(row:any){
     this.adduser.controls['username'].setValue(row.username);
@@ -83,9 +81,9 @@ export class AddUserComponent implements OnInit {
     this.adduser.controls['_id'].setValue(row._id);
     this.adduser.controls['_rev'].setValue(row._rev);
    }
+
    // UPDATING USER 
    updateForm(formvalue:NgForm){
-    console.log(formvalue);
     this.api.changedata(formvalue).subscribe(res=>{
      alert("Your data was updated successfully!");
      location.reload()
@@ -93,43 +91,26 @@ export class AddUserComponent implements OnInit {
       console.log('Error',rej);      
     })
     }  
+
     // FOR DB VALIDATION
     uservalidation(formvalue:any){
       this.api.getUser().subscribe(data=>{
-        console.log(data);
-        console.log('Data was fetching');
         this.alldata=data;
-        this.alldata=this.alldata.rows;
-        console.log(this.alldata);
-        for(const i in this.alldata){
-          if(Object.prototype.hasOwnProperty.call(this.alldata,i)){
-            const elt = this.alldata[i];
-            console.log(elt.id);
-            this.api.getUserId(elt.id).subscribe(res=>{
-              console.log(res);
-              this.objectuser.push(res);
-              console.log('Fetched successfuly in add component');
-              for (const iterator of this.objectuser) {
-                if(iterator.username == formvalue.username){
-                  console.log('hello',iterator.username);
+        this.alldata=this.alldata.docs;
+        for(const i of this.alldata){
+              this.objectuser.push(i);
+                if(i.username == formvalue.username){
                   this.check = 1;
                 }
-              }            
-              console.log(this.check);
-            },rej=>{
-              console.log('Error',rej);
-            })
-          }
         }       
         setTimeout(()=>{
           if(this.check ==1){
-            console.log('getting');        
             alert('Username exists');
             location.reload();
-            console.log('hello menu');          
           }
+         
           else{
-        this.addform(formvalue)
+              this.addform(formvalue);
           }
         },1000)
       },rej=>{

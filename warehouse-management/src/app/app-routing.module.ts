@@ -6,13 +6,17 @@ import { HomeComponent } from './home/home.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { AddUserComponent } from './add-user/add-user.component';
-// import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { AddSuppliersComponent } from './add-suppliers/add-suppliers.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { AuthGuard } from './auth.guard';
+import { ViewDashboardComponent } from './view-dashboard/view-dashboard.component';
+import { ViewsuppliersComponent } from './viewsuppliers/viewsuppliers.component';
+import { ViewcompanyComponent } from './viewcompany/viewcompany.component';
+import { ViewproductsComponent } from './viewproducts/viewproducts.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
   {path:'menus',canActivate:[AuthGuard],component:MainNavComponent,
@@ -22,11 +26,15 @@ const routes: Routes = [
     {path:'about',component:AboutusComponent},
     {path:'contact',component:ContactusComponent},
     {path:'adduser',component:AddUserComponent},
-    // {path:'addsupplier',component:AddSupplierComponent},
     {path:'addcompany',component:AddCompanyComponent},
     {path:'addproducts',component:AddProductsComponent},
     {path:'suppliers',component:AddSuppliersComponent},
-    {path:'dashboard',component:DashboardComponent}
+    {path:'dashboard',component:DashboardComponent},
+    {path:'viewadmin',component:ViewDashboardComponent},
+    {path:'viewsuppliers',component:ViewsuppliersComponent},
+    {path:'viewcompany',component:ViewcompanyComponent},
+    {path:'viewproducts',component:ViewproductsComponent},
+    {path:'myprofile',component:MyProfileComponent}
   ]
 },
 {path:'login',component:LoginComponent}

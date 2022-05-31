@@ -15,9 +15,10 @@ export class AddProductsComponent implements OnInit {
   show:boolean=false;
   objcompany:any=[];
   info:any=[];
-  supplier:any=[]
   url: any;
-  
+  check:any=0;
+  maxdate:any;
+  idobj:any;
   constructor(private formbuilder:FormBuilder,private api:ApiCallService) {
    }
 
@@ -31,27 +32,23 @@ export class AddProductsComponent implements OnInit {
         'quantity':['',Validators.required],
         'price':['',Validators.required],
         'manufacture':['',Validators.required],
+        particulars:[''],
         _id:[''],
         _rev:['']
       }    
     )
     this.companydrop();
     this.getproductinfo();
-    this.getsupplier();
+    this.futuredate();
   }
+  
 //  getting company info 
   getproductinfo(){
     this.api.getinfo().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching from info');
       this.alldata=data;
-      console.log(this.alldata);     
       this.alldata=this.alldata.docs;
-      console.log(this.alldata);
       for(const i of this.alldata){
-            console.log(i);
             this.info.push(i);
-            console.log('Fetched successfuly from info');
       }
     },rej=>{
       console.log('Error',rej);      
@@ -63,11 +60,8 @@ export class AddProductsComponent implements OnInit {
     for (const key in this.info) {
       if (Object.prototype.hasOwnProperty.call(this.info, key)) {
         const element = this.info[key];
-        console.log('okiees',element);
         var data = element.category;
-        console.log(data);
         if (data == event.target.value) {
-          console.log('hello');
           this.addproduct.controls['product_id'].setValue(element.product_id);
         }
       }     
@@ -77,88 +71,62 @@ export class AddProductsComponent implements OnInit {
   // FOR COMPANY DROPDOWN
   companydrop(){
     this.api.getcompany().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
-      console.log(this.alldata);
       for(const i of this.alldata){
         this.objcompany.push(i);
-        console.log('hmm',this.objcompany);
       }
     },rej=>{
       console.log('Error',rej);
     })
   }
 
-  // FOR FETCHING RELATION OF REGISTERED SUPPLIER
-  getsupplier(){
-    this.api.getsupplier().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
+ // FOR ADDING PRODUCTS
+  add(Formvalue:any){
+    this.show=!this.show;
+    this.api.getcompany().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.rows;
-      console.log(this.alldata);
-      for(const i in this.alldata){
-        if(Object.prototype.hasOwnProperty.call(this.alldata,i)){
-          const elt = this.alldata[i];
-          console.log(elt.id);
-          this.api.getsupplierId(elt.id).subscribe(res=>{
-            console.log(res);
-            this.supplier.push(res);
-            console.log('######################');          
-          },rej=>{
-            console.log('Error',rej);            
-          })
+      this.alldata=this.alldata.docs;
+      for(const i of this.alldata){
+        this.idobj = i;
+        if(i.company == Formvalue.company){
+          this.check=1;
+          var obj ={
+            company:Formvalue.company,
+            category:Formvalue.category,
+            product_id:Formvalue.product_id,
+            brand:Formvalue.brand,
+            quantity:Formvalue.quantity,
+            price:Formvalue.price,
+            manufacture:Formvalue.manufacture,
+            particulars:this.idobj._id
+          }
+          
+          this.api.addproduct(obj).subscribe(data=>{
+            alert('Your Data added successfully')
+            location.reload();
+            },rej=>{
+              console.log('Error',rej);        
+            });
         }
-      }    
+      }
     },rej=>{
       console.log('Error',rej);      
     })
   }
-  // FOR SELECTING SUPPLIER VALUE AND SET ON SUPPLIER ID FIELD $RELATION
-  change(event:any){
-    for (const key in this.supplier) {
-      if (Object.prototype.hasOwnProperty.call(this.supplier, key)) {
-        const element = this.supplier[key];
-        console.log('okiees',element);
-        var data = element.supplier;
-        console.log(data);
-        if (data == event.target.value) {
-          console.log('hello');
-          this.addproduct.controls['supplier_id'].setValue(element.supplier_id);
-        }
-      }     
-    }  
-  }
- // FOR ADDING PRODUCTS
-  add(Formvalue:any){
-    console.log(Formvalue);    
-    this.api.addproduct(Formvalue).subscribe(data=>{
-      console.log(data);
-      alert('Your Data added successfully')
-      location.reload();
-      },rej=>{
-        console.log('Error',rej);        
-      });
-  }
+
 //  FOR GETTING REGISTERED PRODUCTS
   getproduct(){
     this.show=!this.show;
     this.api.getproduct().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
-      console.log(this.alldata);
       for(const i of this.alldata){
         this.object.push(i)
-        console.log(i);
-        
     }
-},rej=>{
+    },rej=>{
   console.log('Error',rej);      
-})
+    })
   }
 
   // FOR DELETE PRODUCTS
@@ -186,13 +154,28 @@ export class AddProductsComponent implements OnInit {
 
 // FOR UPDATING PRODUCTS
    updateproduct(formvalue:NgForm){
-    console.log(formvalue);
     this.api.changeproduct(formvalue).subscribe(res=>{
      alert("Your data was updated successfully!");
      location.reload();
     },rej=>{
       console.log('Error',rej);
     })
+    }
+
+    futuredate(){
+      var date = new Date();
+      var currentdate:any = date.getDate();
+      var currentmonth:any = date.getMonth() + 1;
+      var currentyear:any = date.getFullYear();
+      if (currentdate < 10){
+        currentdate = "0" + currentdate;
+      }
+      if(currentmonth < 10){
+        currentmonth = "0" + currentmonth;
+      }
+      this.maxdate = currentyear + "-" + currentmonth + "-" + currentdate;
+      console.log(this.maxdate);
+      
     }
 }
 

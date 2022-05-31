@@ -3,7 +3,7 @@
         <input type="search" [(ngModel)]="search" class="form-control mt-5 search" placeholder="Enter Your Data" />
     </div>
     <div>
-        <button (click)="getuser()" class="btn btn-danger mt-5 get">Existing Data</button>
+        <button (click)="getuser()" class="btn btn-danger mt-5 get">List of users</button>
     </div>
 </div>
 
@@ -15,8 +15,9 @@
         <div class="card-body ">
             <form [formGroup]="adduser">
                 <div class="form-group my-3 ">
-                    <label for="username" class="text-light">Username :</label>
-                    <input type="text" formControlName="username" class="form-control" placeholder="Enter Username">
+                    <label for="username" class="text-light">User Name :</label>
+                    <input type="text" formControlName="username" class="form-control" placeholder="Enter Username"
+                        minlength="4" maxlength="20">
                     <span class="text-danger"
                         *ngIf="adduser.controls['username'].touched && adduser.hasError('required','username')">
                         *Username is required</span>
@@ -37,8 +38,8 @@
                 </div>
                 <div class="form-group my-3">
                     <label for="contact" class="text-light">Contact No :</label>
-                    <input type="contact" formControlName="contact" class="form-control"
-                        placeholder="Enter Your Email ">
+                    <input type="contact" formControlName="contact" class="form-control" placeholder="Enter Your Email "
+                        maxlength="10" minlength="10">
                     <span class="text-danger"
                         *ngIf="adduser.controls['contact'].touched && adduser.hasError('required','contact')">*Contact
                         is
@@ -70,8 +71,8 @@
                         required </span>
                 </div>
                 <div class="button text-center">
-                    <button type="submit" class="btn btn-danger px-4 py-2 my-4" (click)="addform(this.adduser.value)"
-                        [disabled]="!adduser.valid">Sign
+                    <button type="submit" class="btn btn-danger px-4 py-2 my-4"
+                        (click)="uservalidation(this.adduser.value)" [disabled]="!adduser.valid">Sign
                         Up</button>
                     <button (click)="updateForm(this.adduser.value)"
                         class="btn btn-warning text-light px-4 py-2 mx-4 my-4">Update</button>
@@ -79,18 +80,19 @@
             </form>
         </div>
     </div>
-    <div>
-        <table class="table bg-dark">
-            <thead class="text-light">
-                <tr *ngIf="show">
-                    <th scope="col">Username</th>
+    <div *ngIf="show" class="showtable mt-5">
+        <h1 class="text-center">Admin Database</h1>
+        <table class="table table-stripped mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">User Name</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Contact No</th>
                 </tr>
             </thead>
-            <tbody class="text-light">
+            <tbody>
                 <tr *ngFor="let obj of object |filter:search">
                     <td scope="row">{{obj.username}}</td>
                     <td scope="row">{{obj.first_name}}</td>

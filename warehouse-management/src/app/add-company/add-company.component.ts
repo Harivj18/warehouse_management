@@ -36,9 +36,8 @@ export class AddCompanyComponent implements OnInit {
   // FOR ADDING COMPANY
   add(Formvalue:any){
     this.api.addcompany(Formvalue).subscribe(data=>{
-      console.log(data);
-      alert('Your Data added successfully')
-      location.reload()
+      alert('Your Data added successfully');
+      location.reload();
       },rej=>{
         console.log('Error',rej);        
       });
@@ -48,14 +47,10 @@ export class AddCompanyComponent implements OnInit {
   getcompany(){
     this.show=!this.show;
     this.api.getcompany().subscribe(data=>{
-      console.log(data);
-      console.log('Data was fetching');
       this.alldata=data;
       this.alldata=this.alldata.docs;
-      console.log(this.alldata);
       for(const i of this.alldata){
             this.object.push(i);
-            console.log(i);
   }
 },rej=>{
   console.log('Error',rej);      
@@ -84,7 +79,6 @@ export class AddCompanyComponent implements OnInit {
 
   // UPDATING REGISTERED COMPANY
    updatecompany(formvalue:NgForm){
-    console.log(formvalue);
     this.api.changecompany(formvalue).subscribe(res=>{
      alert("Your data was updated successfully!");
      location.reload();
@@ -92,42 +86,25 @@ export class AddCompanyComponent implements OnInit {
       console.log('Error',rej);      
     })
     }
+
+    // FOR VALIDATING EXISTENCE OF COMPANY ID
     companycheck(formvalue:any){
       this.api.getcompany().subscribe(data=>{
-        console.log(data);
-        console.log('Data was fetching');
         this.alldata=data;
-        this.alldata=this.alldata.rows;
-        console.log(this.alldata);
-        for(const i in this.alldata){
-          if(Object.prototype.hasOwnProperty.call(this.alldata,i)){
-            const elt = this.alldata[i];
-            console.log(elt.id);
-            this.api.getcompanyId(elt.id).subscribe(res=>{
-              console.log(res);
-              this.objectcompany.push(res);
-              console.log('Fetched successfuly in add component');
-              for (const iterator of this.objectcompany) {
-                if(iterator.company_id == formvalue.company_id){
-                  console.log('hello',iterator.company_id);
+        this.alldata=this.alldata.docs;
+        for(const i of this.alldata){
+              this.objectcompany.push(i);
+                if(i.company_id == formvalue.company_id){
                   this.check = 1;
                 }
-              }            
-              console.log(this.check);
-            },rej=>{
-              console.log('Error',rej);
-            })
-          }
         }       
         setTimeout(()=>{
           if(this.check ==1){
-            console.log('getting');        
             alert('Company Id already exists');
             location.reload();
-            console.log('hello menu');          
           }
           else{
-        this.add(formvalue)
+            this.add(formvalue)
           }
         },1000)
       },rej=>{

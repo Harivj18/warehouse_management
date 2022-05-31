@@ -24,7 +24,6 @@ var getAdmin = async (obj) => {
     var val = await my_db
       .get(obj, "add_warehouse")
       .then((data) => {
-        console.log(data);
         logger.info("Data successfully fetched");
         return data;
       })

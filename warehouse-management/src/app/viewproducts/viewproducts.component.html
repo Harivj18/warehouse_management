@@ -1,0 +1,30 @@
+<div class="container">
+
+    <div class="checkproducts" *ngIf="show">
+        <h1 class="text-center heading">PRODUCTS DATA</h1>
+        <table class="table bg-dark">
+            <thead class="text-light">
+                <tr>
+                    <th scope="col">Company Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Product Id</th>
+                    <th scope="col">Product Brand</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Manufacture</th>
+                </tr>
+            </thead>
+            <tbody class="text-light">
+                <tr *ngFor="let obj1 of objproducts |filter:search">
+                    <td scope="row">{{obj1.company}}</td>
+                    <td scope="row">{{obj1.category}}</td>
+                    <td scope="row">{{obj1.product_id}}</td>
+                    <td scope="row">{{obj1.brand}}</td>
+                    <td scope="row">{{obj1.quantity}}</td>
+                    <td scope="row">{{obj1.price}}</td>
+                    <td scope="row">{{obj1.manufacture}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

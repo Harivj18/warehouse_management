@@ -42,7 +42,6 @@ var delsupplier = async (id, rev) => {
     var val = await my_db
       .del_id(id, rev, "add_warehouse")
       .then((data) => {
-        console.log("delete data", data);
         logger.warn("Your Data was deleted sucessfully!!!");
         return data;
       })

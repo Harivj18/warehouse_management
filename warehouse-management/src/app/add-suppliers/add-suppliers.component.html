@@ -3,7 +3,7 @@
         <input type="search" [(ngModel)]="search" class="form-control mt-5 search" placeholder="Enter Your Data" />
     </div>
     <div>
-        <button (click)="getsupplier()" class="btn btn-danger mt-5 get">Existing Data</button>
+        <button (click)="getsupplier()" class="btn btn-danger mt-5 get">List of suppliers</button>
     </div>
 </div>
 
@@ -26,8 +26,8 @@
                 </div>
                 <div class="form-group my-3 ">
                     <label for="supplier" class="text-light">Supplier Name :</label>
-                    <input type="text" formControlName="supplier" class="form-control"
-                        placeholder="Enter Supplier Name">
+                    <input type="text" formControlName="supplier" class="form-control" placeholder="Enter Supplier Name"
+                        minlength="3">
                     <span class="text-danger"
                         *ngIf="addsuppliers.controls['supplier'].touched && addsuppliers.hasError('required','supplier')">
                         *Supplier Name is required</span>
@@ -35,7 +35,7 @@
                 <div class="form-group my-3">
                     <label for="supplier_id" class="text-light">Supplier Id :</label>
                     <input type="text" formControlName="supplier_id" class="form-control"
-                        placeholder="Enter Supplier Id">
+                        placeholder="Enter Supplier Id" minlength="5">
                     <span class="text-danger"
                         *ngIf="addsuppliers.controls['supplier_id'].touched && addsuppliers.hasError('required','supplier_id')">*Supplier
                         Id is required </span>
@@ -51,10 +51,6 @@
                 <div class="form-group my-3">
                     <label for="email" class="text-light">Email :(* Optional)</label>
                     <input type="email" formControlName="email" class="form-control" placeholder="Enter Your Email ">
-                    <!-- <span class="text-danger"
-                        *ngIf="addsuppliers.controls['email'].touched && addsuppliers.hasError('invalid','email')">*Email
-                        is
-                        required </span> -->
                 </div>
                 <div class="form-group my-3">
                     <label for="contact" class="text-light">Contact No :</label>
@@ -68,7 +64,13 @@
                 </div>
                 <div class="form-group my-3">
                     <label for="state" class="text-light">State :</label>
-                    <input type="text" formControlName="state" class="form-control" placeholder="Enter Your State">
+                    <select formControlName="state">
+                        <option value="">Select State</option>
+                        <option value="TamilNadu">TamilNadu</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    </select>
                     <span class="text-danger"
                         *ngIf="addsuppliers.controls['state'].dirty && addsuppliers.hasError('required','state')">*State
                         is
@@ -76,25 +78,36 @@
                 </div>
                 <div class="form-group my-3">
                     <label for="city" class="text-light">City :</label>
-                    <input type="text" formControlName="city" class="form-control" placeholder="Enter City">
+                    <select formControlName="city">
+                        <option value="">Select City</option>
+                        <option value="Salem">Salem</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Kochi">Kochi</option>
+                        <option value="Alappuzha">Alappuzha</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Mysuru">Mysuru</option>
+                        <option value="Tirupathi">Tirupathi</option>
+                        <option value="Vishakapatnam">Vishakapatnam</option>
+                    </select>
                     <span class="text-danger"
                         *ngIf="addsuppliers.controls['city'].touched && addsuppliers.hasError('required','city')">*Supplier
                         Id is required </span>
                 </div>
                 <div class="button text-center">
                     <button type="submit" class="btn btn-danger px-4 py-2 my-4"
-                        (click)="suppliervalidation(this.addsuppliers.value)" [disabled]="!addsuppliers.valid">Sign
-                        Up</button>
+                        (click)="suppliervalidation(this.addsuppliers.value)"
+                        [disabled]="!addsuppliers.valid">Register</button>
                     <button (click)="updateForm(this.addsuppliers.value)"
                         class="btn btn-warning text-light px-4 py-2 mx-4 my-4">Update</button>
                 </div>
             </form>
         </div>
     </div>
-    <div>
-        <table class="table bg-dark">
-            <thead class="text-light">
-                <tr *ngIf="show">
+    <div *ngIf="show" class="showtable mt-5">
+        <h1 class="text-center">Suppliers Data</h1>
+        <table class="table table-stripped mt-5">
+            <thead>
+                <tr>
                     <th scope="col">Company Name</th>
                     <th scope="col">Supplier Name</th>
                     <th scope="col">Supplier Id</th>
@@ -105,7 +118,7 @@
                     <th scope="col">City</th>
                 </tr>
             </thead>
-            <tbody class="text-light">
+            <tbody>
                 <tr *ngFor="let obj of object |filter:search">
                     <td scope="row">{{obj.company}}</td>
                     <td scope="row">{{obj.supplier}}</td>
