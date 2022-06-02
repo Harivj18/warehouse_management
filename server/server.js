@@ -74,7 +74,7 @@ app.post("/adduser", (request, response) => {
 });
 
 // GET ADMIN
-app.get("/getUser", (request, response) => {
+app.get("/getUser", (_request, response) => {
   const data = {
     selector: {
       type: "adminuser",
@@ -161,7 +161,7 @@ app.post("/addcompany", (request, response) => {
 });
 
 // TO GET COMPANY
-app.get("/getcompany", (request, response) => {
+app.get("/getcompany", (_request, response) => {
   const data = {
     selector: {
       type: "Company",
@@ -255,7 +255,7 @@ app.post("/addproduct", (request, response) => {
 });
 
 // TO GET PRODUCT
-app.get("/getproduct", (request, response) => {
+app.get("/getproduct", (_request, response) => {
   const data = {
     selector: {
       type: "products",
@@ -418,12 +418,12 @@ app.put("/updatesupplier", (request, response) => {
 });
 
 // CONTACT FORM
-app.post("/contact", (request, response) => {
+app.post("/contact", (request, _response) => {
   contactmail.getemail(request.body.email, request.body.msg);
 });
 
 // TO GET CATEGORY
-app.get("/getinfo", (request, response) => {
+app.get("/getinfo", (_request, response) => {
   const data = {
     selector: {
       type: "product_category",
