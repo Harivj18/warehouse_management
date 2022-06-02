@@ -46,12 +46,12 @@ export class AddSuppliersComponent implements OnInit {
     this.show=!this.show;
     this.api.getcompany().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
         this.idobj = i;
         if(i.company == Formvalue.company){
           this.check=1;
-          var obj ={
+          const obj ={
             company:Formvalue.company,
             supplier:Formvalue.supplier,
             supplier_id:Formvalue.supplier_id,
@@ -64,6 +64,7 @@ export class AddSuppliersComponent implements OnInit {
             particulars:this.idobj._id
           }
           this.api.addsupplier(obj).subscribe(data=>{
+            console.log(data);
             alert('Your Data added successfully')
             location.reload();
             this.serve.store=[];
@@ -82,8 +83,10 @@ export class AddSuppliersComponent implements OnInit {
   getsupplier(){
     this.show=!this.show;
     this.api.getsupplier().subscribe(data=>{
+      console.log(data);
+      
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
         this.object.push(i);
       }
@@ -130,7 +133,7 @@ export class AddSuppliersComponent implements OnInit {
     companydrop(){
       this.api.getcompany().subscribe(data=>{
         this.alldata=data;
-        this.alldata=this.alldata.docs;
+        this.alldata=this.alldata.data.docs;
         for(const i of this.alldata){
           this.objcompany.push(i);
         }
@@ -142,7 +145,7 @@ export class AddSuppliersComponent implements OnInit {
     suppliervalidation(formvalue:any){
       this.api.getsupplier().subscribe(data=>{
         this.alldata=data;
-        this.alldata=this.alldata.docs;
+        this.alldata=this.alldata.data.docs;
         for(const i of this.alldata){
               this.objectsupplier.push(i);   
                 if(i.supplier_id == formvalue.supplier_id){

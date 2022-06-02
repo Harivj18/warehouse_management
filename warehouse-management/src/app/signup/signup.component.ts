@@ -28,8 +28,9 @@ export class SignupComponent implements OnInit {
   }
 
   // FOR SIGNUP ADMIN
-  storeform(Formvalue:NgForm){
+  storeform(Formvalue:any){
     this.api.admindata(Formvalue).subscribe(data=>{
+      console.log(data);
       alert('Your Data added successfully');
       location.reload();
     },rej=>{

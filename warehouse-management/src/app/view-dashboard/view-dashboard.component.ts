@@ -23,7 +23,7 @@ export class ViewDashboardComponent implements OnInit {
     this.show=!this.show;
     this.api.getUser().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
             this.object.push(i);
       }   

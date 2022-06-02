@@ -21,7 +21,7 @@ export class ViewsuppliersComponent implements OnInit {
     this.show=!this.show;
     this.api.getsupplier().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
         this.objsuppliers.push(i);
       }

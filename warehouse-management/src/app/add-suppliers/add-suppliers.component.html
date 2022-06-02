@@ -47,20 +47,31 @@
                     <span class="text-danger"
                         *ngIf="addsuppliers.controls['aadhar'].touched && addsuppliers.hasError('required','aadhar')">*Aadhar
                         Number is required </span>
+                    <!-- <span class="text-danger" *ngIf="addsuppliers.hasError('pattern','aadhar')">*Aadhar number should
+                        not
+                        contains chars!! </span> -->
                 </div>
                 <div class="form-group my-3">
                     <label for="email" class="text-light">Email :(* Optional)</label>
-                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Your Email ">
+                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Your Email "
+                        pattern="^([\w]*[\w\.]*(?!\.)@gmail.com)">
+                    <span class="text-danger" *ngIf="addsuppliers.hasError('pattern','email')">*Email pattern is
+                        invalid!!
+                    </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="contact" class="text-light">Contact No :</label>
                     <input type="tel" formControlName="contact" class="form-control" placeholder="Enter Contact No"
-                        minlength="10" maxlength="10">
+                        minlength="10" maxlength="10" pattern="^[+0]{0,2}(91)?[0-9]{10}$">
                     <span class="text-danger"
                         *ngIf="addsuppliers.controls['contact'].dirty && addsuppliers.hasError('required','contact')">*Contact
                         No
                         is
                         required </span>
+                    <span class="text-danger" *ngIf="addsuppliers.hasError('pattern','contact')">*Contact number should
+                        not
+                        contains chars!! </span>
+
                 </div>
                 <div class="form-group my-3">
                     <label for="state" class="text-light">State :</label>
@@ -98,7 +109,8 @@
                         (click)="suppliervalidation(this.addsuppliers.value)"
                         [disabled]="!addsuppliers.valid">Register</button>
                     <button (click)="updateForm(this.addsuppliers.value)"
-                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4">Update</button>
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4"
+                        [disabled]="!addsuppliers.valid">Update</button>
                 </div>
             </form>
         </div>

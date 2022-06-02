@@ -36,6 +36,7 @@ export class AddCompanyComponent implements OnInit {
   // FOR ADDING COMPANY
   add(Formvalue:any){
     this.api.addcompany(Formvalue).subscribe(data=>{
+      console.log(data);
       alert('Your Data added successfully');
       location.reload();
       },rej=>{
@@ -47,8 +48,10 @@ export class AddCompanyComponent implements OnInit {
   getcompany(){
     this.show=!this.show;
     this.api.getcompany().subscribe(data=>{
+      console.log(data);
+      
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
             this.object.push(i);
   }
@@ -90,8 +93,9 @@ export class AddCompanyComponent implements OnInit {
     // FOR VALIDATING EXISTENCE OF COMPANY ID
     companycheck(formvalue:any){
       this.api.getcompany().subscribe(data=>{
+        console.log(data);
         this.alldata=data;
-        this.alldata=this.alldata.docs;
+        this.alldata=this.alldata.data.docs;
         for(const i of this.alldata){
               this.objectcompany.push(i);
                 if(i.company_id == formvalue.company_id){

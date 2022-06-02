@@ -22,7 +22,7 @@ export class ViewcompanyComponent implements OnInit {
     this.show=!this.show;
     this.api.getcompany().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
             this.objcompany.push(i);
   }

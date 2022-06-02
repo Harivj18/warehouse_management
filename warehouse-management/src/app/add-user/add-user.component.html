@@ -24,33 +24,48 @@
                 </div>
                 <div class="form-group my-3">
                     <label for="first_Name" class="text-light">First Name :</label>
-                    <input type="text" formControlName="first_name" class="form-control" placeholder="Enter First Name">
+                    <input type="text" formControlName="first_name" class="form-control" placeholder="Enter First Name"
+                        pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
                     <span class="text-danger"
                         *ngIf="adduser.controls['first_name'].touched && adduser.hasError('required','first_name')">*First
                         Name is required </span>
+                    <span class="text-danger" *ngIf="adduser.hasError('pattern','first_name')">*First_Name should
+                        not
+                        contains numbers!! </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="last_Name" class="text-light">Last Name :</label>
-                    <input type="text" formControlName="last_name" class="form-control" placeholder="Enter Last Name">
+                    <input type="text" formControlName="last_name" class="form-control" placeholder="Enter Last Name"
+                        pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
                     <span class="text-danger"
                         *ngIf="adduser.controls['last_name'].touched && adduser.hasError('required','last_name')">*Last
                         Name is required </span>
+                    <span class="text-danger" *ngIf="adduser.hasError('pattern','last_name')">*Last_Name should
+                        not
+                        contains numbers!! </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="contact" class="text-light">Contact No :</label>
                     <input type="contact" formControlName="contact" class="form-control" placeholder="Enter Your Email "
-                        maxlength="10" minlength="10">
+                        maxlength="10" minlength="10" pattern="^[+0]{0,2}(91)?[0-9]{10}$">
                     <span class="text-danger"
                         *ngIf="adduser.controls['contact'].touched && adduser.hasError('required','contact')">*Contact
                         is
                         required </span>
+                    <span class="text-danger" *ngIf="adduser.hasError('pattern','contact')">*Contact number should not
+                        contains chars!! </span>
+
                 </div>
                 <div class="form-group my-3">
                     <label for="email" class="text-light">Email :</label>
-                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Your Email ">
+                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Your Email "
+                        pattern="^([\w]*[\w\.]*(?!\.)@gmail.com)">
                     <span class="text-danger"
                         *ngIf="adduser.controls['email'].touched && adduser.hasError('required','email')">*Email is
                         required </span>
+
+                    <span class="text-danger" *ngIf="adduser.hasError('pattern','email')">*Email pattern is invalid!!
+                    </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="password" class="text-light">Password :</label>
@@ -58,8 +73,9 @@
                         placeholder="Enter Your Password" minlength="8" maxlength="15">
                     <span class="text-danger"
                         *ngIf="adduser.controls['password'].dirty && adduser.hasError('required','password')">*Password
-                        is
-                        required </span>
+                        is required </span>
+                    <span class="text-danger" *ngIf="adduser.hasError('minlength','password')">*Password must have
+                        atleast 8 characters!! </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="confirm_password" class="text-light">Confirm Password :</label>
@@ -69,13 +85,18 @@
                         *ngIf="adduser.controls['confirm_password'].dirty && adduser.hasError('required','confirm_password')">*Confirm
                         is
                         required </span>
+                    <span class="text-danger" *ngIf="adduser.hasError('minlength','confirm_password')">*Confirm_Password
+                        must
+                        have
+                        atleast 8 characters!! </span>
                 </div>
                 <div class="button text-center">
                     <button type="submit" class="btn btn-danger px-4 py-2 my-4"
                         (click)="uservalidation(this.adduser.value)" [disabled]="!adduser.valid">Sign
                         Up</button>
                     <button (click)="updateForm(this.adduser.value)"
-                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4">Update</button>
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4"
+                        [disabled]="!adduser.valid">Update</button>
                 </div>
             </form>
         </div>

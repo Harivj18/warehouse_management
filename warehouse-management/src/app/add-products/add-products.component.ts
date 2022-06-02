@@ -46,7 +46,7 @@ export class AddProductsComponent implements OnInit {
   getproductinfo(){
     this.api.getinfo().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
             this.info.push(i);
       }
@@ -60,7 +60,7 @@ export class AddProductsComponent implements OnInit {
     for (const key in this.info) {
       if (Object.prototype.hasOwnProperty.call(this.info, key)) {
         const element = this.info[key];
-        var data = element.category;
+        const data = element.category;
         if (data == event.target.value) {
           this.addproduct.controls['product_id'].setValue(element.product_id);
         }
@@ -72,7 +72,7 @@ export class AddProductsComponent implements OnInit {
   companydrop(){
     this.api.getcompany().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
         this.objcompany.push(i);
       }
@@ -85,13 +85,14 @@ export class AddProductsComponent implements OnInit {
   add(Formvalue:any){
     this.show=!this.show;
     this.api.getcompany().subscribe(data=>{
+      console.log(data);
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
         this.idobj = i;
         if(i.company == Formvalue.company){
           this.check=1;
-          var obj ={
+          const obj ={
             company:Formvalue.company,
             category:Formvalue.category,
             product_id:Formvalue.product_id,
@@ -103,6 +104,7 @@ export class AddProductsComponent implements OnInit {
           }
           
           this.api.addproduct(obj).subscribe(data=>{
+            console.log(data);
             alert('Your Data added successfully')
             location.reload();
             },rej=>{
@@ -119,11 +121,12 @@ export class AddProductsComponent implements OnInit {
   getproduct(){
     this.show=!this.show;
     this.api.getproduct().subscribe(data=>{
+      console.log(data);
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
         this.object.push(i)
-    }
+    }    
     },rej=>{
   console.log('Error',rej);      
     })
@@ -161,12 +164,12 @@ export class AddProductsComponent implements OnInit {
       console.log('Error',rej);
     })
     }
-
+    // FOR CALENDAR VALIDATION
     futuredate(){
-      var date = new Date();
+      const date = new Date();
       var currentdate:any = date.getDate();
       var currentmonth:any = date.getMonth() + 1;
-      var currentyear:any = date.getFullYear();
+      const currentyear:any = date.getFullYear();
       if (currentdate < 10){
         currentdate = "0" + currentdate;
       }
@@ -175,7 +178,35 @@ export class AddProductsComponent implements OnInit {
       }
       this.maxdate = currentyear + "-" + currentmonth + "-" + currentdate;
       console.log(this.maxdate);
-      
     }
+    // FOR PRODUCT VALIDATION
+    // productvalidation(formvalue:any){
+    //   console.log('hmm');
+      
+    //   this.api.getproduct().subscribe(data=>{
+    //     this.alldata=data;
+    //     this.alldata=this.alldata.docs;
+    //     for(const i of this.alldata){
+    //       this.object.push(i)
+    //       if(i.product_id == formvalue.product_id)
+    //        if(i.brand == formvalue.brand){
+    //          if(i.company == formvalue.company){
+    //             this.check=1;               
+    //          }
+    //        }   
+    //     }   
+    //     setTimeout(()=>{
+    //       if(this.check == 1){
+
+    //       }
+    //       else{
+    //         this.add(formvalue)
+    //       }
+    //     }) 
+    //   },rej=>{
+    // console.log('Error',rej);      
+    //   })
+    // }
+   
 }
 

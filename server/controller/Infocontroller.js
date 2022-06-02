@@ -6,15 +6,40 @@ var getinfo = async (obj) => {
     var val = await my_db
       .get(obj, "add_warehouse")
       .then((data) => {
-        logger.info("Your Data was posted sucessfully!!!");
-        return data;
+        if (data.bookmark == "nill") {
+          const err_code = {
+            status: 404,
+            message: "OOOPS!!Info Data was not fetched",
+            err: err,
+          };
+          logger.info(`Status: ${code.status} ${code.message}`);
+          return err_code;
+        }
+        const code = {
+          status: 200,
+          message: "Info Data was Fetched successfully",
+          data: data,
+        };
+        logger.info(`Status: ${code.status} ${code.message}`);
+        return code;
       })
       .catch((err) => {
-        logger.error("error", "Your response from database");
-        return err;
+        const err_code = {
+          status: 404,
+          message: "OOOPS!!Your response was not fetched!!",
+          err: err,
+        };
+        logger.error(`Status: ${code.status} ${code.message}`);
+        return err_code;
       });
   } catch (error) {
-    console.log("OOPS!!!Error");
+    const err_code = {
+      status: 404,
+      message: "OOOPS!!Info Data was not fetched",
+      err: err,
+    };
+    logger.error("error", "Your response from database");
+    return err_code;
   }
   return val;
 };

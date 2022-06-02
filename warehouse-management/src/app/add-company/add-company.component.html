@@ -17,7 +17,7 @@
                 <div class="form-group my-3 ">
                     <label for="Company" class="text-light">Company Name :</label>
                     <input type="text" formControlName="company" class="form-control" placeholder="Enter Company Name"
-                        minlength="10">
+                        minlength="3">
                     <span class="text-danger"
                         *ngIf="addcompany.controls['company'].touched && addcompany.hasError('required','company')">
                         *Company Name is required</span>
@@ -32,10 +32,13 @@
                 </div>
                 <div class="form-group my-3">
                     <label for="email" class="text-light">Company Email :</label>
-                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Company Email">
+                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Company Email"
+                        pattern="^([\w]*[\w\.]*(?!\.)@gmail.com)">
                     <span class="text-danger"
                         *ngIf="addcompany.controls['email'].touched && addcompany.hasError('required','email')">*Company
                         Email is required </span>
+                    <span class="text-danger" *ngIf="addcompany.hasError('pattern','email')">*Email pattern is invalid!!
+                    </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="text" class="text-light">Company Website :</label>
@@ -48,16 +51,20 @@
                 <div class="form-group my-3">
                     <label for="Location" class="text-light">Location :</label>
                     <input type="text" formControlName="location" class="form-control"
-                        placeholder="Enter Company Location">
-                    <span class="text-light"
+                        placeholder="Enter Company Location" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+                    <span class="text-danger"
                         *ngIf="addcompany.controls['location'].touched && addcompany.hasError('required','location')">*Location
                         is required </span>
+                    <span class="text-danger" *ngIf="addcompany.hasError('pattern','location')">*Location should
+                        not
+                        contains numbers!! </span>
                 </div>
                 <div class="button text-center">
                     <button (click)="companycheck(this.addcompany.value)" class="btn btn-danger px-4 py-2 my-4"
                         [disabled]="!addcompany.valid">Submit</button>
                     <button (click)="updatecompany(this.addcompany.value)"
-                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4">Update</button>
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4"
+                        [disabled]="!addcompany.valid">Update</button>
                 </div>
             </form>
         </div>

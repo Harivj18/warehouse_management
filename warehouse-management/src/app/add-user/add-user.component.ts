@@ -40,6 +40,7 @@ export class AddUserComponent implements OnInit {
   // FOR ADMIN FORM
   addform(Formvalue:any){
       this.api.adduser(Formvalue).subscribe(data=>{
+        console.log(data);
         alert('Your Data added successfully')
         location.reload()
         },rej=>{
@@ -51,8 +52,9 @@ export class AddUserComponent implements OnInit {
   getuser(){
     this.show=!this.show;
     this.api.getUser().subscribe(data=>{
+      console.log(data);
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
             this.object.push(i);
       }   
@@ -64,6 +66,7 @@ export class AddUserComponent implements OnInit {
   // FOR DELETING USER
  deluser(data:any,data1:any){
   this.api.remove(data._id,data1._rev).subscribe(res=>{
+    console.log(res);
     location.reload();
     alert('Your data was Deleted from the database');
   },rej=>{
@@ -85,6 +88,8 @@ export class AddUserComponent implements OnInit {
    // UPDATING USER 
    updateForm(formvalue:NgForm){
     this.api.changedata(formvalue).subscribe(res=>{
+      console.log(res);
+      
      alert("Your data was updated successfully!");
      location.reload()
     },rej=>{
@@ -95,20 +100,27 @@ export class AddUserComponent implements OnInit {
     // FOR DB VALIDATION
     uservalidation(formvalue:any){
       this.api.getUser().subscribe(data=>{
+        console.log(data);
         this.alldata=data;
-        this.alldata=this.alldata.docs;
+        this.alldata=this.alldata.data.docs;
         for(const i of this.alldata){
               this.objectuser.push(i);
                 if(i.username == formvalue.username){
                   this.check = 1;
                 }
+                else if(formvalue.password != formvalue.confirm_password){
+                  this.check = 2;
+                }
         }       
         setTimeout(()=>{
-          if(this.check ==1){
-            alert('Username exists');
+          if(this.check == 1){
+            alert('Username already exist in our database!!');
             location.reload();
           }
-         
+          else if(this.check == 2){
+            alert('Password does not match!!');
+            location.reload();
+          }
           else{
               this.addform(formvalue);
           }

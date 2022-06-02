@@ -6,12 +6,22 @@ var ProductForm = async (object) => {
     var val = await my_db
       .add(object, "add_warehouse")
       .then((data) => {
-        logger.info("Your Data was posted sucessfully!!!");
-        return data;
+        const code = {
+          status: 201,
+          message: "Product Data was Posted successfully",
+          data: data,
+        };
+        logger.info(`Status: ${code.status} ${code.message}`);
+        return code;
       })
       .catch((err) => {
-        logger.error("error", "Your response from database");
-        return err;
+        const err_code = {
+          status: 404,
+          message: "OOOPS!!Your Product was not submitted!!",
+          err: err,
+        };
+        logger.error(`Status: ${code.status} ${code.message}`);
+        return err_code;
       });
   } catch (error) {
     console.log("OOPS!!!Error");
@@ -24,12 +34,31 @@ var getproduct = async (obj) => {
     var val = await my_db
       .get(obj, "add_warehouse")
       .then((data) => {
-        logger.info("Your Data was fetched sucessfully!!!");
-        return data;
+        if (data.bookmark == "nill") {
+          const err_code = {
+            status: 404,
+            message: "OOOPS!!Product Data was not fetched",
+            err: err,
+          };
+          logger.info(`Status: ${code.status} ${code.message}`);
+          return err_code;
+        }
+        const code = {
+          status: 200,
+          message: "Product Data was Fetched successfully",
+          data: data,
+        };
+        logger.info(`Status: ${code.status} ${code.message}`);
+        return code;
       })
       .catch((err) => {
+        const err_code = {
+          status: 404,
+          message: "OOOPS!!Product Data was not fetched",
+          err: err,
+        };
         logger.error("error", "Your response from database");
-        return err;
+        return err_code;
       });
   } catch (error) {
     console.log("OOPS!!!Error");
@@ -42,12 +71,22 @@ var delproduct = async (id, rev) => {
     var val = await my_db
       .del_id(id, rev, "add_warehouse")
       .then((data) => {
-        logger.warn("Your Data was deleted sucessfully!!!");
-        return data;
+        const code = {
+          status: 200,
+          message: "Product Data was deleted successfully",
+          data: data,
+        };
+        logger.info(`Status: ${code.status} ${code.message}`);
+        return code;
       })
       .catch((err) => {
+        const err_code = {
+          status: 404,
+          message: "OOOPS!!Product Data was not deleted",
+          err: err,
+        };
         logger.error("error", "Your response from database");
-        return err;
+        return err_code;
       });
   } catch (error) {
     console.log("OOPS!!!Error");
@@ -60,12 +99,22 @@ var updateproduct = async (object) => {
     var val = await my_db
       .update(object, "add_warehouse")
       .then((data) => {
-        logger.info("Your Data was updated sucessfully!!!");
-        return data;
+        const code = {
+          status: 201,
+          message: "Product Data was updated successfully",
+          data: data,
+        };
+        logger.info(`Status: ${code.status} ${code.message}`);
+        return code;
       })
       .catch((err) => {
+        const err_code = {
+          status: 404,
+          message: "OOOPS!!Product Data was not updated",
+          err: err,
+        };
         logger.error("error", "Your response from database");
-        return err;
+        return err_code;
       });
   } catch (error) {
     console.log("OOPS!!!Error");

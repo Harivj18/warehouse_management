@@ -15,9 +15,9 @@ export class DashboardComponent implements OnInit {
   show:boolean=false;
   msg=this.object.username;
   count:any = 0;
-  count1:any =0
-  count2:any =0
-  count3:any =0
+  count1:any = 0;
+  count2:any = 0;
+  count3:any = 0;
   objectsup:any =[];
   objectcompany:any =[];
   objectpro:any =[];
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
     this.show=!this.show;
     this.api.getUser().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
             this.object.push(i);
            if(this.object){
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
     this.show=!this.show;
     this.api.getsupplier().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i in this.alldata){
             this.objectsup.push(i);
             if(this.objectsup){
@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
     this.show=!this.show;
     this.api.getcompany().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
             this.objectcompany.push(i);
             if(this.objectcompany){
@@ -86,7 +86,7 @@ export class DashboardComponent implements OnInit {
 getproduct(){
     this.api.getproduct().subscribe(data=>{
       this.alldata=data;
-      this.alldata=this.alldata.docs;
+      this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
             this.objectpro.push(i);
             if(this.objectpro){
@@ -102,14 +102,17 @@ getproduct(){
   admin(){
     this.router.navigate(['/menus/viewadmin'])
   }
+
   // FOR NAVIGATING TO COMPANY DASHBOARD
   company(){
     this.router.navigate(['/menus/viewcompany'])
   }
+
   // FOR NAVIGATING TO PRODUCTS DASHBOARD
   products(){
     this.router.navigate(['/menus/viewproducts'])
   }
+  
   // FOR NAVIGATING TO SUPPLIERS DASHBOARD
   suppliers(){
     this.router.navigate(['/menus/viewsuppliers'])
