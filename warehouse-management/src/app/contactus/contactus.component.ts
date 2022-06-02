@@ -20,7 +20,7 @@ export class ContactusComponent implements OnInit {
 
   // FOR SENDING MAIL
   mail(formvalue:any){
-    this.api.contact(formvalue).subscribe(res=>{
+    this.api.contact(formvalue).subscribe(_res=>{
       alert('Mail Sent Successfully!!!')
     },rej=>{
       console.log('Error',rej);   

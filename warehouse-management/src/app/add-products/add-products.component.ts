@@ -19,6 +19,8 @@ export class AddProductsComponent implements OnInit {
   check:any=0;
   maxdate:any;
   idobj:any;
+  stock:any;
+  price:any;
   constructor(private formbuilder:FormBuilder,private api:ApiCallService) {
    }
 
@@ -134,7 +136,7 @@ export class AddProductsComponent implements OnInit {
 
   // FOR DELETE PRODUCTS
  delproduct(data:any,data1:any){
-  this.api.removeproduct(data._id,data1._rev).subscribe(res=>{
+  this.api.removeproduct(data._id,data1._rev).subscribe(_res=>{
     location.reload();
     alert('Your data was Deleted from the database');
   },rej=>{
@@ -157,7 +159,7 @@ export class AddProductsComponent implements OnInit {
 
 // FOR UPDATING PRODUCTS
    updateproduct(formvalue:NgForm){
-    this.api.changeproduct(formvalue).subscribe(res=>{
+    this.api.changeproduct(formvalue).subscribe(_res=>{
      alert("Your data was updated successfully!");
      location.reload();
     },rej=>{
@@ -177,36 +179,40 @@ export class AddProductsComponent implements OnInit {
         currentmonth = "0" + currentmonth;
       }
       this.maxdate = currentyear + "-" + currentmonth + "-" + currentdate;
-      console.log(this.maxdate);
     }
     // FOR PRODUCT VALIDATION
-    // productvalidation(formvalue:any){
-    //   console.log('hmm');
-      
-    //   this.api.getproduct().subscribe(data=>{
-    //     this.alldata=data;
-    //     this.alldata=this.alldata.docs;
-    //     for(const i of this.alldata){
-    //       this.object.push(i)
-    //       if(i.product_id == formvalue.product_id)
-    //        if(i.brand == formvalue.brand){
-    //          if(i.company == formvalue.company){
-    //             this.check=1;               
-    //          }
-    //        }   
-    //     }   
-    //     setTimeout(()=>{
-    //       if(this.check == 1){
-
-    //       }
-    //       else{
-    //         this.add(formvalue)
-    //       }
-    //     }) 
-    //   },rej=>{
-    // console.log('Error',rej);      
-    //   })
-    // }
+    productvalidation(formvalue:any){
+      this.api.getproduct().subscribe(data=>{
+        this.alldata=data;
+        this.alldata=this.alldata.data.docs;
+        for(const i of this.alldata){
+          this.object.push(i)
+          if(i.product_id == formvalue.product_id)
+           if(i.brand == formvalue.brand){
+             if(i.company == formvalue.company){
+                this.check=1;  
+                 this.stock = i.quantity;
+                 this.price = i.price;
+                console.log('quantity',this.stock);
+                console.log('Price',this.price);
+             }
+           }   
+        }   
+        setTimeout(()=>{
+          if(this.check == 1){
+            var quantity = parseInt(this.stock) + parseInt(formvalue.quantity);
+            var cost = parseInt(this.price) + parseInt(formvalue.price)
+            console.log('total quantity',quantity);
+            console.log('total cost',cost);
+          }
+          else{
+            this.add(formvalue)
+          }
+        }) 
+      },rej=>{
+    console.log('Error',rej);      
+      })
+    }
    
 }
 

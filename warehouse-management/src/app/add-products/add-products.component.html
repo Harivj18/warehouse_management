@@ -76,8 +76,8 @@
                         required </span>
                 </div>
                 <div class="button text-center">
-                    <button type="submit" class="btn btn-danger px-4 py-2 my-4" (click)="add(this.addproduct.value)"
-                        [disabled]="!addproduct.valid">Add </button>
+                    <button type="submit" class="btn btn-danger px-4 py-2 my-4"
+                        (click)="productvalidation(this.addproduct.value)" [disabled]="!addproduct.valid">Add </button>
                     <button (click)="updateproduct(this.addproduct.value)"
                         class="btn btn-warning text-light px-4 py-2 mx-4 my-4"
                         [disabled]="!addproduct.valid">Update</button>

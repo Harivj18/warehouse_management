@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from '../api-call.service';
 import { FormGroup,FormBuilder,Validators, NgForm } from '@angular/forms';
 import { ServiceapiService } from '../serviceapi.service';
@@ -49,7 +49,6 @@ export class AddCompanyComponent implements OnInit {
     this.show=!this.show;
     this.api.getcompany().subscribe(data=>{
       console.log(data);
-      
       this.alldata=data;
       this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
@@ -61,7 +60,7 @@ export class AddCompanyComponent implements OnInit {
   }
   // FOR DELETING REGISTERED COMPANY
  delcompany(data:any,data1:any){
-  this.api.removecompany(data._id,data1._rev).subscribe(res=>{
+  this.api.removecompany(data._id,data1._rev).subscribe(_res=>{
     location.reload();
     alert('Your data was Deleted from the database');
   },rej=>{
@@ -82,7 +81,7 @@ export class AddCompanyComponent implements OnInit {
 
   // UPDATING REGISTERED COMPANY
    updatecompany(formvalue:NgForm){
-    this.api.changecompany(formvalue).subscribe(res=>{
+    this.api.changecompany(formvalue).subscribe(_res=>{
      alert("Your data was updated successfully!");
      location.reload();
     },rej=>{
