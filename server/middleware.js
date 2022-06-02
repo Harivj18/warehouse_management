@@ -1,4 +1,4 @@
-validate =
+const validate =
   (uservalidation, companyvalidation, productvalidation, suppliervalidation) =>
   (req, res, next) => {
     const { error } = uservalidation.validate(req.body);

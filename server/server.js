@@ -40,7 +40,7 @@ app.post("/postuser", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
@@ -66,7 +66,7 @@ app.post("/adduser", (request, response) => {
       })
       .catch((err) => {
         logger.error("error", "Your response from database");
-        response.send("OOPS!!Failed to send your response");
+        response.send("OOPS!!Failed to send your response", err);
       });
   } else {
     logger.warn("error !! something bad happened in registering admin!!");
@@ -87,7 +87,7 @@ app.get("/getUser", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
@@ -100,7 +100,7 @@ app.delete("/delete/:id/:id1", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
@@ -127,7 +127,7 @@ app.put("/putquery", (request, response) => {
       })
       .catch((err) => {
         logger.error("error", "Your response from database");
-        response.send("OOPS!!Failed to send your response");
+        response.send("OOPS!!Failed to send your response", err);
       });
   } else {
     logger.warn("error !! something bad happened in updating user data!!");
@@ -153,7 +153,7 @@ app.post("/addcompany", (request, response) => {
       })
       .catch((err) => {
         logger.error("error", "Your response from database");
-        response.send("OOPS!!Failed to send your response");
+        response.send("OOPS!!Failed to send your response", err);
       });
   } else {
     logger.warn("error !! something bad happened in Registering company!!");
@@ -174,7 +174,7 @@ app.get("/getcompany", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
@@ -187,7 +187,7 @@ app.delete("/delcompany/:id/:id1", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
@@ -213,7 +213,7 @@ app.put("/updatecompany", (request, response) => {
       })
       .catch((err) => {
         logger.error("error", "Your response from database");
-        response.send("OOPS!!Failed to send your response");
+        response.send("OOPS!!Failed to send your response", err);
       });
   } else {
     logger.warn(
@@ -245,7 +245,7 @@ app.post("/addproduct", (request, response) => {
       })
       .catch((err) => {
         logger.error("error", "Your response from database");
-        response.send("OOPS!!Failed to register your products");
+        response.send("OOPS!!Failed to register your products", err);
       });
   } else {
     logger.warn(
@@ -268,7 +268,7 @@ app.get("/getproduct", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
@@ -281,7 +281,7 @@ app.delete("/delproduct/:id/:id1", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
@@ -310,7 +310,7 @@ app.put("/updateproduct", (request, response) => {
       })
       .catch((err) => {
         logger.error("error", "Your response from database");
-        response.send("OOPS!!Failed to register your products");
+        response.send("OOPS!!Failed to register your products", err);
       });
   } else {
     logger.warn(
@@ -343,7 +343,7 @@ app.post("/addsupplier", (request, response) => {
       })
       .catch((err) => {
         logger.error("error", "Your response from database");
-        response.send("OOPS!!Failed to add supplier data!!");
+        response.send("OOPS!!Failed to add supplier data!!", err);
       });
   } else {
     logger.warn(
@@ -367,7 +367,7 @@ app.get("/getsupplier", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
@@ -381,7 +381,7 @@ app.delete("/delsupplier/:id/:id1", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
@@ -410,7 +410,7 @@ app.put("/updatesupplier", (request, response) => {
       })
       .catch((err) => {
         logger.error("error", "Your response from database");
-        response.send("OOPS!!Failed to add supplier data!!");
+        response.send("OOPS!!Failed to add supplier data!!", err);
       });
   } else {
     logger.warn("error !! something bad happened in updating to company!!");
@@ -419,11 +419,6 @@ app.put("/updatesupplier", (request, response) => {
 
 // CONTACT FORM
 app.post("/contact", (request, response) => {
-  const mail = {
-    username: request.body.username,
-    email: request.body.email,
-    msg: request.body.msg,
-  };
   contactmail.getemail(request.body.email, request.body.msg);
 });
 
@@ -441,7 +436,7 @@ app.get("/getinfo", (request, response) => {
     })
     .catch((err) => {
       logger.error("error", "Your response from database");
-      response.send("OOPS!!Failed to send your response");
+      response.send("OOPS!!Failed to send your response", err);
     });
 });
 
