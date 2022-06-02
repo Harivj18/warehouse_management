@@ -38,12 +38,12 @@ const del_id = function (id, id1, dbname) {
   });
 };
 
-const update = function (value, dbname) {
+const update = function (val, dbname) {
   return new Promise((resolve, reject) => {
-    if (value == undefined) {
-      return reject(value);
+    if (val == undefined) {
+      return reject(val);
     } else {
-      const db = nanodb.use(dbname).insert(value);
+      const db = nanodb.use(dbname).insert(val);
       return resolve(db);
     }
   });
