@@ -63,8 +63,8 @@ export class AddSuppliersComponent implements OnInit {
             city:Formvalue.city,
             particulars:this.idobj._id
           }
-          this.api.addsupplier(obj).subscribe(data=>{
-            console.log(data);
+          this.api.addsupplier(obj).subscribe(data1=>{
+            console.log(data1);
             alert('Your Data added successfully')
             location.reload();
             this.serve.store=[];
@@ -97,7 +97,7 @@ export class AddSuppliersComponent implements OnInit {
 
   // FOR DELETING SUPPLIER
  delsupplier(data:any,data1:any){
-  this.api.removesupplier(data._id,data1._rev).subscribe(res=>{
+  this.api.removesupplier(data._id,data1._rev).subscribe(_res=>{
     location.reload();
     alert('Your data was deleted from the database');
   },rej=>{
@@ -121,7 +121,7 @@ export class AddSuppliersComponent implements OnInit {
 
 // FOR UPDATING SUPPLIER
    updateForm(formvalue:NgForm){
-    this.api.changesupplier(formvalue).subscribe(res=>{
+    this.api.changesupplier(formvalue).subscribe(_res=>{
      alert("Your data was updated successfully!");
      location.reload()
     },rej=>{
