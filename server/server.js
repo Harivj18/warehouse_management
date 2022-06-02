@@ -1,6 +1,6 @@
-const express = require("express");
+const connection = require("express");
 const bodyparser = require("body-parser");
-const app = express();
+const app = connection();
 const port = 8000;
 const cors = require("cors");
 const logger = require("./logger/logger");
@@ -13,7 +13,7 @@ const Infocontroller = require("./controller/Infocontroller");
 const contactmail = require("./connection/mail");
 const validation = require("./validation");
 const { error } = require("./logger/logger");
-app.use(express.static("public"));
+app.use(connection.static("public"));
 app.use(bodyparser.json());
 app.use(
   cors({
