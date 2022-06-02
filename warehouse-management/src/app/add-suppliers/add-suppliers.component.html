@@ -47,9 +47,7 @@
                     <span class="text-danger"
                         *ngIf="addsuppliers.controls['aadhar'].touched && addsuppliers.hasError('required','aadhar')">*Aadhar
                         Number is required </span>
-                    <!-- <span class="text-danger" *ngIf="addsuppliers.hasError('pattern','aadhar')">*Aadhar number should
-                        not
-                        contains chars!! </span> -->
+
                 </div>
                 <div class="form-group my-3">
                     <label for="email" class="text-light">Email :(* Optional)</label>
@@ -118,6 +116,7 @@
     <div *ngIf="show" class="showtable mt-5">
         <h1 class="text-center">Suppliers Data</h1>
         <table class="table table-stripped mt-5">
+            <caption>Supplier Details</caption>
             <thead>
                 <tr>
                     <th scope="col">Company Name</th>

@@ -56,9 +56,7 @@
                         *ngIf="addproduct.controls['quantity'].touched && addproduct.hasError('required','quantity')">*Quantity
                         is
                         required </span>
-                    <!-- <span class="text-danger" *ngIf="addproduct.hasError('pattern','quantity')">*Quantity should
-                        not
-                        contains chars!! </span> -->
+
                 </div>
                 <div class="form-group my-3">
                     <label for="price" class="text-light">Price :</label>
@@ -67,9 +65,7 @@
                     <span class="text-danger"
                         *ngIf="addproduct.controls['price'].dirty && addproduct.hasError('required','price')">*Product
                         Price is required </span>
-                    <!-- <span class="text-danger" *ngIf="addproduct.hasError('pattern','price')">*Price should
-                        not
-                        contains chars!! </span> -->
+
                 </div>
                 <div class="form-group my-3">
                     <label for="manufacture" class="text-light">Manufacturing Date :</label>
@@ -92,6 +88,7 @@
     <div *ngIf="show" class="showtable mt-5">
         <h1 class="text-center"> Products Data</h1>
         <table class="table table-stripped mt-5">
+            <caption>Product Details </caption>
             <thead>
                 <tr>
                     <th scope="col">Company Name</th>

@@ -19,6 +19,7 @@ import { ViewproductsComponent } from './viewproducts/viewproducts.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
+  {path:'signup',component:SignupComponent},
   {path:'menus',canActivate:[AuthGuard],component:MainNavComponent,
   children:[
     {path:'',redirectTo:'home',pathMatch:'full'},
