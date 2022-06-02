@@ -105,17 +105,16 @@
             </thead>
             <tbody>
                 <tr *ngFor="let obj1 of object |filter:search">
-                    <td scope="row">{{obj1.company}}</td>
-                    <td scope="row">{{obj1.category}}</td>
-                    <td scope="row">{{obj1.product_id}}</td>
-                    <td scope="row">{{obj1.brand}}</td>
-                    <td scope="row">{{obj1.quantity}}</td>
-                    <td scope="row">{{obj1.price}}</td>
-                    <td scope="row">{{obj1.manufacture}}</td>
-                    <td scope="row"><button class="btn btn-danger" (click)="editproduct(obj1)"
-                            type="button">Edit</button>
+                    <td>{{obj1.company}}</td>
+                    <td>{{obj1.category}}</td>
+                    <td>{{obj1.product_id}}</td>
+                    <td>{{obj1.brand}}</td>
+                    <td>{{obj1.quantity}}</td>
+                    <td>{{obj1.price}}</td>
+                    <td>{{obj1.manufacture}}</td>
+                    <td><button class="btn btn-danger" (click)="editproduct(obj1)" type="button">Edit</button>
                     </td>
-                    <td scope="row"><button class="btn btn-danger" (click)="delproduct(obj1,obj1)">Delete</button></td>
+                    <td><button class="btn btn-danger" (click)="delproduct(obj1,obj1)">Delete</button></td>
                 </tr>
             </tbody>
         </table>

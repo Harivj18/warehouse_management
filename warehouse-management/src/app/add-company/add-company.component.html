@@ -85,14 +85,13 @@
             </thead>
             <tbody>
                 <tr *ngFor="let obj of object |filter:search">
-                    <td scope="row">{{obj.company}}</td>
-                    <td scope="row">{{obj.company_id}}</td>
-                    <td scope="row">{{obj.email}}</td>
-                    <td scope="row">{{obj.location}}</td>
-                    <td scope="row"><button class="btn btn-danger" (click)="editcompany(obj)"
-                            type="button">Edit</button>
+                    <td>{{obj.company}}</td>
+                    <td>{{obj.company_id}}</td>
+                    <td>{{obj.email}}</td>
+                    <td>{{obj.location}}</td>
+                    <td><button class="btn btn-danger" (click)="editcompany(obj)" type="button">Edit</button>
                     </td>
-                    <td scope="row"><button class="btn btn-danger" (click)="delcompany(obj,obj)">Delete</button></td>
+                    <td><button class="btn btn-danger" (click)="delcompany(obj,obj)">Delete</button></td>
 
                 </tr>
             </tbody>

@@ -115,14 +115,14 @@
             </thead>
             <tbody>
                 <tr *ngFor="let obj of object |filter:search">
-                    <td scope="row">{{obj.username}}</td>
-                    <td scope="row">{{obj.first_name}}</td>
-                    <td scope="row">{{obj.last_name}}</td>
-                    <td scope="row">{{obj.email}}</td>
-                    <td scope="row">{{obj.contact}}</td>
-                    <td scope="row"><button class="btn btn-danger" (click)="edituser(obj)" type="button">Edit</button>
+                    <td>{{obj.username}}</td>
+                    <td>{{obj.first_name}}</td>
+                    <td>{{obj.last_name}}</td>
+                    <td>{{obj.email}}</td>
+                    <td>{{obj.contact}}</td>
+                    <td><button class="btn btn-danger" (click)="edituser(obj)" type="button">Edit</button>
                     </td>
-                    <td scope="row"><button class="btn btn-danger" (click)="deluser(obj,obj)">Delete</button></td>
+                    <td><button class="btn btn-danger" (click)="deluser(obj,obj)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
