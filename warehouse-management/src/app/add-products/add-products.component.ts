@@ -33,6 +33,7 @@ export class AddProductsComponent implements OnInit {
         'brand':['',Validators.required],
         'quantity':['',Validators.required],
         'price':['',Validators.required],
+        'total':[''],
         'manufacture':['',Validators.required],
         particulars:[''],
         _id:[''],
@@ -101,12 +102,15 @@ export class AddProductsComponent implements OnInit {
             brand:Formvalue.brand,
             quantity:Formvalue.quantity,
             price:Formvalue.price,
+            total:Formvalue.price * Formvalue.quantity,
             manufacture:Formvalue.manufacture,
             particulars:this.idobj._id
           }
-          
-          this.api.addproduct(obj).subscribe(data=>{
-            console.log(data);
+            console.log('total:',Formvalue.price * Formvalue.quantity,);
+        
+            
+          this.api.addproduct(obj).subscribe(data1=>{
+            console.log(data1);
             alert('Your Data added successfully')
             location.reload();
             },rej=>{
@@ -158,12 +162,41 @@ export class AddProductsComponent implements OnInit {
    }
 
 // FOR UPDATING PRODUCTS
-   updateproduct(formvalue:NgForm){
-    this.api.changeproduct(formvalue).subscribe(_res=>{
-     alert("Your data was updated successfully!");
-     location.reload();
+   updateproduct(Formvalue:any){
+    this.show=!this.show;
+    this.api.getcompany().subscribe(data=>{
+      console.log(data);
+      this.alldata=data;
+      this.alldata=this.alldata.data.docs;
+      for(const i of this.alldata){
+        this.idobj = i;
+        if(i.company == Formvalue.company){
+          this.check=1;
+          const obj ={
+            company:Formvalue.company,
+            category:Formvalue.category,
+            product_id:Formvalue.product_id,
+            brand:Formvalue.brand,
+            quantity:Formvalue.quantity,
+            price:Formvalue.price,
+            total:Formvalue.price * Formvalue.quantity,
+            manufacture:Formvalue.manufacture,
+            particulars:this.idobj._id
+          }
+            console.log('total:',Formvalue.price * Formvalue.quantity,);
+        
+            
+          this.api.changeproduct(obj).subscribe(data2=>{
+            console.log(data2);
+            alert('Your Data was updated successfully')
+            location.reload();
+            },rej=>{
+              console.log('Error',rej);        
+            });
+        }
+      }
     },rej=>{
-      console.log('Error',rej);
+      console.log('Error',rej);      
     })
     }
     // FOR CALENDAR VALIDATION
@@ -200,6 +233,8 @@ export class AddProductsComponent implements OnInit {
         }   
         setTimeout(()=>{
           if(this.check == 1){
+            alert('Product Id and Product already exists!! PLease update those products');
+            
             var quantity = parseInt(this.stock) + parseInt(formvalue.quantity);
             var cost = parseInt(this.price) + parseInt(formvalue.price)
             console.log('total quantity',quantity);

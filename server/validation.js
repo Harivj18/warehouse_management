@@ -43,6 +43,7 @@ const productvalidation = joi.object({
   brand: joi.string().alphanum().required(),
   quantity: joi.number().min(1).required(),
   price: joi.number().min(1).required(),
+  total: joi.number().optional(),
   manufacture: joi.string().required(),
   particulars: joi.optional(),
   _id: joi.optional(),

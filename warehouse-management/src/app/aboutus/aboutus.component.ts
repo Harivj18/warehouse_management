@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutusComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    // This is intentional
+
+  }
 
   ngOnInit(): void {
+    // This is intentional
   }
 
 }

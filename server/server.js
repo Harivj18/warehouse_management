@@ -234,6 +234,7 @@ app.post("/addproduct", (request, response) => {
       brand: request.body.brand,
       quantity: request.body.quantity,
       price: request.body.price,
+      total: request.body.total,
       manufacture: request.body.manufacture,
       particulars: request.body.particulars,
       type: "products",
@@ -248,7 +249,7 @@ app.post("/addproduct", (request, response) => {
         response.send("OOPS!!Failed to register your products", err);
       });
   } else {
-    logger.warn(
+    logger.error(
       "error !! something bad happened in registering products of company!!"
     );
   }
@@ -288,7 +289,6 @@ app.delete("/delproduct/:id/:id1", (request, response) => {
 //TO UPDATE PRODUCT
 app.put("/updateproduct", (request, response) => {
   const errorproducts = validation.productvalidation.validate(request.body);
-  console.log(errorproducts, "Successfully updated Products data!!");
   if (!errorproducts.error) {
     const object = {
       company: request.body.company,
@@ -297,6 +297,7 @@ app.put("/updateproduct", (request, response) => {
       brand: request.body.brand,
       quantity: request.body.quantity,
       price: request.body.price,
+      total: request.body.total,
       manufacture: request.body.manufacture,
       particulars: request.body.particulars,
       _id: request.body._id,

@@ -11,6 +11,8 @@ export class MainNavComponent implements OnInit {
   constructor(private serve:ServiceapiService,private route:Router) { }
 
   ngOnInit(): void {
+    // This is intentional
+
   }
 
   // FOR LOGGING OUT FROM OUR PAGE
