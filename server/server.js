@@ -304,9 +304,9 @@ app.put("/updateproduct", (request, response) => {
       _rev: request.body._rev,
       type: "products",
     };
-    Productcontroller.ProductForm(object)
+    Productcontroller.updateproduct(object)
       .then((res) => {
-        logger.info("Your Product was posted sucessfully!!!");
+        logger.info("Your Product was updated sucessfully!!!");
         response.send(res);
       })
       .catch((err) => {

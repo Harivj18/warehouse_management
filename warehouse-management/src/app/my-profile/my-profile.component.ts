@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfileComponent implements OnInit {
   data:any;
-  constructor() { }
+  constructor() { 
+    // This is intentional
+
+  }
 
   ngOnInit(): void {
     // FOR GETTING LOGGED IN SESSION ID

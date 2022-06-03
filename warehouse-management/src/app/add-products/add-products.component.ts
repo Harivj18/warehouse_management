@@ -163,42 +163,26 @@ export class AddProductsComponent implements OnInit {
 
 // FOR UPDATING PRODUCTS
    updateproduct(Formvalue:any){
-    this.show=!this.show;
-    this.api.getcompany().subscribe(data=>{
-      console.log(data);
-      this.alldata=data;
-      this.alldata=this.alldata.data.docs;
-      for(const i of this.alldata){
-        this.idobj = i;
-        if(i.company == Formvalue.company){
-          this.check=1;
-          const obj ={
-            company:Formvalue.company,
-            category:Formvalue.category,
-            product_id:Formvalue.product_id,
-            brand:Formvalue.brand,
-            quantity:Formvalue.quantity,
-            price:Formvalue.price,
-            total:Formvalue.price * Formvalue.quantity,
-            manufacture:Formvalue.manufacture,
-            particulars:this.idobj._id
-          }
-            console.log('total:',Formvalue.price * Formvalue.quantity,);
-        
-            
-          this.api.changeproduct(obj).subscribe(data2=>{
-            console.log(data2);
-            alert('Your Data was updated successfully')
-            location.reload();
-            },rej=>{
-              console.log('Error',rej);        
-            });
-        }
-      }
-    },rej=>{
-      console.log('Error',rej);      
-    })
+    const obj ={
+      company:Formvalue.company,
+      category:Formvalue.category,
+      product_id:Formvalue.product_id,
+      brand:Formvalue.brand,
+      quantity:Formvalue.quantity,
+      price:Formvalue.price,
+      total:Formvalue.price * Formvalue.quantity,
+      manufacture:Formvalue.manufacture,
     }
+  
+    this.api.changeproduct(obj).subscribe(data1=>{
+      console.log(data1);
+      alert('Your Data was updated successfully')
+      location.reload();
+      },rej=>{
+        console.log('Error',rej);        
+      });
+  }
+    
     // FOR CALENDAR VALIDATION
     futuredate(){
       const date = new Date();
