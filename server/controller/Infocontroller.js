@@ -1,7 +1,7 @@
 const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
-var getinfo = async (obj) => {
+let getinfo = async (obj) => {
   let val;
   try {
     val = await my_db

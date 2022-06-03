@@ -1,7 +1,7 @@
 const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
-var SignupForm = async (object) => {
+let SignupForm = async (object) => {
   let val;
   try {
     val = await my_db

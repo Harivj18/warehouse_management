@@ -1,7 +1,7 @@
 const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
-var CompanyForm = async (object) => {
+let CompanyForm = async (object) => {
   let val;
   try {
     val = await my_db
@@ -30,7 +30,7 @@ var CompanyForm = async (object) => {
   return val;
 };
 
-var getcompany = async (obj) => {
+let getcompany = async (obj) => {
   let val;
   try {
     val = await my_db
@@ -68,7 +68,7 @@ var getcompany = async (obj) => {
   return val;
 };
 
-var delcompany = async (id, rev) => {
+let delcompany = async (id, rev) => {
   let val;
   try {
     val = await my_db
@@ -97,7 +97,7 @@ var delcompany = async (id, rev) => {
   return val;
 };
 
-var updatecompany = async (object) => {
+let updatecompany = async (object) => {
   let val;
   try {
     val = await my_db

@@ -2,7 +2,7 @@ const { response } = require("express");
 const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
-var AdminForm = async (object) => {
+let AdminForm = async (object) => {
   let val;
   try {
     val = await my_db
@@ -31,7 +31,7 @@ var AdminForm = async (object) => {
   return val;
 };
 
-var getAdmin = async (obj) => {
+let getAdmin = async (obj) => {
   let val;
   try {
     val = await my_db
@@ -69,7 +69,7 @@ var getAdmin = async (obj) => {
   return val;
 };
 
-var delId = async (id, rev) => {
+let delId = async (id, rev) => {
   let val;
   try {
     val = await my_db
@@ -98,7 +98,7 @@ var delId = async (id, rev) => {
   return val;
 };
 
-var updateForm = async (object) => {
+let updateForm = async (object) => {
   let val;
   try {
     val = await my_db
