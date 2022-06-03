@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from '../api-call.service';
-import { FormGroup,FormBuilder,Validators, NgForm } from '@angular/forms';
+import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
@@ -186,8 +186,8 @@ export class AddProductsComponent implements OnInit {
     // FOR CALENDAR VALIDATION
     futuredate(){
       const date = new Date();
-      var currentdate:any = date.getDate();
-      var currentmonth:any = date.getMonth() + 1;
+      let currentdate:any = date.getDate();
+      let currentmonth:any = date.getMonth() + 1;
       const currentyear:any = date.getFullYear();
       if (currentdate < 10){
         currentdate = "0" + currentdate;
@@ -219,8 +219,8 @@ export class AddProductsComponent implements OnInit {
           if(this.check == 1){
             alert('Product Id and Product already exists!! PLease update those products');
             
-            var quantity = parseInt(this.stock) + parseInt(formvalue.quantity);
-            var cost = parseInt(this.price) + parseInt(formvalue.price)
+            let quantity = parseInt(this.stock) + parseInt(formvalue.quantity);
+            let cost = parseInt(this.price) + parseInt(formvalue.price)
             console.log('total quantity',quantity);
             console.log('total cost',cost);
           }
