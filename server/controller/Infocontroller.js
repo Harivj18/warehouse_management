@@ -2,8 +2,9 @@ const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
 var getinfo = async (obj) => {
+  let val;
   try {
-    var val = await my_db
+    val = await my_db
       .get(obj, "add_warehouse")
       .then((data) => {
         if (data.bookmark == "nill") {

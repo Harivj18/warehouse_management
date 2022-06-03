@@ -2,8 +2,9 @@ const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
 var ProductForm = async (object) => {
+  let val;
   try {
-    var val = await my_db
+    val = await my_db
       .add(object, "add_warehouse")
       .then((data) => {
         const code = {
@@ -30,8 +31,9 @@ var ProductForm = async (object) => {
 };
 
 var getproduct = async (obj) => {
+  let val;
   try {
-    var val = await my_db
+    val = await my_db
       .get(obj, "add_warehouse")
       .then((data) => {
         if (data.bookmark == "nill") {
@@ -67,8 +69,9 @@ var getproduct = async (obj) => {
 };
 
 var delproduct = async (id, rev) => {
+  let val;
   try {
-    var val = await my_db
+    val = await my_db
       .del_id(id, rev, "add_warehouse")
       .then((data) => {
         const code = {
@@ -95,8 +98,9 @@ var delproduct = async (id, rev) => {
 };
 
 var updateproduct = async (object) => {
+  let val;
   try {
-    var val = await my_db
+    val = await my_db
       .update(object, "add_warehouse")
       .then((data) => {
         const code = {

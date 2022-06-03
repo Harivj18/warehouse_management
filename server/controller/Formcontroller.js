@@ -2,8 +2,9 @@ const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
 var SignupForm = async (object) => {
+  let val;
   try {
-    var val = await my_db
+    val = await my_db
       .add(object, "add_warehouse")
       .then((data) => {
         const code = {
