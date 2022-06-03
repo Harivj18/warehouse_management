@@ -172,6 +172,7 @@ export class AddProductsComponent implements OnInit {
       price:Formvalue.price,
       total:Formvalue.price * Formvalue.quantity,
       manufacture:Formvalue.manufacture,
+      
     }
   
     this.api.changeproduct(obj).subscribe(data1=>{
