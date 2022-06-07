@@ -599,7 +599,7 @@ app.delete("/delcategory/:id/:id1", (request, response) => {
     });
 });
 
-//TO UPDATE SUPPLIER
+//TO UPDATE CATEGORY
 app.put("/updatecategory", (request, response) => {
   const errorcategory = validation.categoryValidation.validate(request.body);
   console.log(errorcategory, "Successfully updated supplier!!");
