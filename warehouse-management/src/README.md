@@ -18,7 +18,7 @@ and amount of products that we are having for each specific company.
 
 3.In this site,where we we can add,edit,delete and update the data's of the admin,company,products and the suppliers.
 
-# Project Structure
+# Project Flow
 
     LOGIN ---> -HOME 
                -ABOUT US
