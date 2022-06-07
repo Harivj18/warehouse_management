@@ -8,7 +8,7 @@ const uservalidation = joi.object({
   email: joi
     .string()
     .email()
-    .regex(/^([\w]*[\w\.]*(?!\.)@gmail.com)/)
+    .regex(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)
     .required(),
   contact: joi.string().min(10).required(),
   password: joi
@@ -27,7 +27,7 @@ const companyvalidation = joi.object({
   email: joi
     .string()
     .email()
-    .regex(/^([\w]*[\w\.]*(?!\.)@gmail.com)/)
+    .regex(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)
     .required(),
   website: joi.string().required(),
   location: joi.string().required(),
@@ -59,7 +59,7 @@ const suppliervalidation = joi.object({
   email: joi
     .string()
     .email()
-    .regex(/^([\w]*[\w\.]*(?!\.)@gmail.com)/)
+    .regex(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)
     .required(),
   contact: joi.string().min(10).required(),
   state: joi.string().required(),
@@ -73,7 +73,6 @@ const suppliervalidation = joi.object({
 const categoryvalidation = joi.object({
   category: joi.string().required(),
   product_id: joi.string().required(),
-  // particulars: joi.optional(),
   _id: joi.optional(),
   _rev: joi.optional(),
 });
