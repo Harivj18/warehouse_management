@@ -65,6 +65,7 @@ export class ApiCallService {
     addsupplier(formobject:any){
       return this.http.post('http://localhost:8000/addsupplier/',formobject);
     }
+    
   // FOR FETCHING SUPPLIER
     getsupplier(){
       return this.http.get('http://localhost:8000/getsupplier/');
