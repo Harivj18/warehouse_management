@@ -35,7 +35,7 @@ app.post("/postuser", (request, response) => {
     confirm_password: request.body.confirm_password,
     type: "adminuser",
   };
-  Formcontroller.SignupForm(object)
+  Formcontroller.signupForm(object)
     .then((res) => {
       logger.info("Your Data was posted sucessfully!!!");
       response.send(res);
@@ -61,7 +61,7 @@ app.post("/adduser", (request, response) => {
       confirm_password: request.body.confirm_password,
       type: "adminuser",
     };
-    Admincontroller.AdminForm(object)
+    Admincontroller.adminForm(object)
       .then((res) => {
         logger.info("Your Data was posted sucessfully!!!");
         response.send(res);
@@ -148,7 +148,7 @@ app.post("/addcompany", (request, response) => {
       location: request.body.location,
       type: "Company",
     };
-    Companycontroller.CompanyForm(object)
+    Companycontroller.companyForm(object)
       .then((res) => {
         logger.info("Your Data was posted sucessfully!!!");
         response.send(res);
@@ -169,7 +169,7 @@ app.get("/getcompany", (_request, response) => {
       type: "Company",
     },
   };
-  Companycontroller.getcompany(data)
+  Companycontroller.getCompany(data)
     .then((res) => {
       logger.info("Your data was fetched succesfully");
       response.send(res);
@@ -182,7 +182,7 @@ app.get("/getcompany", (_request, response) => {
 
 // TO DELETE COMPANY
 app.delete("/delcompany/:id/:id1", (request, response) => {
-  Companycontroller.delcompany(request.params.id, request.params.id1)
+  Companycontroller.delCompany(request.params.id, request.params.id1)
     .then((res) => {
       logger.warn("Your Data was deleted successfully!!");
       response.send(res);
@@ -208,7 +208,7 @@ app.put("/updatecompany", (request, response) => {
       _rev: request.body._rev,
       type: "Company",
     };
-    Companycontroller.CompanyForm(object)
+    Companycontroller.companyForm(object)
       .then((res) => {
         logger.info("Your Data was posted sucessfully!!!");
         response.send(res);
@@ -241,7 +241,7 @@ app.post("/addproduct", (request, response) => {
       particulars: request.body.particulars,
       type: "products",
     };
-    Productcontroller.ProductForm(object)
+    Productcontroller.productForm(object)
       .then((res) => {
         logger.info("Your Product was posted sucessfully!!!");
         response.send(res);
@@ -264,7 +264,7 @@ app.get("/getproduct", (_request, response) => {
       type: "products",
     },
   };
-  Productcontroller.getproduct(data)
+  Productcontroller.getProduct(data)
     .then((res) => {
       logger.info("Your Product was fetched succesfully");
       response.send(res);
@@ -277,7 +277,7 @@ app.get("/getproduct", (_request, response) => {
 
 // TO DELETE PRODUCT
 app.delete("/delproduct/:id/:id1", (request, response) => {
-  Productcontroller.delproduct(request.params.id, request.params.id1)
+  Productcontroller.delProduct(request.params.id, request.params.id1)
     .then((res) => {
       logger.warn("Your data was deleted succesfully");
       response.send(res);
@@ -307,7 +307,7 @@ app.put("/updateproduct", (request, response) => {
       type: "products",
     };
     console.log("hello update", object._id, object._rev);
-    Productcontroller.updateproduct(object)
+    Productcontroller.updateProduct(object)
       .then((res) => {
         logger.info("Your Product was updated sucessfully!!!");
         response.send(res);
@@ -340,7 +340,7 @@ app.post("/addsupplier", (request, response) => {
       particulars: request.body.particulars,
       type: "supplier",
     };
-    SupplierController.SupplierForm(object2)
+    SupplierController.supplierForm(object2)
       .then((res) => {
         logger.info("Your Data was posted sucessfully!!!");
         response.send(res);
@@ -364,7 +364,7 @@ app.get("/getsupplier", (request, response) => {
       type: "supplier",
     },
   };
-  SupplierController.getsupplier(data)
+  SupplierController.getSupplier(data)
     .then((res) => {
       logger.info("Your data was fetched successfully!!");
       response.send(res);
@@ -407,7 +407,7 @@ app.put("/updatesupplier", (request, response) => {
       _rev: request.body._rev,
       type: "supplier",
     };
-    SupplierController.SupplierForm(object2)
+    SupplierController.updateSupplier(object2)
       .then((res) => {
         logger.info("Your Data was updated sucessfully!!!");
         response.send(res);
@@ -422,8 +422,9 @@ app.put("/updatesupplier", (request, response) => {
 });
 
 // CONTACT FORM
-app.post("/contact", (request, _response) => {
+app.post("/contact", (request, response) => {
   contactmail.getemail(request.body.email, request.body.msg);
+  response.send(res);
 });
 
 // TO GET CATEGORY
@@ -433,7 +434,7 @@ app.get("/getinfo", (_request, response) => {
       type: "product_category",
     },
   };
-  Infocontroller.getinfo(data)
+  Infocontroller.getInfo(data)
     .then((res) => {
       logger.info("Your data was fetched successfully");
       response.send(res);
@@ -477,7 +478,7 @@ app.get("/getcategory", (_request, response) => {
       type: "product_category",
     },
   };
-  Categorycontroller.getproduct(data)
+  Categorycontroller.getProduct(data)
     .then((res) => {
       logger.info("Your data was fetched successfully");
       response.send(res);
@@ -491,7 +492,7 @@ app.get("/getcategory", (_request, response) => {
 // TO DELETE CATEGORY
 app.delete("/delcategory/:id/:id1", (request, response) => {
   console.log(request);
-  Categorycontroller.delcategory(request.params.id, request.params.id1)
+  Categorycontroller.delCategory(request.params.id, request.params.id1)
     .then((res) => {
       logger.warn("Your data was deleted succesfully");
       response.send(res);
@@ -514,7 +515,7 @@ app.put("/updatecategory", (request, response) => {
       _rev: request.body._rev,
       type: "product_category",
     };
-    Categorycontroller.updatecategory(object2)
+    Categorycontroller.updateCategory(object2)
       .then((res) => {
         logger.info("Your Data was updated sucessfully!!!");
         response.send(res);

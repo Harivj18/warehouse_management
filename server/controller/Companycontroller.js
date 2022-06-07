@@ -1,7 +1,7 @@
 const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
-let CompanyForm = async (object) => {
+let companyForm = async (object) => {
   let value;
   try {
     value = await my_db
@@ -30,7 +30,7 @@ let CompanyForm = async (object) => {
   return value;
 };
 
-let getcompany = async (obj) => {
+let getCompany = async (obj) => {
   let value;
   try {
     value = await my_db
@@ -68,7 +68,7 @@ let getcompany = async (obj) => {
   return value;
 };
 
-let delcompany = async (id, rev) => {
+let delCompany = async (id, rev) => {
   let value;
   try {
     value = await my_db
@@ -97,7 +97,7 @@ let delcompany = async (id, rev) => {
   return value;
 };
 
-let updatecompany = async (object) => {
+let updateCompany = async (object) => {
   let value;
   try {
     value = await my_db
@@ -127,8 +127,8 @@ let updatecompany = async (object) => {
 };
 
 module.exports = {
-  CompanyForm,
-  getcompany,
-  delcompany,
-  updatecompany,
+  companyForm,
+  getCompany,
+  delCompany,
+  updateCompany,
 };

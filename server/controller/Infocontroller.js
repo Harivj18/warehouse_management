@@ -1,7 +1,7 @@
 const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
-let getinfo = async (obj) => {
+let getInfo = async (obj) => {
   let value;
   try {
     value = await my_db
@@ -46,5 +46,5 @@ let getinfo = async (obj) => {
 };
 
 module.exports = {
-  getinfo,
+  getInfo,
 };

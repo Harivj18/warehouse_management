@@ -2,7 +2,7 @@ const { response } = require("express");
 const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
-let AdminForm = async (object) => {
+let adminForm = async (object) => {
   let value;
   try {
     value = await my_db
@@ -126,4 +126,4 @@ let updateForm = async (object) => {
   }
   return value;
 };
-module.exports = { AdminForm, getAdmin, delId, updateForm };
+module.exports = { adminForm, getAdmin, delId, updateForm };

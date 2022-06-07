@@ -22,8 +22,10 @@ export class ContactusComponent implements OnInit {
 
   // FOR SENDING MAIL
   mail(formvalue:any){
-    this.api.contact(formvalue).subscribe(_res=>{
-      this.toastr.success('Admin Data successfully Registered!!');
+    this.api.contact(formvalue).subscribe(data=>{
+      console.log(data);
+      this.toastr.success('Mail sent successfully!!');
+      location.reload();
     },rej=>{
       console.log('Error',rej);   
     })

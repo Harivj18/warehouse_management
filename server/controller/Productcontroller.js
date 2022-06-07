@@ -1,7 +1,7 @@
 const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
-let ProductForm = async (object) => {
+let productForm = async (object) => {
   let value;
   try {
     value = await my_db
@@ -30,7 +30,7 @@ let ProductForm = async (object) => {
   return value;
 };
 
-let getproduct = async (obj) => {
+let getProduct = async (obj) => {
   let value;
   try {
     value = await my_db
@@ -68,7 +68,7 @@ let getproduct = async (obj) => {
   return value;
 };
 
-let delproduct = async (id, rev) => {
+let delProduct = async (id, rev) => {
   let value;
   try {
     value = await my_db
@@ -97,7 +97,7 @@ let delproduct = async (id, rev) => {
   return value;
 };
 
-let updateproduct = async (object) => {
+let updateProduct = async (object) => {
   let value;
   try {
     value = await my_db
@@ -127,8 +127,8 @@ let updateproduct = async (object) => {
 };
 
 module.exports = {
-  ProductForm,
-  getproduct,
-  delproduct,
-  updateproduct,
+  productForm,
+  getProduct,
+  delProduct,
+  updateProduct,
 };

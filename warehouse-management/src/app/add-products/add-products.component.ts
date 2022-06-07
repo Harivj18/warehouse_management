@@ -110,7 +110,6 @@ export class AddProductsComponent implements OnInit {
           }
             console.log('total:',Formvalue.price * Formvalue.quantity,);
         
-            
           this.api.addproduct(obj).subscribe(data1=>{
             console.log(data1);
             this.toastr.success('Your Product added successfully')
@@ -222,8 +221,6 @@ export class AddProductsComponent implements OnInit {
                 this.check=1;  
                  this.stock = i.quantity;
                  this.price = i.price;
-                console.log('quantity',this.stock);
-                console.log('Price',this.price);
              }
            }   
         }   
@@ -246,6 +243,5 @@ export class AddProductsComponent implements OnInit {
     console.log('Error',rej);      
       })
     }
-   
 }
 

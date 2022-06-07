@@ -30,7 +30,7 @@ let categoryForm = async (object) => {
   return value;
 };
 
-let getproduct = async (obj) => {
+let getProduct = async (obj) => {
   let value;
   try {
     value = await my_db
@@ -68,7 +68,7 @@ let getproduct = async (obj) => {
   return value;
 };
 
-let delcategory = async (id, rev) => {
+let delCategory = async (id, rev) => {
   let value;
   try {
     value = await my_db
@@ -97,7 +97,7 @@ let delcategory = async (id, rev) => {
   return value;
 };
 
-let updatecategory = async (object) => {
+let updateCategory = async (object) => {
   let value;
   try {
     value = await my_db
@@ -128,7 +128,7 @@ let updatecategory = async (object) => {
 
 module.exports = {
   categoryForm,
-  getproduct,
-  delcategory,
-  updatecategory,
+  getProduct,
+  delCategory,
+  updateCategory,
 };

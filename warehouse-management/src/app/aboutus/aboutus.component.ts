@@ -9,7 +9,6 @@ export class AboutusComponent implements OnInit {
 
   constructor() { 
     // This is intentional
-
   }
 
   ngOnInit(): void {

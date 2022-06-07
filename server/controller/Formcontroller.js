@@ -1,7 +1,7 @@
 const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
-let SignupForm = async (object) => {
+let signupForm = async (object) => {
   let value;
   try {
     value = await my_db
@@ -30,4 +30,4 @@ let SignupForm = async (object) => {
   return value;
 };
 
-module.exports = { SignupForm };
+module.exports = { signupForm };
