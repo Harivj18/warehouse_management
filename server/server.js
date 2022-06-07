@@ -130,7 +130,7 @@ app.delete("/delete/:id/:id1", (request, response) => {
 });
 
 // UPDATING ADMIN DATA
-app.put("/putquery", (request, response) => {
+app.put("/updateAdmin", (request, response) => {
   const erroruser = validation.userValidation.validate(request.body);
   if (!erroruser.error) {
     const object = {

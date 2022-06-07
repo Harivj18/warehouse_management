@@ -25,7 +25,7 @@ export class ApiCallService {
   }
   // FOR UPDATING DATA
   changedata(value:any){
-    return this.http.put('http://localhost:8000/putquery/',value);
+    return this.http.put('http://localhost:8000/updateAdmin/',value);
   }
   // FOR ADDING COMPANY
   addcompany(formobject:any){
