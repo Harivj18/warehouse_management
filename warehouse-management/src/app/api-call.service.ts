@@ -9,7 +9,7 @@ export class ApiCallService {
   constructor(private http:HttpClient) { }
   // FOR SIGNUP
   admindata(formobject:any){
-    return this.http.post('http://localhost:8000/postuser/',formobject);
+    return this.http.post('http://localhost:8000/Register/',formobject);
   }
   // FOR ADDING ADMIN
   adduser(formobject:any){
@@ -65,7 +65,7 @@ export class ApiCallService {
     addsupplier(formobject:any){
       return this.http.post('http://localhost:8000/addsupplier/',formobject);
     }
-    
+
   // FOR FETCHING SUPPLIER
     getsupplier(){
       return this.http.get('http://localhost:8000/getsupplier/');

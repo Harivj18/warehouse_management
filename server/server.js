@@ -24,7 +24,7 @@ app.use(
 );
 
 // FOR SIGNUP FORM
-app.post("/postuser", (request, response) => {
+app.post("/Register", (request, response) => {
   const object = {
     user_name: request.body.user_name,
     first_name: request.body.first_name,
