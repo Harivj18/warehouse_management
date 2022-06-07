@@ -72,7 +72,6 @@ export class AddSuppliersComponent implements OnInit {
             location.reload();
             }, 10000);
             this.serve.store=[];
-            this.getsupplier();
             },rej=>{
               console.log('Error',rej);        
             });
