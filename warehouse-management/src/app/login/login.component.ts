@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   this.loginform=this.formbuilder.group(
     {
-      'username':['',Validators.required],
+      'user_name':['',Validators.required],
       'password':['',Validators.required],
       _id:[''],
       _rev:['']
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){        
             this.object.push(i);
-              if(i.username == formvalue.username && i.password == formvalue.password){
+              if(i.user_name == formvalue.user_name && i.password == formvalue.password){
                 this.check = 1;
                 this.store = i;
               }

@@ -7,10 +7,10 @@
             <form [formGroup]="signup" (ngSubmit)="storeform(this.signup.value)">
                 <div class="form-group">
                     <label for="username" class="text-light">User Name :</label>
-                    <input type="text" formControlName="username" class="form-control" placeholder="Enter Username"
+                    <input type="text" formControlName="user_name" class="form-control" placeholder="Enter Username"
                         minlength="5">
                     <span class="text-danger"
-                        *ngIf="signup.controls['username'].touched && signup.hasError('required','username')">
+                        *ngIf="signup.controls['user_name'].touched && signup.hasError('required','user_name')">
                         *Username is required</span>
                 </div>
                 <div class="form-group">

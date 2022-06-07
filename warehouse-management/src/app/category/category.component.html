@@ -24,10 +24,10 @@
                 </div>
                 <div class="form-group my-3">
                     <label for="product_id" class="text-light">Product_Id :</label>
-                    <input type="text" formControlName="product_id" class="form-control" placeholder="Enter product Id"
+                    <input type="text" formControlName="productid" class="form-control" placeholder="Enter product Id"
                         minlength="5">
                     <span class="text-danger"
-                        *ngIf="category.controls['product_id'].touched && category.hasError('required','product_id')">*Product
+                        *ngIf="category.controls['productid'].touched && category.hasError('required','productid')">*Product
                         Id is required </span>
                 </div>
                 <div class="button text-center">
@@ -48,12 +48,14 @@
                 <tr>
                     <th scope="col">Category Name</th>
                     <th scope="col">Product Id</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let obj of object |filter:search">
                     <td>{{obj.category}}</td>
-                    <td>{{obj.product_id}}</td>
+                    <td>{{obj.productid}}</td>
                     <td><button class="btn btn-danger" (click)="editcategory(obj)" type="button">Edit</button>
                     </td>
                     <td><button class="btn btn-danger" (click)="delcategory(obj,obj)">Delete</button></td>

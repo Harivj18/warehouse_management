@@ -16,10 +16,10 @@
             <form [formGroup]="adduser">
                 <div class="form-group my-3 ">
                     <label for="username" class="text-light">User Name :</label>
-                    <input type="text" formControlName="username" class="form-control" placeholder="Enter Username"
+                    <input type="text" formControlName="user_name" class="form-control" placeholder="Enter Username"
                         minlength="4" maxlength="20">
                     <span class="text-danger"
-                        *ngIf="adduser.controls['username'].touched && adduser.hasError('required','username')">
+                        *ngIf="adduser.controls['user_name'].touched && adduser.hasError('required','user_name')">
                         *Username is required</span>
                 </div>
                 <div class="form-group my-3">
@@ -117,7 +117,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let obj of object |filter:search">
-                    <td>{{obj.username}}</td>
+                    <td>{{obj.user_name}}</td>
                     <td>{{obj.first_name}}</td>
                     <td>{{obj.last_name}}</td>
                     <td>{{obj.email}}</td>

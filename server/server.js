@@ -470,7 +470,7 @@ app.get("/getsupplier/:id", (request, response) => {
 app.delete("/delsupplier/:id/:id1", (request, response) => {
   console.log(request);
   supplierController
-    .delsupplier(request.params.id, request.params.id1)
+    .delSupplier(request.params.id, request.params.id1)
     .then((res) => {
       logger.warn("Your data was deleted succesfully");
       response.send(res);
@@ -515,9 +515,8 @@ app.put("/updatesupplier", (request, response) => {
 });
 
 // CONTACT FORM
-app.post("/contact", (request, response) => {
+app.post("/contact", (request, _response) => {
   contactMail.getemail(request.body.email, request.body.msg);
-  response.send(res);
 });
 
 // TO GET CATEGORY

@@ -35,9 +35,9 @@
                 </div>
                 <div class="form-group my-3">
                     <label for="product_id" class="text-light">Product Id :</label>
-                    <input type="text" formControlName="product_id" class="form-control" placeholder="Enter Product Id">
+                    <input type="text" formControlName="productid" class="form-control" placeholder="Enter Product Id">
                     <span class="text-danger"
-                        *ngIf="addproduct.controls['product_id'].touched && addproduct.hasError('required','product_id')">*Product
+                        *ngIf="addproduct.controls['productid'].touched && addproduct.hasError('required','productid')">*Product
                         Id is required </span>
                 </div>
                 <div class="form-group my-3">
@@ -106,7 +106,7 @@
                 <tr *ngFor="let obj1 of object |filter:search">
                     <td>{{obj1.company}}</td>
                     <td>{{obj1.category}}</td>
-                    <td>{{obj1.product_id}}</td>
+                    <td>{{obj1.productid}}</td>
                     <td>{{obj1.brand}}</td>
                     <td>{{obj1.quantity}}</td>
                     <td>{{obj1.price}}</td>

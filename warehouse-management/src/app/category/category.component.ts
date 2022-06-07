@@ -23,7 +23,7 @@ export class CategoryComponent implements OnInit {
     this.category = this.formbuilder.group(
       {
         'category':['',Validators.required],
-        'product_id':['',Validators.required],
+        'productid':['',Validators.required],
         _id:[''],
         _rev:['']
       }
@@ -73,7 +73,7 @@ export class CategoryComponent implements OnInit {
      // FOR EDITING FIELDS
      editcategory(row:any){
       this.category.controls['category'].setValue(row.category);
-      this.category.controls['product_id'].setValue(row.product_id);
+      this.category.controls['productid'].setValue(row.productid);
      }
   
     // UPDATING REGISTERED CATEGORY

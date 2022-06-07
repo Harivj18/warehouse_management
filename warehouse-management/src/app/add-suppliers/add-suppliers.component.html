@@ -34,10 +34,10 @@
                 </div>
                 <div class="form-group my-3">
                     <label for="supplier_id" class="text-light">Supplier Id :</label>
-                    <input type="text" formControlName="supplier_id" class="form-control"
-                        placeholder="Enter Supplier Id" minlength="5">
+                    <input type="text" formControlName="supplierid" class="form-control" placeholder="Enter Supplier Id"
+                        minlength="5">
                     <span class="text-danger"
-                        *ngIf="addsuppliers.controls['supplier_id'].touched && addsuppliers.hasError('required','supplier_id')">*Supplier
+                        *ngIf="addsuppliers.controls['supplierid'].touched && addsuppliers.hasError('required','supplierid')">*Supplier
                         Id is required </span>
                 </div>
                 <div class="form-group my-3">
@@ -134,7 +134,7 @@
                 <tr *ngFor="let obj of object |filter:search">
                     <td>{{obj.company}}</td>
                     <td>{{obj.supplier}}</td>
-                    <td>{{obj.supplier_id}}</td>
+                    <td>{{obj.supplierid}}</td>
                     <td>{{obj.aadhar}}</td>
                     <td>{{obj.email}}</td>
                     <td>{{obj.contact}}</td>
