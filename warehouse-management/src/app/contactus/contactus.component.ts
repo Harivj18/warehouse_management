@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ApiCallService } from '../api-call.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-contactus',
   templateUrl: './contactus.component.html',
@@ -8,7 +10,7 @@ import { ApiCallService } from '../api-call.service';
 })
 export class ContactusComponent implements OnInit {
   contact!:FormGroup;
-  constructor(private formbuilder:FormBuilder,private api:ApiCallService) { }
+  constructor(private formbuilder:FormBuilder,private api:ApiCallService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.contact = this.formbuilder.group({
@@ -21,7 +23,7 @@ export class ContactusComponent implements OnInit {
   // FOR SENDING MAIL
   mail(formvalue:any){
     this.api.contact(formvalue).subscribe(_res=>{
-      alert('Mail Sent Successfully!!!')
+      this.toastr.success('Admin Data successfully Registered!!');
     },rej=>{
       console.log('Error',rej);   
     })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { ApiCallService } from '../api-call.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,7 @@ export class SignupComponent implements OnInit {
   value:boolean=true;
   object = [];
   signup!:FormGroup;
-  constructor(private formbuilder:FormBuilder,private api:ApiCallService) {
+  constructor(private formbuilder:FormBuilder,private api:ApiCallService,private toastr:ToastrService) {
    }
 
   ngOnInit(): void {
@@ -31,8 +32,10 @@ export class SignupComponent implements OnInit {
   storeform(Formvalue:any){
     this.api.admindata(Formvalue).subscribe(data=>{
       console.log(data);
-      alert('Your Data added successfully');
+      this.toastr.success('User Successfully Registered!!');
+      setTimeout(() => {
       location.reload();
+      }, 10000);
     },rej=>{
       console.log('Error',rej);        
     });

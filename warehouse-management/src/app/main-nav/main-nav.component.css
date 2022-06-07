@@ -6,3 +6,51 @@
 .material-symbols-outlined {
   font-variation-settings: "FILL" 20, "wght" 400, "GRAD" 0, "opsz" 48;
 }
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+#icon {
+  position: relative;
+  top: 8px;
+  left: -67px;
+}
+
+a.nav-item.navlink {
+  position: relative;
+  top: -8px;
+}
+#home {
+  position: relative;
+  left: 40px;
+}
+#dropdownMenu {
+  position: relative;
+  top: 9px;
+}
+#icon2 {
+  position: relative;
+  top: 9px;
+}
+#dashboardicon {
+  position: relative;
+  top: 10px;
+  left: -97px;
+}
+#logout {
+  position: relative;
+  top: 10px;
+  left: -70px;
+}
+#dashboardicon1 {
+  position: relative;
+  left: -97px;
+  width: 3px;
+  top: 5px;
+}
+#account {
+  position: relative;
+  left: -47px;
+  width: 3px;
+  top: 5px;
+}

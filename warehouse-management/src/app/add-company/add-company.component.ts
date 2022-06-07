@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from '../api-call.service';
 import { FormGroup,FormBuilder,Validators, NgForm } from '@angular/forms';
 import { ServiceapiService } from '../serviceapi.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-company',
   templateUrl: './add-company.component.html',
@@ -17,7 +18,7 @@ export class AddCompanyComponent implements OnInit {
   message='hello';
   check=0;
   objectcompany:any=[];
-  constructor(private formbuilder:FormBuilder,private api:ApiCallService,private serve:ServiceapiService) { 
+  constructor(private formbuilder:FormBuilder,private api:ApiCallService,private serve:ServiceapiService,private toastr:ToastrService) { 
    }
 
   ngOnInit(): void {
@@ -37,8 +38,10 @@ export class AddCompanyComponent implements OnInit {
   add(Formvalue:any){
     this.api.addcompany(Formvalue).subscribe(data=>{
       console.log(data);
-      alert('Your Data added successfully');
-      location.reload();
+      this.toastr.success('Company Data successfully Registered!!');
+      setTimeout(() => {
+        location.reload();
+      }, 10000);
       },rej=>{
         console.log('Error',rej);        
       });
@@ -54,6 +57,7 @@ export class AddCompanyComponent implements OnInit {
       for(const i of this.alldata){
             this.object.push(i);
   }
+  this.toastr.info('All Company Data`s Fetched Successfully.Please check Below!!');
 },rej=>{
   console.log('Error',rej);      
 })       
@@ -61,8 +65,10 @@ export class AddCompanyComponent implements OnInit {
   // FOR DELETING REGISTERED COMPANY
  delcompany(data:any,data1:any){
   this.api.removecompany(data._id,data1._rev).subscribe(_res=>{
-    location.reload();
-    alert('Your data was Deleted from the database');
+    this.toastr.warning('Company Data was deleted successfully!!');
+    setTimeout(() => {
+      location.reload();
+    }, 10000);
   },rej=>{
     console.log('Error',rej);    
   })     
@@ -82,8 +88,10 @@ export class AddCompanyComponent implements OnInit {
   // UPDATING REGISTERED COMPANY
    updatecompany(formvalue:NgForm){
     this.api.changecompany(formvalue).subscribe(_res=>{
-     alert("Your data was updated successfully!");
-     location.reload();
+      this.toastr.success('Company Data successfully Updated!!');
+      setTimeout(() => {
+        location.reload();
+      }, 10000);
     },rej=>{
       console.log('Error',rej);      
     })
@@ -103,8 +111,10 @@ export class AddCompanyComponent implements OnInit {
         }       
         setTimeout(()=>{
           if(this.check ==1){
-            alert('Company Id already exists');
-            location.reload();
+            this.toastr.error('Company Id already exists!!');
+            setTimeout(() => {
+              location.reload();
+            }, 10000);
           }
           else{
             this.add(formvalue)

@@ -6,8 +6,13 @@
         <div class="d-flex ">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" routerLink='/menus/home' routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact:true}">Home</a>
-                <a class="nav-item nav-link" [routerLink]="['/menus/about']" routerLinkActive="active">About Us</a>
+                    [routerLinkActiveOptions]="{exact:true}" id="home"> Home
+                    <span class="material-symbols-outlined" id="icon">
+                        home
+                    </span>
+                </a>
+                <a class="nav-item nav-link" id="icon2" [routerLink]="['/menus/about']" routerLinkActive="active">About
+                    Us</a>
                 <div class="dropdown">
                     <a class="nav-item nav-link dropdown-toggle" id="dropdownMenu" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -25,16 +30,32 @@
                         <li><a class="dropdown-item" routerLink="/menus/suppliers" routerLinkActive="active">Add
                                 Suppliers</a>
                         </li>
+                        <li><a class="dropdown-item" routerLink="/menus/category" routerLinkActive="active">Add
+                                Category</a>
+                        </li>
                     </ul>
                 </div>
-                <a class="nav-item nav-link" routerLink="/menus/dashboard" routerLinkActive="active">Dashboard</a>
-                <a class="nav-item nav-link" routerLink="/menus/contact" routerLinkActive="active">Contact Us</a>
-                <a class="nav-item nav-link" [routerLink]="['']" (click)="logout()">Logout</a>
+                <a class="nav-item nav-link" routerLink="/menus/dashboard" routerLinkActive="active">Dashboard
+                    <span id="dashboardicon1" class="material-symbols-outlined">
+                        dashboard
+                    </span>
+                </a>
+                <a class="nav-item nav-link" routerLink="/menus/contact" routerLinkActive="active">Contact Us
+                    <span class="material-symbols-outlined" id="dashboardicon">
+                        contact_support
+                    </span>
+                </a>
+                <a class="nav-item nav-link" [routerLink]="['']" (click)="logout()">Logout
+                    <span class="material-symbols-outlined" id="logout">
+                        logout
+                    </span>
+                </a>
                 <a class="nav-item nav-link" routerLink="/menus/myprofile">
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined" id="account">
                         account_circle
                     </span>
                 </a>
+
             </div>
         </div>
     </div>

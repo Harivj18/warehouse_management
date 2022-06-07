@@ -17,6 +17,7 @@ import { ViewsuppliersComponent } from './viewsuppliers/viewsuppliers.component'
 import { ViewcompanyComponent } from './viewcompany/viewcompany.component';
 import { ViewproductsComponent } from './viewproducts/viewproducts.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { CategoryComponent } from './category/category.component';
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
   {path:'signup',component:SignupComponent},
@@ -35,7 +36,8 @@ const routes: Routes = [
     {path:'viewsuppliers',component:ViewsuppliersComponent},
     {path:'viewcompany',component:ViewcompanyComponent},
     {path:'viewproducts',component:ViewproductsComponent},
-    {path:'myprofile',component:MyProfileComponent}
+    {path:'myprofile',component:MyProfileComponent},
+    {path:'category',component:CategoryComponent}
   ]
 },
 {path:'login',component:LoginComponent}

@@ -91,4 +91,25 @@ export class ApiCallService {
     getadmin(){
       return this.http.get('http://localhost:8000/getUser/');
   }
+
+  //FOR ADDING CATEGORY
+  addcategory(formobject:any){
+    return this.http.post('http://localhost:8000/addcategory/',formobject);
+  }
+
+  //FOR GETTING CATEGORY FROM FORM
+  getcategory(){
+    return this.http.get('http://localhost:8000/getcategory/');
+  }
+
+  // FOR DELETING CATEGORY
+  removecategory(id:any,id1:any){
+    return this.http.delete(`http://localhost:8000/delcategory/${id}/${id1}`);
+  }
+
+  // FOR UPDATING CATEGORY
+  changecategory(formobject:any){
+    return this.http.put('http://localhost:8000/updatecategory/',formobject)
+  }
+
 }

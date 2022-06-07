@@ -1,6 +1,7 @@
 @import url(../node_modules/bootstrap/dist/css/bootstrap.css);
 @import url(../node_modules/bootstrap/dist/css/bootstrap.min.css);
-
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~ngx-toastr/toastr";
 html,
 body {
   height: 100%;

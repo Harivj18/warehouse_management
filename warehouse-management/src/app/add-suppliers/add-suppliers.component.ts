@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from '../api-call.service';
 import { FormGroup,FormBuilder,Validators, NgForm } from '@angular/forms';
 import { ServiceapiService } from '../serviceapi.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-add-suppliers',
   templateUrl: './add-suppliers.component.html',
@@ -20,7 +22,7 @@ export class AddSuppliersComponent implements OnInit {
   objcompany:any=[];
   idobj:any;
 
-  constructor(private formbuilder:FormBuilder,private api:ApiCallService,public serve:ServiceapiService) {
+  constructor(private formbuilder:FormBuilder,private api:ApiCallService,public serve:ServiceapiService,private toastr:ToastrService) {
    }
   ngOnInit(): void {
     this.addsuppliers = this.formbuilder.group(
@@ -65,8 +67,10 @@ export class AddSuppliersComponent implements OnInit {
           }
           this.api.addsupplier(obj).subscribe(data1=>{
             console.log(data1);
-            alert('Your Data added successfully')
+            this.toastr.success('Supplier Data successfully Registered!!');
+            setTimeout(() => {
             location.reload();
+            }, 10000);
             this.serve.store=[];
             this.getsupplier();
             },rej=>{
@@ -84,12 +88,12 @@ export class AddSuppliersComponent implements OnInit {
     this.show=!this.show;
     this.api.getsupplier().subscribe(data=>{
       console.log(data);
-      
       this.alldata=data;
       this.alldata=this.alldata.data.docs;
       for(const i of this.alldata){
         this.object.push(i);
       }
+    this.toastr.info('Supplier Data`s Fetched Successfully.Please check Below!!');
     },rej=>{
       console.log('Error',rej);
     })
@@ -98,8 +102,10 @@ export class AddSuppliersComponent implements OnInit {
   // FOR DELETING SUPPLIER
  delsupplier(data:any,data1:any){
   this.api.removesupplier(data._id,data1._rev).subscribe(_res=>{
-    location.reload();
-    alert('Your data was deleted from the database');
+    this.toastr.warning('Supplier Data was deleted successfully!!');
+    setTimeout(() => {
+      location.reload();
+    }, 10000);
   },rej=>{
     console.log('Error',rej);
   })
@@ -122,8 +128,10 @@ export class AddSuppliersComponent implements OnInit {
 // FOR UPDATING SUPPLIER
    updateForm(formvalue:NgForm){
     this.api.changesupplier(formvalue).subscribe(_res=>{
-     alert("Your data was updated successfully!");
-     location.reload()
+      this.toastr.success('Supplier Data successfully updated!!');
+      setTimeout(() => {
+        location.reload();
+      }, 10000);
     },rej=>{
       console.log('Error',rej);
     })
@@ -154,8 +162,10 @@ export class AddSuppliersComponent implements OnInit {
         }       
         setTimeout(()=>{
           if(this.check ==1){
-            alert('Supplier Id exists');
+            this.toastr.error('Supplier Id already exists!!');
+            setTimeout(() => {
             location.reload();
+            }, 10000);
           }
           else{
             this.add(formvalue)

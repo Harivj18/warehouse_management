@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from '../api-call.service';
 import { FormGroup,FormBuilder,Validators, NgForm } from '@angular/forms';
 import { ServiceapiService } from '../serviceapi.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -18,7 +20,7 @@ export class AddUserComponent implements OnInit {
   count:any = 0;
   check=0;
   objectuser:any=[];
-  constructor(private formbuilder:FormBuilder,private api:ApiCallService,private serve:ServiceapiService) {
+  constructor(private formbuilder:FormBuilder,private api:ApiCallService,private serve:ServiceapiService,private toastr:ToastrService) {
    }
 
   ngOnInit(): void {
@@ -41,8 +43,10 @@ export class AddUserComponent implements OnInit {
   addform(Formvalue:any){
       this.api.adduser(Formvalue).subscribe(data=>{
         console.log(data);
-        alert('Your Data added successfully')
-        location.reload()
+        this.toastr.success('Admin Data successfully Registered!!');
+            setTimeout(() => {
+            location.reload();
+            }, 10000);
         },rej=>{
           console.log('Error',rej);        
         });
@@ -58,6 +62,8 @@ export class AddUserComponent implements OnInit {
       for(const i of this.alldata){
             this.object.push(i);
       }   
+    this.toastr.info('Admin Data`s Fetched Successfully.Please check Below!!');
+
     },rej=>{
       console.log('Error',rej);      
     })
@@ -67,8 +73,10 @@ export class AddUserComponent implements OnInit {
  deluser(data:any,data1:any){
   this.api.remove(data._id,data1._rev).subscribe(res=>{
     console.log(res);
-    location.reload();
-    alert('Your data was Deleted from the database');
+    this.toastr.warning('Admin Data was deleted successfully!!');
+    setTimeout(() => {
+      location.reload();
+    }, 10000);
   },rej=>{
     console.log('Error',rej);    
   })     
@@ -89,9 +97,10 @@ export class AddUserComponent implements OnInit {
    updateForm(formvalue:NgForm){
     this.api.changedata(formvalue).subscribe(res=>{
       console.log(res);
-      
-     alert("Your data was updated successfully!");
-     location.reload()
+      this.toastr.success('Admin Data successfully updated!!');
+      setTimeout(() => {
+        location.reload();
+      }, 10000);
     },rej=>{
       console.log('Error',rej);      
     })
@@ -114,12 +123,16 @@ export class AddUserComponent implements OnInit {
         }       
         setTimeout(()=>{
           if(this.check == 1){
-            alert('Username already exist in our database!!');
+            this.toastr.error('Username already exists!!');
+            setTimeout(() => {
             location.reload();
+            }, 10000);
           }
           else if(this.check == 2){
-            alert('Password does not match!!');
+            this.toastr.error('Password does not match!!');
+            setTimeout(() => {
             location.reload();
+            }, 10000);
           }
           else{
               this.addform(formvalue);

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from '../api-call.service';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
@@ -21,7 +23,7 @@ export class AddProductsComponent implements OnInit {
   idobj:any;
   stock:any;
   price:any;
-  constructor(private formbuilder:FormBuilder,private api:ApiCallService) {
+  constructor(private formbuilder:FormBuilder,private api:ApiCallService,private toastr:ToastrService) {
    }
 
   ngOnInit(): void {
@@ -111,8 +113,10 @@ export class AddProductsComponent implements OnInit {
             
           this.api.addproduct(obj).subscribe(data1=>{
             console.log(data1);
-            alert('Your Data added successfully')
-            location.reload();
+            this.toastr.success('Your Product added successfully')
+            setTimeout(() => {
+              location.reload();
+            }, 10000);
             },rej=>{
               console.log('Error',rej);        
             });
@@ -133,6 +137,7 @@ export class AddProductsComponent implements OnInit {
       for(const i of this.alldata){
         this.object.push(i)
     }    
+    this.toastr.info('All Product Data`s Fetched Successfully.Please check Below!!');
     },rej=>{
   console.log('Error',rej);      
     })
@@ -141,8 +146,10 @@ export class AddProductsComponent implements OnInit {
   // FOR DELETE PRODUCTS
  delproduct(data:any,data1:any){
   this.api.removeproduct(data._id,data1._rev).subscribe(_res=>{
-    location.reload();
-    alert('Your data was Deleted from the database');
+    this.toastr.warning('Product Data was deleted successfully!!');
+    setTimeout(() => {
+      location.reload();
+    }, 10000);
   },rej=>{
     console.log('Error',rej);    
   })     
@@ -160,6 +167,7 @@ export class AddProductsComponent implements OnInit {
     this.addproduct.controls['_id'].setValue(row._id);
     this.addproduct.controls['_rev'].setValue(row._rev);
    }
+   
 
 // FOR UPDATING PRODUCTS
    updateproduct(Formvalue:any){
@@ -172,13 +180,16 @@ export class AddProductsComponent implements OnInit {
       price:Formvalue.price,
       total:Formvalue.price * Formvalue.quantity,
       manufacture:Formvalue.manufacture,
-      
+      _id:Formvalue._id,
+      _rev:Formvalue._rev
     }
   
     this.api.changeproduct(obj).subscribe(data1=>{
       console.log(data1);
-      alert('Your Data was updated successfully')
-      location.reload();
+      this.toastr.success('Product Data successfully Updated!!');
+      setTimeout(() => {
+        location.reload();
+      }, 10000);
       },rej=>{
         console.log('Error',rej);        
       });
@@ -218,8 +229,10 @@ export class AddProductsComponent implements OnInit {
         }   
         setTimeout(()=>{
           if(this.check == 1){
-            alert('Product Id and Product already exists!! PLease update those products');
-            
+            this.toastr.error('Product Id and Product already exists!! Please update those products');
+            setTimeout(() => {
+              location.reload();
+            }, 10000);
             let quantity = parseInt(this.stock) + parseInt(formvalue.quantity);
             let cost = parseInt(this.price) + parseInt(formvalue.price)
             console.log('total quantity',quantity);

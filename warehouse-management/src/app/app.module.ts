@@ -24,6 +24,8 @@ import { ViewsuppliersComponent } from './viewsuppliers/viewsuppliers.component'
 import { ViewcompanyComponent } from './viewcompany/viewcompany.component';
 import { ViewproductsComponent } from './viewproducts/viewproducts.component';
 import { MyProfileComponent } from './my-profile/my-profile.component'; 
+import { ToastrModule } from 'ngx-toastr';
+import { CategoryComponent } from './category/category.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
     ViewsuppliersComponent,
     ViewcompanyComponent,
     ViewproductsComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,12 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 8000, 
+      progressBar: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

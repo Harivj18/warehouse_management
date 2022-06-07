@@ -3,7 +3,7 @@ import { FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { ServiceapiService } from '../serviceapi.service';
 import { ApiCallService } from '../api-call.service';
 import { Router } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   alldata:any;
   check:any=0;
   store:any;
-  constructor(private formbuilder:FormBuilder,public serve:ServiceapiService,private api:ApiCallService,private route:Router) { }
+  constructor(private formbuilder:FormBuilder,public serve:ServiceapiService,private api:ApiCallService,private route:Router,private toastr:ToastrService) { }
 
   ngOnInit(): void {
   this.loginform=this.formbuilder.group(
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['menus']);
         }
         else{
-          alert('Invalid Credentials');
+          this.toastr.error('Invalid Credentials');
           this.route.navigate(['']);
           this.loginform.reset();
         }

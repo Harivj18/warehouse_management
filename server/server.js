@@ -10,8 +10,9 @@ const Productcontroller = require("./controller/Productcontroller");
 const SupplierController = require("./controller/Suppliercontroller");
 const Formcontroller = require("./controller/Formcontroller");
 const Infocontroller = require("./controller/Infocontroller");
+const Categorycontroller = require("./controller/Categorycontroller");
 const contactmail = require("./connection/mail");
-const validation = require("./validation");
+const validation = require("./Validator/validation");
 const { error } = require("./logger/logger");
 app.use(connection.static("public"));
 app.use(bodyparser.json());
@@ -304,6 +305,7 @@ app.put("/updateproduct", (request, response) => {
       _rev: request.body._rev,
       type: "products",
     };
+    console.log("hello update", object._id, object._rev);
     Productcontroller.updateproduct(object)
       .then((res) => {
         logger.info("Your Product was updated sucessfully!!!");
@@ -439,6 +441,90 @@ app.get("/getinfo", (_request, response) => {
       logger.error("error", "Your response from database");
       response.send("OOPS!!Failed to send your response", err);
     });
+});
+
+// TO ADD CATEGORY
+app.post("/addcategory", (request, response) => {
+  const errorcategory = validation.categoryvalidation.validate(request.body);
+  console.log(errorcategory, "Successfully registered supplier!!");
+  if (!errorcategory.error) {
+    const object2 = {
+      category: request.body.category,
+      product_id: request.body.product_id,
+      type: "product_category",
+    };
+    Categorycontroller.categoryForm(object2)
+      .then((res) => {
+        logger.info("Your Data was posted sucessfully!!!");
+        response.send(res);
+      })
+      .catch((err) => {
+        logger.error("error", "Your response from database");
+        response.send("OOPS!!Failed to add category data!!", err);
+      });
+  } else {
+    logger.warn(
+      "error !! something bad happened in registering categories to company!!"
+    );
+  }
+});
+
+// TO GET CATEGORY
+app.get("/getcategory", (_request, response) => {
+  const data = {
+    selector: {
+      type: "product_category",
+    },
+  };
+  Categorycontroller.getproduct(data)
+    .then((res) => {
+      logger.info("Your data was fetched successfully");
+      response.send(res);
+    })
+    .catch((err) => {
+      logger.error("error", "Your response from database");
+      response.send("OOPS!!Failed to send your response", err);
+    });
+});
+
+// TO DELETE CATEGORY
+app.delete("/delcategory/:id/:id1", (request, response) => {
+  console.log(request);
+  Categorycontroller.delcategory(request.params.id, request.params.id1)
+    .then((res) => {
+      logger.warn("Your data was deleted succesfully");
+      response.send(res);
+    })
+    .catch((err) => {
+      logger.error("error", "Your response from database");
+      response.send("OOPS!!Failed to send your response", err);
+    });
+});
+
+//TO UPDATE SUPPLIER
+app.put("/updatecategory", (request, response) => {
+  const errorcategory = validation.categoryvalidation.validate(request.body);
+  console.log(errorcategory, "Successfully updated supplier!!");
+  if (!errorcategory.error) {
+    const object2 = {
+      category: request.body.category,
+      product_id: request.body.product_id,
+      _id: request.body._id,
+      _rev: request.body._rev,
+      type: "product_category",
+    };
+    Categorycontroller.updatecategory(object2)
+      .then((res) => {
+        logger.info("Your Data was updated sucessfully!!!");
+        response.send(res);
+      })
+      .catch((err) => {
+        logger.error("error", "Your response from database");
+        response.send("OOPS!!Failed to add supplier data!!", err);
+      });
+  } else {
+    logger.warn("error !! something bad happened in updating to company!!");
+  }
 });
 
 app.listen(port, (err) => {

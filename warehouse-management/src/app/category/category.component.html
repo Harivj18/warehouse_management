@@ -1,0 +1,65 @@
+<div class="input-group">
+    <div class="form-outline">
+        <input type="search" [(ngModel)]="search" class="form-control mt-5 search" placeholder="Enter Your Data" />
+    </div>
+    <div>
+        <button (click)="getcategory()" class="btn btn-danger mt-5 get">List of category</button>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="card  mx-auto">
+        <div class="card-header text-center text-light">
+            <h1 class="text">Add Category</h1>
+        </div>
+        <div class="card-body ">
+            <form [formGroup]="category">
+                <div class="form-group my-3 ">
+                    <label for="category" class="text-light">Category Name :</label>
+                    <input type="text" formControlName="category" class="form-control" placeholder="Enter category Name"
+                        minlength="3">
+                    <span class="text-danger"
+                        *ngIf="category.controls['category'].touched && category.hasError('required','category')">
+                        *category Name is required</span>
+                </div>
+                <div class="form-group my-3">
+                    <label for="product_id" class="text-light">Product_Id :</label>
+                    <input type="text" formControlName="product_id" class="form-control" placeholder="Enter product Id"
+                        minlength="5">
+                    <span class="text-danger"
+                        *ngIf="category.controls['product_id'].touched && category.hasError('required','product_id')">*Product
+                        Id is required </span>
+                </div>
+                <div class="button text-center">
+                    <button (click)="categorycheck(this.category.value)" class="btn btn-danger px-4 py-2 my-4"
+                        [disabled]="!category.valid">Submit</button>
+                    <button (click)="updatecategory(this.category.value)"
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4"
+                        [disabled]="!category.valid">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="show" class="showtable mt-5">
+        <h1 class="text-center">Category Data</h1>
+        <table class="table table-stripped mt-5" aria-label="category table">
+            <thead>
+                <tr>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Product Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let obj of object |filter:search">
+                    <td>{{obj.category}}</td>
+                    <td>{{obj.product_id}}</td>
+                    <td><button class="btn btn-danger" (click)="editcategory(obj)" type="button">Edit</button>
+                    </td>
+                    <td><button class="btn btn-danger" (click)="delcategory(obj,obj)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

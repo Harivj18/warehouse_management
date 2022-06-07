@@ -69,9 +69,19 @@ const suppliervalidation = joi.object({
   _rev: joi.optional(),
 });
 
+// For Product Validation
+const categoryvalidation = joi.object({
+  category: joi.string().required(),
+  product_id: joi.string().required(),
+  // particulars: joi.optional(),
+  _id: joi.optional(),
+  _rev: joi.optional(),
+});
+
 module.exports = {
   uservalidation,
   companyvalidation,
   productvalidation,
   suppliervalidation,
+  categoryvalidation,
 };
