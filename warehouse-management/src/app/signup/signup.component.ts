@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { ApiCallService } from '../api-call.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ export class SignupComponent implements OnInit {
   value:boolean=true;
   object = [];
   signup!:FormGroup;
-  constructor(private formbuilder:FormBuilder,private api:ApiCallService,private toastr:ToastrService) {
+  constructor(private formbuilder:FormBuilder,private api:ApiCallService,private toastr:ToastrService,private router:Router) {
    }
 
   ngOnInit(): void {
@@ -36,6 +37,7 @@ export class SignupComponent implements OnInit {
       setTimeout(() => {
       location.reload();
       }, 10000);
+      this.router.navigate(['login'])
     },rej=>{
       console.log('Error',rej);        
     });

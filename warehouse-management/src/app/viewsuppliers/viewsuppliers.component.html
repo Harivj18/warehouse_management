@@ -1,8 +1,8 @@
 <div class="container">
     <div class="checksuppliers" *ngIf="show">
         <h1 class="text-center heading">SUPPLIERS DATA</h1>
-        <table class="table bg-dark" aria-label="View Suppliers Dahboard">
-            <thead class="text-light">
+        <table class="table" aria-label="View Suppliers Dahboard">
+            <thead class="text-dark">
                 <tr>
                     <th scope="col">Company Name</th>
                     <th scope="col">Supplier Name</th>
@@ -14,7 +14,7 @@
                     <th scope="col">City</th>
                 </tr>
             </thead>
-            <tbody class="text-light">
+            <tbody class="text-dark">
                 <tr *ngFor="let obj2 of objsuppliers |filter:search">
                     <td>{{obj2.company}}</td>
                     <td>{{obj2.supplier}}</td>

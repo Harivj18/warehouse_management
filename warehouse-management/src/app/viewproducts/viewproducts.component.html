@@ -2,8 +2,8 @@
 
     <div class="checkproducts" *ngIf="show">
         <h1 class="text-center heading">PRODUCTS DATA</h1>
-        <table class="table bg-dark" aria-label="View Products Dashboard">
-            <thead class="text-light">
+        <table class="table" aria-label="View Products Dashboard">
+            <thead class="text-dark">
                 <tr>
                     <th scope="col">Company Name</th>
                     <th scope="col">Category</th>
@@ -15,7 +15,7 @@
                     <th scope="col">Manufacture</th>
                 </tr>
             </thead>
-            <tbody class="text-light">
+            <tbody class="text-dark">
                 <tr *ngFor="let obj1 of objproducts |filter:search">
                     <td>{{obj1.company}}</td>
                     <td>{{obj1.category}}</td>
