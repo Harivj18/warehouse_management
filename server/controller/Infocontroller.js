@@ -2,9 +2,9 @@ const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
 let getinfo = async (obj) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .get(obj, "add_warehouse")
       .then((data) => {
         if (data.bookmark == "nill") {
@@ -42,7 +42,7 @@ let getinfo = async (obj) => {
     logger.error("error", "Your response from database");
     return err_code;
   }
-  return val;
+  return value;
 };
 
 module.exports = {

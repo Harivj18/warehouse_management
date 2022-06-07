@@ -2,9 +2,9 @@ const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
 let CompanyForm = async (object) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .add(object, "add_warehouse")
       .then((data) => {
         const code = {
@@ -27,13 +27,13 @@ let CompanyForm = async (object) => {
   } catch (error) {
     console.log("OOPS!!!Error");
   }
-  return val;
+  return value;
 };
 
 let getcompany = async (obj) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .get(obj, "add_warehouse")
       .then((data) => {
         if (data.bookmark == "nill") {
@@ -65,13 +65,13 @@ let getcompany = async (obj) => {
   } catch (error) {
     console.log("OOPS!!!Error");
   }
-  return val;
+  return value;
 };
 
 let delcompany = async (id, rev) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .del_id(id, rev, "add_warehouse")
       .then((data) => {
         const code = {
@@ -94,13 +94,13 @@ let delcompany = async (id, rev) => {
   } catch (error) {
     console.log("OOPS!!!Error");
   }
-  return val;
+  return value;
 };
 
 let updatecompany = async (object) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .update(object, "add_warehouse")
       .then((data) => {
         const code = {
@@ -123,7 +123,7 @@ let updatecompany = async (object) => {
   } catch (error) {
     console.log("OOPS!!!Error");
   }
-  return val;
+  return value;
 };
 
 module.exports = {

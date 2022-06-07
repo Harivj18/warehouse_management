@@ -1,5 +1,9 @@
 const nodemail = require("nodemailer");
 const sender = nodemail.createTransport({
+  secure: true,
+  requireTLS: true,
+  port: 465,
+  secured: true,
   service: "gmail",
   auth: {
     user: "sosapp24@gmail.com",
@@ -17,7 +21,7 @@ module.exports.getemail = function (params, paramsmsg) {
     if (err) {
       console.log("Mail not sent", err);
     } else {
-      console.log("Mail sent", res);
+      console.log("Mail sent successfully!!", res);
     }
   });
 };

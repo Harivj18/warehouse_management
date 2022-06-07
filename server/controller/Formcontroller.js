@@ -2,9 +2,9 @@ const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
 let SignupForm = async (object) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .add(object, "add_warehouse")
       .then((data) => {
         const code = {
@@ -27,7 +27,7 @@ let SignupForm = async (object) => {
   } catch (error) {
     console.log("OOPS!!!Error");
   }
-  return val;
+  return value;
 };
 
 module.exports = { SignupForm };

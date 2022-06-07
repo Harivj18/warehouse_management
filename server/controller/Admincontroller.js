@@ -3,9 +3,9 @@ const my_db = require("../connection/db");
 const logger = require("../logger/logger");
 
 let AdminForm = async (object) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .add(object, "add_warehouse")
       .then((data) => {
         const code = {
@@ -28,13 +28,13 @@ let AdminForm = async (object) => {
   } catch (error) {
     console.log("OOPS!!!Error");
   }
-  return val;
+  return value;
 };
 
 let getAdmin = async (obj) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .get(obj, "add_warehouse")
       .then((data) => {
         if (data.bookmark == "nill") {
@@ -66,13 +66,13 @@ let getAdmin = async (obj) => {
   } catch (error) {
     console.log("OOPS!!!Error");
   }
-  return val;
+  return value;
 };
 
 let delId = async (id, rev) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .del_id(id, rev, "add_warehouse")
       .then((data) => {
         const code = {
@@ -95,13 +95,13 @@ let delId = async (id, rev) => {
   } catch (error) {
     console.log("OOPS!!!Error");
   }
-  return val;
+  return value;
 };
 
 let updateForm = async (object) => {
-  let val;
+  let value;
   try {
-    val = await my_db
+    value = await my_db
       .update(object, "add_warehouse")
       .then((data) => {
         const code = {
@@ -124,6 +124,6 @@ let updateForm = async (object) => {
   } catch (error) {
     console.log("OOPS!!!Error");
   }
-  return val;
+  return value;
 };
 module.exports = { AdminForm, getAdmin, delId, updateForm };
