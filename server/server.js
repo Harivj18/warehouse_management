@@ -16,6 +16,7 @@ const validation = require("./Validator/validation");
 const { error } = require("./logger/logger");
 app.use(connection.static("public"));
 app.use(bodyparser.json());
+app.disabled("x-powered-by");
 app.use(
   cors({
     origin: "http://localhost:4200",
