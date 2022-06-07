@@ -49,7 +49,7 @@ app.post("/postuser", (request, response) => {
 
 // ADD ADMIN
 app.post("/adduser", (request, response) => {
-  const erroruser = validation.uservalidation.validate(request.body);
+  const erroruser = validation.userValidation.validate(request.body);
   console.log(erroruser, "Successfully added Adminuser!!");
   if (!erroruser.error) {
     const object = {
@@ -131,7 +131,7 @@ app.delete("/delete/:id/:id1", (request, response) => {
 
 // UPDATING ADMIN DATA
 app.put("/putquery", (request, response) => {
-  const erroruser = validation.uservalidation.validate(request.body);
+  const erroruser = validation.userValidation.validate(request.body);
   if (!erroruser.error) {
     const object = {
       username: request.body.username,
@@ -162,7 +162,7 @@ app.put("/putquery", (request, response) => {
 
 //TO ADD COMPANY
 app.post("/addcompany", (request, response) => {
-  const errorcompany = validation.companyvalidation.validate(request.body);
+  const errorcompany = validation.companyValidation.validate(request.body);
   if (!errorcompany.error) {
     const object = {
       company: request.body.company,
@@ -241,7 +241,7 @@ app.delete("/delcompany/:id/:id1", (request, response) => {
 
 //TO UPDATE COMPANY
 app.put("/updatecompany", (request, response) => {
-  const errorcompany = validation.companyvalidation.validate(request.body);
+  const errorcompany = validation.companyValidation.validate(request.body);
   console.log(errorcompany, "Successfully updated company!!");
   if (!errorcompany.error) {
     const object = {
@@ -273,7 +273,7 @@ app.put("/updatecompany", (request, response) => {
 
 //TO ADD PRODUCTS
 app.post("/addproduct", (request, response) => {
-  const errorproducts = validation.productvalidation.validate(request.body);
+  const errorproducts = validation.productValidation.validate(request.body);
   console.log(errorproducts, "Successfully added Products");
   if (!errorproducts.error) {
     const object = {
@@ -358,7 +358,7 @@ app.delete("/delproduct/:id/:id1", (request, response) => {
 
 //TO UPDATE PRODUCT
 app.put("/updateproduct", (request, response) => {
-  const errorproducts = validation.productvalidation.validate(request.body);
+  const errorproducts = validation.productValidation.validate(request.body);
   if (!errorproducts.error) {
     const object = {
       company: request.body.company,
@@ -394,7 +394,7 @@ app.put("/updateproduct", (request, response) => {
 
 // TO ADD SUPPLIER
 app.post("/addsupplier", (request, response) => {
-  const errorsupplier = validation.suppliervalidation.validate(request.body);
+  const errorsupplier = validation.supplierValidation.validate(request.body);
   console.log(errorsupplier, "Successfully registered supplier!!");
   if (!errorsupplier.error) {
     const object2 = {
@@ -483,7 +483,7 @@ app.delete("/delsupplier/:id/:id1", (request, response) => {
 
 //TO UPDATE SUPPLIER
 app.put("/updatesupplier", (request, response) => {
-  const errorsupplier = validation.suppliervalidation.validate(request.body);
+  const errorsupplier = validation.supplierValidation.validate(request.body);
   console.log(errorsupplier, "Successfully updated supplier!!");
   if (!errorsupplier.error) {
     const object2 = {
@@ -541,7 +541,7 @@ app.get("/getinfo", (_request, response) => {
 
 // TO ADD CATEGORY
 app.post("/addcategory", (request, response) => {
-  const errorcategory = validation.categoryvalidation.validate(request.body);
+  const errorcategory = validation.categoryValidation.validate(request.body);
   console.log(errorcategory, "Successfully registered supplier!!");
   if (!errorcategory.error) {
     const object2 = {
@@ -602,7 +602,7 @@ app.delete("/delcategory/:id/:id1", (request, response) => {
 
 //TO UPDATE SUPPLIER
 app.put("/updatecategory", (request, response) => {
-  const errorcategory = validation.categoryvalidation.validate(request.body);
+  const errorcategory = validation.categoryValidation.validate(request.body);
   console.log(errorcategory, "Successfully updated supplier!!");
   if (!errorcategory.error) {
     const object2 = {

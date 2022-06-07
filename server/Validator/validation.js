@@ -1,7 +1,7 @@
 const joi = require("joi");
 
 // FOR USER VALIDATION
-const uservalidation = joi.object({
+const userValidation = joi.object({
   username: joi.string().alphanum().min(4).max(30).required(),
   first_name: joi.string().required(),
   last_name: joi.string().required(),
@@ -21,7 +21,7 @@ const uservalidation = joi.object({
 });
 
 // FOR COMPANY VALIDATION
-const companyvalidation = joi.object({
+const companyValidation = joi.object({
   company: joi.string().alphanum().min(3).max(30).required(),
   company_id: joi.string().alphanum().min(5).max(30).required(),
   email: joi
@@ -36,7 +36,7 @@ const companyvalidation = joi.object({
 });
 
 // For Product Validation
-const productvalidation = joi.object({
+const productValidation = joi.object({
   company: joi.string().required(),
   category: joi.string().required(),
   product_id: joi.string().required(),
@@ -51,7 +51,7 @@ const productvalidation = joi.object({
 });
 
 // FOR SUPPLIER VALIDATION
-const suppliervalidation = joi.object({
+const supplierValidation = joi.object({
   company: joi.string().alphanum().min(3).max(30).required(),
   supplier: joi.string().required(),
   supplier_id: joi.string().alphanum().required(),
@@ -69,8 +69,8 @@ const suppliervalidation = joi.object({
   _rev: joi.optional(),
 });
 
-// For Product Validation
-const categoryvalidation = joi.object({
+// For Category Validation
+const categoryValidation = joi.object({
   category: joi.string().required(),
   product_id: joi.string().required(),
   _id: joi.optional(),
@@ -78,9 +78,9 @@ const categoryvalidation = joi.object({
 });
 
 module.exports = {
-  uservalidation,
-  companyvalidation,
-  productvalidation,
-  suppliervalidation,
-  categoryvalidation,
+  userValidation,
+  companyValidation,
+  productValidation,
+  supplierValidation,
+  categoryValidation,
 };
