@@ -31,7 +31,7 @@ export class AddProductsComponent implements OnInit {
       {
         'company':['',Validators.required],
         'category':['',Validators.required],
-        'product_id':['',Validators.required],
+        'productid':['',Validators.required],
         'brand':['',Validators.required],
         'quantity':['',Validators.required],
         'price':['',Validators.required],
@@ -67,7 +67,7 @@ export class AddProductsComponent implements OnInit {
         const element = this.info[key];
         const data = element.category;
         if (data == event.target.value) {
-          this.addproduct.controls['product_id'].setValue(element.product_id);
+          this.addproduct.controls['productid'].setValue(element.productid);
         }
       }     
     }  
@@ -100,7 +100,7 @@ export class AddProductsComponent implements OnInit {
           const obj ={
             company:Formvalue.company,
             category:Formvalue.category,
-            product_id:Formvalue.product_id,
+            productid:Formvalue.productid,
             brand:Formvalue.brand,
             quantity:Formvalue.quantity,
             price:Formvalue.price,
@@ -158,7 +158,7 @@ export class AddProductsComponent implements OnInit {
    editproduct(row:any){
     this.addproduct.controls['company'].setValue(row.company);
     this.addproduct.controls['category'].setValue(row.category);
-    this.addproduct.controls['product_id'].setValue(row.product_id);
+    this.addproduct.controls['productid'].setValue(row.productid);
     this.addproduct.controls['brand'].setValue(row.brand);
     this.addproduct.controls['quantity'].setValue(row.quantity);
     this.addproduct.controls['price'].setValue(row.price);
@@ -173,7 +173,7 @@ export class AddProductsComponent implements OnInit {
     const obj ={
       company:Formvalue.company,
       category:Formvalue.category,
-      product_id:Formvalue.product_id,
+      productid:Formvalue.productid,
       brand:Formvalue.brand,
       quantity:Formvalue.quantity,
       price:Formvalue.price,
@@ -215,7 +215,7 @@ export class AddProductsComponent implements OnInit {
         this.alldata=this.alldata.data.docs;
         for(const i of this.alldata){
           this.object.push(i)
-          if(i.product_id == formvalue.product_id)
+          if(i.productid == formvalue.productid)
            if(i.brand == formvalue.brand){
              if(i.company == formvalue.company){
                 this.check=1;  

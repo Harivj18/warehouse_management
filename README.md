@@ -1,6 +1,5 @@
-# Title
+# Title : WAREHOUSE MANAGEMENT SYSTEM
 
-WAREHOUSE MANAGEMENT SYSTEM
 
 # Description
 

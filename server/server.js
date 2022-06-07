@@ -26,7 +26,7 @@ app.use(
 // FOR SIGNUP FORM
 app.post("/postuser", (request, response) => {
   const object = {
-    username: request.body.username,
+    user_name: request.body.user_name,
     first_name: request.body.first_name,
     last_name: request.body.last_name,
     email: request.body.email,
@@ -53,7 +53,7 @@ app.post("/adduser", (request, response) => {
   console.log(erroruser, "Successfully added Adminuser!!");
   if (!erroruser.error) {
     const object = {
-      username: request.body.username,
+      user_name: request.body.user_name,
       first_name: request.body.first_name,
       last_name: request.body.last_name,
       email: request.body.email,
@@ -134,7 +134,7 @@ app.put("/putquery", (request, response) => {
   const erroruser = validation.userValidation.validate(request.body);
   if (!erroruser.error) {
     const object = {
-      username: request.body.username,
+      user_name: request.body.user_name,
       first_name: request.body.first_name,
       last_name: request.body.last_name,
       email: request.body.email,
@@ -166,7 +166,7 @@ app.post("/addcompany", (request, response) => {
   if (!errorcompany.error) {
     const object = {
       company: request.body.company,
-      company_id: request.body.company_id,
+      companyid: request.body.companyid,
       email: request.body.email,
       website: request.body.website,
       location: request.body.location,
@@ -246,7 +246,7 @@ app.put("/updatecompany", (request, response) => {
   if (!errorcompany.error) {
     const object = {
       company: request.body.company,
-      company_id: request.body.company_id,
+      companyid: request.body.companyid,
       email: request.body.email,
       website: request.body.website,
       location: request.body.location,
@@ -279,7 +279,7 @@ app.post("/addproduct", (request, response) => {
     const object = {
       company: request.body.company,
       category: request.body.category,
-      product_id: request.body.product_id,
+      productid: request.body.productid,
       brand: request.body.brand,
       quantity: request.body.quantity,
       price: request.body.price,
@@ -363,7 +363,7 @@ app.put("/updateproduct", (request, response) => {
     const object = {
       company: request.body.company,
       category: request.body.category,
-      product_id: request.body.product_id,
+      productid: request.body.productid,
       brand: request.body.brand,
       quantity: request.body.quantity,
       price: request.body.price,
@@ -400,7 +400,7 @@ app.post("/addsupplier", (request, response) => {
     const object2 = {
       company: request.body.company,
       supplier: request.body.supplier,
-      supplier_id: request.body.supplier_id,
+      supplierid: request.body.supplierid,
       aadhar: request.body.aadhar,
       email: request.body.email,
       contact: request.body.contact,
@@ -489,7 +489,7 @@ app.put("/updatesupplier", (request, response) => {
     const object2 = {
       company: request.body.company,
       supplier: request.body.supplier,
-      supplier_id: request.body.supplier_id,
+      supplierid: request.body.supplierid,
       aadhar: request.body.aadhar,
       email: request.body.email,
       contact: request.body.contact,
@@ -546,7 +546,7 @@ app.post("/addcategory", (request, response) => {
   if (!errorcategory.error) {
     const object2 = {
       category: request.body.category,
-      product_id: request.body.product_id,
+      productid: request.body.productid,
       type: "product_category",
     };
     categoryController
@@ -607,7 +607,7 @@ app.put("/updatecategory", (request, response) => {
   if (!errorcategory.error) {
     const object2 = {
       category: request.body.category,
-      product_id: request.body.product_id,
+      productid: request.body.productid,
       _id: request.body._id,
       _rev: request.body._rev,
       type: "product_category",

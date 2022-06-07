@@ -29,7 +29,7 @@ export class AddSuppliersComponent implements OnInit {
       {
         'company':['',Validators.required],
         'supplier':['',Validators.required],
-        'supplier_id':['',Validators.required],
+        'supplierid':['',Validators.required],
         'aadhar':['',Validators.required],
         'email':[''],
         'contact':['',Validators.required],
@@ -56,7 +56,7 @@ export class AddSuppliersComponent implements OnInit {
           const obj ={
             company:Formvalue.company,
             supplier:Formvalue.supplier,
-            supplier_id:Formvalue.supplier_id,
+            supplierid:Formvalue.supplierid,
             aadhar:Formvalue.aadhar,
             email:Formvalue.email,
             contact:Formvalue.contact,
@@ -114,7 +114,7 @@ export class AddSuppliersComponent implements OnInit {
    editsupplier(row:any){
     this.addsuppliers.controls['company'].setValue(row.company);
     this.addsuppliers.controls['supplier'].setValue(row.supplier);
-    this.addsuppliers.controls['supplier_id'].setValue(row.supplier_id);
+    this.addsuppliers.controls['supplierid'].setValue(row.supplierid);
     this.addsuppliers.controls['aadhar'].setValue(row.aadhar);
     this.addsuppliers.controls['email'].setValue(row.email);
     this.addsuppliers.controls['contact'].setValue(row.contact);
@@ -155,7 +155,7 @@ export class AddSuppliersComponent implements OnInit {
         this.alldata=this.alldata.data.docs;
         for(const i of this.alldata){
               this.objectsupplier.push(i);   
-                if(i.supplier_id == formvalue.supplier_id){
+                if(i.supplierid == formvalue.supplierid){
                   this.check = 1;
                 }
         }       

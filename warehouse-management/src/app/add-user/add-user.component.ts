@@ -16,7 +16,7 @@ export class AddUserComponent implements OnInit {
   adduser!:FormGroup;
   alldata:any;
   show:boolean=false;
-  msg=this.object.username;
+  msg=this.object.user_name;
   count:any = 0;
   check=0;
   objectuser:any=[];
@@ -26,7 +26,7 @@ export class AddUserComponent implements OnInit {
   ngOnInit(): void {
     this.adduser = this.formbuilder.group(
       {
-        'username':['',Validators.required],
+        'user_name':['',Validators.required],
         'first_name':['',Validators.required],
         'last_name':['',Validators.required],
         'email':['',Validators.required],
@@ -84,7 +84,7 @@ export class AddUserComponent implements OnInit {
 
    // FOR EDITING USER
    edituser(row:any){
-    this.adduser.controls['username'].setValue(row.username);
+    this.adduser.controls['user_name'].setValue(row.user_name);
     this.adduser.controls['first_name'].setValue(row.first_name);
     this.adduser.controls['last_name'].setValue(row.last_name);
     this.adduser.controls['email'].setValue(row.email);
@@ -114,7 +114,7 @@ export class AddUserComponent implements OnInit {
         this.alldata=this.alldata.data.docs;
         for(const i of this.alldata){
               this.objectuser.push(i);
-                if(i.username == formvalue.username){
+                if(i.user_name == formvalue.user_name){
                   this.check = 1;
                 }
                 else if(formvalue.password != formvalue.confirm_password){

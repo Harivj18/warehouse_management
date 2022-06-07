@@ -25,7 +25,7 @@ export class AddCompanyComponent implements OnInit {
     this.addcompany = this.formbuilder.group(
       {
         'company':['',Validators.required],
-        'company_id':['',Validators.required],
+        'companyid':['',Validators.required],
         'email':['',Validators.required],
         'website':['',Validators.required],
         'location':['',Validators.required],
@@ -77,7 +77,7 @@ export class AddCompanyComponent implements OnInit {
    // FOR EDITING FIELDS
    editcompany(row:any){
     this.addcompany.controls['company'].setValue(row.company);
-    this.addcompany.controls['company_id'].setValue(row.company_id);
+    this.addcompany.controls['companyid'].setValue(row.companyid);
     this.addcompany.controls['email'].setValue(row.email);
     this.addcompany.controls['website'].setValue(row.website);
     this.addcompany.controls['location'].setValue(row.location);
@@ -105,7 +105,7 @@ export class AddCompanyComponent implements OnInit {
         this.alldata=this.alldata.data.docs;
         for(const i of this.alldata){
               this.objectcompany.push(i);
-                if(i.company_id == formvalue.company_id){
+                if(i.companyid == formvalue.companyid){
                   this.check = 1;
                 }
         }       
