@@ -61,9 +61,14 @@
                 <tr *ngFor="let obj of object |filter:search">
                     <td>{{obj.category}}</td>
                     <td>{{obj.productid}}</td>
-                    <td><button class="btn btn-danger" (click)="editcategory(obj)" type="button">Edit</button>
+                    <td>
+                        <span class="material-symbols-outlined" (click)="editcategory(obj)" id="edit">
+                            edit
+                        </span>
                         &nbsp;&nbsp;
-                        <button class="btn btn-danger" (click)="delcategory(obj,obj)">Delete</button>
+                        <span class="material-symbols-outlined" (click)="delcategory(obj,obj)" id="delete">
+                            delete
+                        </span>
                     </td>
                 </tr>
             </tbody>

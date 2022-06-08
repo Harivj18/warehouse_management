@@ -125,11 +125,14 @@
                     <td>{{obj.last_name}}</td>
                     <td>{{obj.email}}</td>
                     <td>{{obj.contact}}</td>
-
-                    <td><button class="btn btn-danger" (click)="edituser(obj)" type="button">Edit
-                        </button>
+                    <td>
+                        <span class="material-symbols-outlined" (click)="edituser(obj)" id="edit">
+                            edit
+                        </span>
                         &nbsp;&nbsp;
-                        <button class="btn btn-danger" (click)="deluser(obj,obj)">Delete</button>
+                        <span class="material-symbols-outlined" (click)="deluser(obj,obj)" id="delete">
+                            delete
+                        </span>
                     </td>
                 </tr>
             </tbody>

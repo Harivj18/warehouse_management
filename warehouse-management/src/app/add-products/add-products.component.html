@@ -119,9 +119,14 @@
                     <td>{{obj1.price}}</td>
                     <td>{{obj1.total}}</td>
                     <td>{{obj1.manufacture}}</td>
-                    <td><button class="btn btn-danger" (click)="editproduct(obj1)" type="button">Edit</button>
+                    <td>
+                        <span class="material-symbols-outlined" (click)="editproduct(obj1)" id="edit">
+                            edit
+                        </span>
                         &nbsp;&nbsp;
-                        <button class="btn btn-danger" (click)="delproduct(obj1,obj1)">Delete</button>
+                        <span class="material-symbols-outlined" (click)="delproduct(obj1,obj1)" id="delete">
+                            delete
+                        </span>
                     </td>
                 </tr>
             </tbody>

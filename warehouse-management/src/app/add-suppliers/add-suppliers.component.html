@@ -133,9 +133,14 @@
                     <td>{{obj.contact}}</td>
                     <td>{{obj.state}}</td>
                     <td>{{obj.city}}</td>
-                    <td><button class="btn btn-danger" (click)="editsupplier(obj)" type="button">Edit</button>
+                    <td>
+                        <span class="material-symbols-outlined" (click)="editsupplier(obj)" id="edit">
+                            edit
+                        </span>
                         &nbsp;&nbsp;
-                        <button class="btn btn-danger" (click)="delsupplier(obj,obj)">Delete</button>
+                        <span class="material-symbols-outlined" (click)="delsupplier(obj,obj)" id="delete">
+                            delete
+                        </span>
                     </td>
                 </tr>
             </tbody>

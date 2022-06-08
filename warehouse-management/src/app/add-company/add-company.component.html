@@ -91,9 +91,14 @@
                     <td>{{obj.companyid}}</td>
                     <td>{{obj.email}}</td>
                     <td>{{obj.location}}</td>
-                    <td><button class="btn btn-danger" (click)="editcompany(obj)" type="button">Edit</button>
+                    <td>
+                        <span class="material-symbols-outlined" (click)="editcompany(obj)" id="edit">
+                            edit
+                        </span>
                         &nbsp;&nbsp;
-                        <button class="btn btn-danger" (click)="delcompany(obj,obj)">Delete</button>
+                        <span class="material-symbols-outlined" (click)="delcompany(obj,obj)" id="delete">
+                            delete
+                        </span>
                     </td>
 
                 </tr>
