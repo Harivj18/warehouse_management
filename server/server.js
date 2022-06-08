@@ -11,6 +11,7 @@ const supplierController = require("./controller/Suppliercontroller");
 const formController = require("./controller/Formcontroller");
 const infoController = require("./controller/Infocontroller");
 const categoryController = require("./controller/Categorycontroller");
+const mailController = require("./controller/mailController");
 const contactMail = require("./connection/mail");
 const validation = require("./Validator/validation");
 const { error } = require("./logger/logger");
@@ -515,8 +516,32 @@ app.put("/updatesupplier", (request, response) => {
 });
 
 // CONTACT FORM
-app.post("/contact", (request, _response) => {
-  contactMail.getemail(request.body.email, request.body.msg);
+app.post("/contact", (request, response) => {
+  const errorcontact = validation.mailValidation.validate(request.body);
+  console.log(errorcontact, "Message sent successfully!!");
+  if (!errorcontact.error) {
+    const object = {
+      email: request.body.email,
+      company: request.body.company,
+      companyemail: request.body.companyemail,
+      msg: request.body.msg,
+      type: "queries",
+    };
+    mailController
+      .mailForm(object)
+      .then((res) => {
+        logger.info("Admin message sent successfully to the company!!!");
+        response.send(res);
+      })
+      .catch((err) => {
+        logger.error("error", "Your response from database");
+        response.send("OOPS!!Failed to send data!!", err);
+      });
+  } else {
+    logger.warn(
+      "error !! something bad happened in sending message to company!!"
+    );
+  }
 });
 
 // TO GET CATEGORY
@@ -541,7 +566,7 @@ app.get("/getinfo", (_request, response) => {
 // TO ADD CATEGORY
 app.post("/addcategory", (request, response) => {
   const errorcategory = validation.categoryValidation.validate(request.body);
-  console.log(errorcategory, "Successfully registered supplier!!");
+  console.log(errorcategory, "Successfully registered category!!");
   if (!errorcategory.error) {
     const object2 = {
       category: request.body.category,
@@ -602,7 +627,7 @@ app.delete("/delcategory/:id/:id1", (request, response) => {
 //TO UPDATE CATEGORY
 app.put("/updatecategory", (request, response) => {
   const errorcategory = validation.categoryValidation.validate(request.body);
-  console.log(errorcategory, "Successfully updated supplier!!");
+  console.log(errorcategory, "Successfully updated category!!");
   if (!errorcategory.error) {
     const object2 = {
       category: request.body.category,
@@ -619,7 +644,7 @@ app.put("/updatecategory", (request, response) => {
       })
       .catch((err) => {
         logger.error("error", "Your response from database");
-        response.send("OOPS!!Failed to add supplier data!!", err);
+        response.send("OOPS!!Failed to update data!!", err);
       });
   } else {
     logger.warn("error !! something bad happened in updating to company!!");

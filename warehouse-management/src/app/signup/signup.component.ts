@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
       this.toastr.success('User Successfully Registered!!');
       setTimeout(() => {
       location.reload();
-      }, 10000);
+      }, 5000);
       this.router.navigate(['login'])
     },rej=>{
       console.log('Error',rej);        

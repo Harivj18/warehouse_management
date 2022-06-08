@@ -33,12 +33,12 @@ a.nav-item.navlink {
 #dashboardicon {
   position: relative;
   top: 10px;
-  left: -97px;
+  left: -78px;
 }
 #logout {
   position: relative;
   top: 10px;
-  left: -70px;
+  left: -72px;
 }
 #dashboardicon1 {
   position: relative;
@@ -50,5 +50,5 @@ a.nav-item.navlink {
   position: relative;
   left: -47px;
   width: 3px;
-  top: 5px;
+  top: 7px;
 }

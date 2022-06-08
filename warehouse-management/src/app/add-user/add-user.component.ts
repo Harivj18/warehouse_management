@@ -48,7 +48,7 @@ export class AddUserComponent implements OnInit {
         this.toastr.success('Admin Data successfully Registered!!');
             setTimeout(() => {
             location.reload();
-            }, 10000);
+            },5000);
         },rej=>{
           console.log('Error',rej);        
         });
@@ -78,7 +78,7 @@ export class AddUserComponent implements OnInit {
     this.toastr.warning('Admin Data was deleted successfully!!');
     setTimeout(() => {
       location.reload();
-    }, 10000);
+    },5000);
   },rej=>{
     console.log('Error',rej);    
   })     
@@ -104,7 +104,7 @@ export class AddUserComponent implements OnInit {
       this.toastr.success('Admin Data successfully updated!!');
       setTimeout(() => {
         location.reload();
-      }, 10000);
+      },5000);
     },rej=>{
       console.log('Error',rej);      
     })
@@ -130,13 +130,13 @@ export class AddUserComponent implements OnInit {
             this.toastr.error('Username already exists!!');
             setTimeout(() => {
             location.reload();
-            }, 10000);
+            },5000);
           }
           else if(this.check == 2){
             this.toastr.error('Password does not match!!');
             setTimeout(() => {
             location.reload();
-            }, 10000);
+            },5000);
           }
           else{
               this.addform(formvalue);

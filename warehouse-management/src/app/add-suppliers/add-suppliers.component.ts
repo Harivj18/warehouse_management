@@ -72,7 +72,7 @@ export class AddSuppliersComponent implements OnInit {
             this.toastr.success('Supplier Data successfully Registered!!');
             setTimeout(() => {
             location.reload();
-            }, 10000);
+            }, 5000);
             this.serve.store=[];
             },rej=>{
               console.log('Error',rej);        
@@ -106,7 +106,7 @@ export class AddSuppliersComponent implements OnInit {
     this.toastr.warning('Supplier Data was deleted successfully!!');
     setTimeout(() => {
       location.reload();
-    }, 10000);
+    }, 5000);
   },rej=>{
     console.log('Error',rej);
   })
@@ -134,7 +134,7 @@ export class AddSuppliersComponent implements OnInit {
       this.toastr.success('Supplier Data successfully updated!!');
       setTimeout(() => {
         location.reload();
-      }, 10000);
+      }, 5000);
     },rej=>{
       console.log('Error',rej);
     })
@@ -168,7 +168,7 @@ export class AddSuppliersComponent implements OnInit {
             this.toastr.error('Supplier Id already exists!!');
             setTimeout(() => {
             location.reload();
-            }, 10000);
+            }, 5000);
           }
           else{
             this.add(formvalue)

@@ -39,7 +39,7 @@ export class CategoryComponent implements OnInit {
         this.toastr.success('Category successfully added!!');
         setTimeout(() => {
           location.reload();
-        }, 10000);
+        },5000);
         },rej=>{
           console.log('Error',rej);        
         });
@@ -66,7 +66,7 @@ export class CategoryComponent implements OnInit {
       this.toastr.warning('Category Data was deleted successfully!!');
       setTimeout(() => {
         location.reload();
-      }, 10000);
+      },5000);
     },rej=>{
       console.log('Error',rej);    
     })     
@@ -78,15 +78,20 @@ export class CategoryComponent implements OnInit {
       this.submit= false;
       this.category.controls['category'].setValue(row.category);
       this.category.controls['productid'].setValue(row.productid);
+      this.category.controls['_id'].setValue(row._id);
+      this.category.controls['_rev'].setValue(row._rev);
      }
   
     // UPDATING REGISTERED CATEGORY
      updatecategory(formvalue:NgForm){
-      this.api.changecategory(formvalue).subscribe(_res=>{
+       console.log(formvalue);
+       
+      this.api.changecategory(formvalue).subscribe(res=>{
+        console.log(res);
         this.toastr.success('Category Data successfully Updated!!');
         setTimeout(() => {
           location.reload();
-        }, 10000);
+        },5000);
       },rej=>{
         console.log('Error',rej);      
       })
@@ -109,7 +114,7 @@ export class CategoryComponent implements OnInit {
               this.toastr.error('Category already exists!!');
               setTimeout(() => {
                 location.reload();
-              }, 10000);
+              },5000);
             }
             else{
               this.add(formvalue)

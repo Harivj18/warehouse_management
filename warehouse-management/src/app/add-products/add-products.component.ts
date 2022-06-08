@@ -117,7 +117,7 @@ export class AddProductsComponent implements OnInit {
             this.toastr.success('Your Product added successfully')
             setTimeout(() => {
               location.reload();
-            }, 10000);
+            },5000);
             },rej=>{
               console.log('Error',rej);        
             });
@@ -150,7 +150,7 @@ export class AddProductsComponent implements OnInit {
     this.toastr.warning('Product Data was deleted successfully!!');
     setTimeout(() => {
       location.reload();
-    }, 10000);
+    },5000);
   },rej=>{
     console.log('Error',rej);    
   })     
@@ -192,7 +192,7 @@ export class AddProductsComponent implements OnInit {
       this.toastr.success('Product Data successfully Updated!!');
       setTimeout(() => {
         location.reload();
-      }, 10000);
+      },5000);
       },rej=>{
         console.log('Error',rej);        
       });
@@ -233,7 +233,7 @@ export class AddProductsComponent implements OnInit {
             this.toastr.error('Product Id and Product already exists!! Please update those products');
             setTimeout(() => {
               location.reload();
-            }, 10000);
+            },5000);
             let quantity = parseInt(this.stock) + parseInt(formvalue.quantity);
             let cost = parseInt(this.price) + parseInt(formvalue.price)
             console.log('total quantity',quantity);

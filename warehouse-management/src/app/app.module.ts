@@ -59,7 +59,7 @@ import { CategoryComponent } from './category/category.component';
     ReactiveFormsModule,
     ToastrModule.forRoot({
       closeButton: true,
-      timeOut: 8000, 
+      timeOut: 5000, 
       progressBar: true,
     }),
   ],

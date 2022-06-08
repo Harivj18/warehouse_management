@@ -43,7 +43,7 @@ export class AddCompanyComponent implements OnInit {
       this.toastr.success('Company Data successfully Registered!!');
       setTimeout(() => {
         location.reload();
-      }, 10000);
+      },5000);
       },rej=>{
         console.log('Error',rej);        
       });
@@ -70,7 +70,7 @@ export class AddCompanyComponent implements OnInit {
     this.toastr.warning('Company Data was deleted successfully!!');
     setTimeout(() => {
       location.reload();
-    }, 10000);
+    },5000);
   },rej=>{
     console.log('Error',rej);    
   })     
@@ -95,7 +95,7 @@ export class AddCompanyComponent implements OnInit {
       this.toastr.success('Company Data successfully Updated!!');
       setTimeout(() => {
         location.reload();
-      }, 10000);
+      },5000);
     },rej=>{
       console.log('Error',rej);      
     })
@@ -118,7 +118,7 @@ export class AddCompanyComponent implements OnInit {
             this.toastr.error('Company Id already exists!!');
             setTimeout(() => {
               location.reload();
-            }, 10000);
+            },5000);
           }
           else{
             this.add(formvalue)

@@ -40,7 +40,7 @@ const productValidation = joi.object({
   company: joi.string().required(),
   category: joi.string().required(),
   productid: joi.string().required(),
-  brand: joi.string().alphanum().required(),
+  brand: joi.string().required(),
   quantity: joi.number().min(1).required(),
   price: joi.number().min(1).required(),
   total: joi.number().optional(),
@@ -72,9 +72,24 @@ const supplierValidation = joi.object({
 // For Category Validation
 const categoryValidation = joi.object({
   category: joi.string().required(),
-  productid: joi.string().required(),
+  productid: joi.string().alphanum().required(),
   _id: joi.optional(),
   _rev: joi.optional(),
+});
+
+const mailValidation = joi.object({
+  email: joi
+    .string()
+    .email()
+    .regex(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)
+    .required(),
+  company: joi.string().alphanum().min(3).max(30).required(),
+  companyemail: joi
+    .string()
+    .email()
+    .regex(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)
+    .required(),
+  msg: joi.string().required(),
 });
 
 module.exports = {
@@ -83,4 +98,5 @@ module.exports = {
   productValidation,
   supplierValidation,
   categoryValidation,
+  mailValidation,
 };
