@@ -15,6 +15,8 @@ export class AddProductsComponent implements OnInit {
   addproduct!:FormGroup;
   alldata:any;
   show:boolean=false;
+  update:boolean=false;
+  submit:boolean=true;
   objcompany:any=[];
   info:any=[];
   url: any;
@@ -156,6 +158,8 @@ export class AddProductsComponent implements OnInit {
 
   //  FOR SETTING VALUE ON FIELD
    editproduct(row:any){
+     this.update= true;
+     this.submit=false;
     this.addproduct.controls['company'].setValue(row.company);
     this.addproduct.controls['category'].setValue(row.category);
     this.addproduct.controls['productid'].setValue(row.productid);

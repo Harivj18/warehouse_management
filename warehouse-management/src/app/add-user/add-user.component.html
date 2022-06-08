@@ -21,6 +21,9 @@
                     <span class="text-danger"
                         *ngIf="adduser.controls['user_name'].touched && adduser.hasError('required','user_name')">
                         *Username is required</span>
+                    <span class="text-danger" *ngIf="adduser.hasError('minlength','user_name')">*Username should
+                        have atleast 5 chars!!
+                    </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="first_Name" class="text-light">First Name :</label>
@@ -92,11 +95,12 @@
                 </div>
                 <div class="button text-center">
                     <button type="submit" class="btn btn-danger px-4 py-2 my-4"
-                        (click)="uservalidation(this.adduser.value)" [disabled]="!adduser.valid">Sign
+                        (click)="uservalidation(this.adduser.value)" [disabled]="!adduser.valid"
+                        *ngIf="submit == true">Sign
                         Up</button>
                     <button (click)="updateForm(this.adduser.value)"
-                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4"
-                        [disabled]="!adduser.valid">Update</button>
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4" [disabled]="!adduser.valid"
+                        *ngIf="update == true">Update</button>
                 </div>
             </form>
         </div>
@@ -111,8 +115,7 @@
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Contact No</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -122,9 +125,12 @@
                     <td>{{obj.last_name}}</td>
                     <td>{{obj.email}}</td>
                     <td>{{obj.contact}}</td>
-                    <td><button class="btn btn-danger" (click)="edituser(obj)" type="button">Edit</button>
+
+                    <td><button class="btn btn-danger" (click)="edituser(obj)" type="button">Edit
+                        </button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-danger" (click)="deluser(obj,obj)">Delete</button>
                     </td>
-                    <td><button class="btn btn-danger" (click)="deluser(obj,obj)">Delete</button></td>
                 </tr>
             </tbody>
         </table>

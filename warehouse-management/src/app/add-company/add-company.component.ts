@@ -15,6 +15,8 @@ export class AddCompanyComponent implements OnInit {
   addcompany!:FormGroup;
   alldata:any;
   show:boolean=false;
+  update:boolean=false;
+  submit:boolean=true;
   message='hello';
   check=0;
   objectcompany:any=[];
@@ -76,6 +78,8 @@ export class AddCompanyComponent implements OnInit {
 
    // FOR EDITING FIELDS
    editcompany(row:any){
+    this.update= true;
+    this.submit= false;
     this.addcompany.controls['company'].setValue(row.company);
     this.addcompany.controls['companyid'].setValue(row.companyid);
     this.addcompany.controls['email'].setValue(row.email);

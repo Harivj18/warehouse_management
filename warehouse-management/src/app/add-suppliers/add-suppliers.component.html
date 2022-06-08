@@ -76,9 +76,6 @@
                     <select formControlName="state">
                         <option value="">Select State</option>
                         <option value="TamilNadu">TamilNadu</option>
-                        <option value="Kerala">Kerala</option>
-                        <option value="Karnataka">Karnataka</option>
-                        <option value="Andhra Pradesh">Andhra Pradesh</option>
                     </select>
                     <span class="text-danger"
                         *ngIf="addsuppliers.controls['state'].dirty && addsuppliers.hasError('required','state')">*State
@@ -91,24 +88,21 @@
                         <option value="">Select City</option>
                         <option value="Salem">Salem</option>
                         <option value="Chennai">Chennai</option>
-                        <option value="Kochi">Kochi</option>
-                        <option value="Alappuzha">Alappuzha</option>
-                        <option value="Bangalore">Bangalore</option>
-                        <option value="Mysuru">Mysuru</option>
-                        <option value="Tirupathi">Tirupathi</option>
-                        <option value="Vishakapatnam">Vishakapatnam</option>
+                        <option value="Tirunelveli">Tirunelveli</option>
+                        <option value="Madurai">Madurai</option>
+                        <option value="Coimbatore">Coimbatore</option>
                     </select>
                     <span class="text-danger"
-                        *ngIf="addsuppliers.controls['city'].touched && addsuppliers.hasError('required','city')">*Supplier
-                        Id is required </span>
+                        *ngIf="addsuppliers.controls['city'].touched && addsuppliers.hasError('required','city')">*City
+                        is required </span>
                 </div>
                 <div class="button text-center">
                     <button type="submit" class="btn btn-danger px-4 py-2 my-4"
-                        (click)="suppliervalidation(this.addsuppliers.value)"
-                        [disabled]="!addsuppliers.valid">Register</button>
+                        (click)="suppliervalidation(this.addsuppliers.value)" [disabled]="!addsuppliers.valid"
+                        *ngIf="submit == true">Register</button>
                     <button (click)="updateForm(this.addsuppliers.value)"
-                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4"
-                        [disabled]="!addsuppliers.valid">Update</button>
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4" [disabled]="!addsuppliers.valid"
+                        *ngIf="update == true">Update</button>
                 </div>
             </form>
         </div>
@@ -126,8 +120,7 @@
                     <th scope="col">Contact No</th>
                     <th scope="col">State</th>
                     <th scope="col">City</th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -141,8 +134,9 @@
                     <td>{{obj.state}}</td>
                     <td>{{obj.city}}</td>
                     <td><button class="btn btn-danger" (click)="editsupplier(obj)" type="button">Edit</button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-danger" (click)="delsupplier(obj,obj)">Delete</button>
                     </td>
-                    <td><button class="btn btn-danger" (click)="delsupplier(obj,obj)">Delete</button></td>
                 </tr>
             </tbody>
         </table>

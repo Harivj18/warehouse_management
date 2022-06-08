@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
         'user_name':['',Validators.required],
         'first_name':['',Validators.required],
         'last_name':['',Validators.required],
+        'contact':['',Validators.required],
         'email':['',Validators.required],
         'password':['',Validators.required],
         'confirm_password':['',Validators.required],

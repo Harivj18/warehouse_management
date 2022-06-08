@@ -14,6 +14,8 @@ export class CategoryComponent implements OnInit {
   category!:FormGroup;
   alldata:any;
   show:boolean=false;
+  update:boolean=false;
+  submit:boolean=true;
   message='hello';
   check=0;
   objectcategory:any=[];
@@ -72,6 +74,8 @@ export class CategoryComponent implements OnInit {
   
      // FOR EDITING FIELDS
      editcategory(row:any){
+      this.update= true;
+      this.submit= false;
       this.category.controls['category'].setValue(row.category);
       this.category.controls['productid'].setValue(row.productid);
      }

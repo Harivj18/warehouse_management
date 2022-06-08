@@ -29,6 +29,9 @@
                     <span class="text-danger"
                         *ngIf="addcompany.controls['companyid'].touched && addcompany.hasError('required','companyid')">*Company
                         Id is required </span>
+                    <span class="text-danger" *ngIf="addcompany.hasError('minlength','companyid')">*Company Id should
+                        have atleast 5 chars!!
+                    </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="email" class="text-light">Company Email :</label>
@@ -61,10 +64,10 @@
                 </div>
                 <div class="button text-center">
                     <button (click)="companycheck(this.addcompany.value)" class="btn btn-danger px-4 py-2 my-4"
-                        [disabled]="!addcompany.valid">Submit</button>
+                        [disabled]="!addcompany.valid" *ngIf="submit == true">Submit</button>
                     <button (click)="updatecompany(this.addcompany.value)"
-                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4"
-                        [disabled]="!addcompany.valid">Update</button>
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4" [disabled]="!addcompany.valid"
+                        *ngIf="update == true">Update</button>
                 </div>
             </form>
         </div>
@@ -79,8 +82,7 @@
                     <th scope="col">Company Id</th>
                     <th scope="col">Company Email</th>
                     <th scope="col">Location</th>
-                    <th></th>
-                    <th></th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -90,8 +92,9 @@
                     <td>{{obj.email}}</td>
                     <td>{{obj.location}}</td>
                     <td><button class="btn btn-danger" (click)="editcompany(obj)" type="button">Edit</button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-danger" (click)="delcompany(obj,obj)">Delete</button>
                     </td>
-                    <td><button class="btn btn-danger" (click)="delcompany(obj,obj)">Delete</button></td>
 
                 </tr>
             </tbody>

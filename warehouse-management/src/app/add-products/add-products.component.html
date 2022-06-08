@@ -47,16 +47,21 @@
                     <span class="text-danger"
                         *ngIf="addproduct.controls['brand'].touched && addproduct.hasError('required','brand')">*Product
                         Name is required </span>
+                    <span class="text-danger" *ngIf="addproduct.hasError('minlength','brand')">*Product Name should
+                        have atleast 5 chars!!
+                    </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="quantity" class="text-light">Quantity :</label>
                     <input type="quantity" formControlName="quantity" class="form-control"
-                        placeholder="Product Quantity" min="1" pattern="">
+                        placeholder="Product Quantity" min="1">
                     <span class="text-danger"
                         *ngIf="addproduct.controls['quantity'].touched && addproduct.hasError('required','quantity')">*Quantity
                         is
                         required </span>
-
+                    <span class="text-danger" *ngIf="addproduct.hasError('minlength','quantity')">*Quantity should
+                        have atleast 1!!
+                    </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="price" class="text-light">Price :</label>
@@ -65,7 +70,9 @@
                     <span class="text-danger"
                         *ngIf="addproduct.controls['price'].dirty && addproduct.hasError('required','price')">*Product
                         Price is required </span>
-
+                    <span class="text-danger" *ngIf="addproduct.hasError('minlength','price')">*Price should
+                        be atleast 1!!
+                    </span>
                 </div>
                 <div class="form-group my-3">
                     <label for="manufacture" class="text-light">Manufacturing Date :</label>
@@ -77,10 +84,11 @@
                 </div>
                 <div class="button text-center">
                     <button type="submit" class="btn btn-danger px-4 py-2 my-4"
-                        (click)="productvalidation(this.addproduct.value)" [disabled]="!addproduct.valid">Add </button>
+                        (click)="productvalidation(this.addproduct.value)" [disabled]="!addproduct.valid"
+                        *ngIf="submit == true">Add </button>
                     <button (click)="updateproduct(this.addproduct.value)"
-                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4"
-                        [disabled]="!addproduct.valid">Update</button>
+                        class="btn btn-warning text-light px-4 py-2 mx-4 my-4" [disabled]="!addproduct.valid"
+                        *ngIf="update == true">Update</button>
                 </div>
             </form>
         </div>
@@ -98,8 +106,7 @@
                     <th scope="col">Price</th>
                     <th scope="col">Total</th>
                     <th scope="col">Manufacture</th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -113,8 +120,9 @@
                     <td>{{obj1.total}}</td>
                     <td>{{obj1.manufacture}}</td>
                     <td><button class="btn btn-danger" (click)="editproduct(obj1)" type="button">Edit</button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-danger" (click)="delproduct(obj1,obj1)">Delete</button>
                     </td>
-                    <td><button class="btn btn-danger" (click)="delproduct(obj1,obj1)">Delete</button></td>
                 </tr>
             </tbody>
         </table>

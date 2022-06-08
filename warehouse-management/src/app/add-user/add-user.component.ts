@@ -16,6 +16,8 @@ export class AddUserComponent implements OnInit {
   adduser!:FormGroup;
   alldata:any;
   show:boolean=false;
+  update:boolean=false;
+  submit:boolean=true;
   msg=this.object.user_name;
   count:any = 0;
   check=0;
@@ -84,6 +86,8 @@ export class AddUserComponent implements OnInit {
 
    // FOR EDITING USER
    edituser(row:any){
+    this.update= true;
+    this.submit= false;
     this.adduser.controls['user_name'].setValue(row.user_name);
     this.adduser.controls['first_name'].setValue(row.first_name);
     this.adduser.controls['last_name'].setValue(row.last_name);

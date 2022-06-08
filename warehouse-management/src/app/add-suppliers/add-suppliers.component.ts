@@ -17,6 +17,8 @@ export class AddSuppliersComponent implements OnInit {
   addsuppliers!:FormGroup;
   alldata:any;
   show:boolean=false;
+  update:boolean=false;
+  submit:boolean=true;
   check=0;
   objectsupplier:any=[];
   objcompany:any=[];
@@ -112,6 +114,8 @@ export class AddSuppliersComponent implements OnInit {
 
    // FOR EDITING SUPPLIER
    editsupplier(row:any){
+    this.update= true;
+    this.submit=false;
     this.addsuppliers.controls['company'].setValue(row.company);
     this.addsuppliers.controls['supplier'].setValue(row.supplier);
     this.addsuppliers.controls['supplierid'].setValue(row.supplierid);
